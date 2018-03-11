@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('homepage');
 
-Auth::routes();
+Route::group(['prefix' => 'dashboard'], function(){
+	Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+});
