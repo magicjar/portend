@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Dropzone = require('dropzone')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,8 +16,37 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('about-component', require('./components/AboutComponent.vue'));
+Vue.component('articleindex-component', require('./components/ArticleIndexComponent.vue'));
+Vue.component('articlecreate-component', require('./components/ArticleCreateComponent.vue'));
+Vue.component('skill-component', require('./components/SkillComponent.vue'));
+Vue.component('education-component', require('./components/EducationComponent.vue'));
+Vue.component('experience-component', require('./components/ExperienceComponent.vue'));
+Vue.component('testimonial-component', require('./components/TestimonialComponent.vue'));
+Vue.component('mediamodal-component', require('./components/MediaModalComponent.vue'));
+Vue.component('category-component', require('./components/CategoryComponent.vue'));
+Vue.component('tag-component', require('./components/TagComponent.vue'));
 
 const app = new Vue({
     el: '#app'
 });
+
+
+/**
+ * Custom Javascript
+ *
+ *
+ */
+
+ // Collapse sidebar and active state
+if($('.sidebar .nav-link').hasClass('active')){
+    $('.active').siblings('.collapse').addClass('show');
+};
+
+$(function () {
+	'use strict'
+
+	$('[data-toggle="offcanvas"]').on('click', function () {
+		$('.sidebar').toggleClass('collapse show')
+	})
+})

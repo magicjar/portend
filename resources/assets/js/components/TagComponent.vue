@@ -1,0 +1,153 @@
+<template>
+    <div class="row">
+        <form @submit.prevent="addTag" class="col-sm-6">
+            <div class="actions-body mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" id="name" placeholder="Enter name here" v-model="tag.name" required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="slug" id="slug" placeholder="Enter slug here" v-model="tag.slug">
+                        </div>
+                        <div>
+                            <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="tag.description"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body table-responsive pb-1">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Slug</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="tag in tags" v-bind:key="tag.id">
+                                <td>{{ tag.name }}</td>
+                                <td>{{ tag.description }}</td>
+                                <td>{{ tag.slug }}</td>
+                                <td class="d-flex">
+                                    <button @click="editTag(tag)" class="btn btn-info btn-sm">Edit</button>
+                                    <button @click="deleteTag(tag.id)" class="btn btn-danger btn-sm">Del</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data(){
+            return {
+                tags: [],
+                tag: {
+                    id: '',
+                    name: '',
+                    slug: '',
+                    description: ''
+                },
+                tag_id: '',
+                edit_state: false,
+            }
+        },
+
+        created() {
+            this.fetchTags();
+        },
+
+        methods: {
+            fetchTags(){
+                if($('#tag').data('type') === 'article'){
+                    axios.get(vars.urls.baseUrl + '/api/article-tag')
+                    .then(response => {
+                        this.tags = response.data.data;
+                    })
+                    .catch(error => console.log(error));
+                } else {
+                    axios.get(vars.urls.baseUrl + '/api/portfolio-tag')
+                    .then(response => {
+                        this.tags = response.data.data;
+                    })
+                    .catch(error => console.log(error));
+                }
+            },
+            addTag(){
+                if(this.edit_state === false){
+                    // Create
+                    if($('#tag').data('type') === 'article'){
+                        axios.post(vars.urls.baseUrl + '/api/article-tag', this.tag )
+                        .then(data => {
+                            this.tag.name = '';
+                            this.tag.slug = '';
+                            this.tag.description = '';
+                            this.fetchTags();
+                        })
+                        .catch(error => console.log(error));
+                    } else {
+                        axios.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag )
+                        .then(data => {
+                            this.tag.name = '';
+                            this.tag.slug = '';
+                            this.tag.description = '';
+                            this.fetchTags();
+                        })
+                        .catch(error => console.log(error));
+                    }
+                } else {
+                    // Update
+                    if($('#tag').data('type') === 'article'){
+                        axios.put(vars.urls.baseUrl + '/api/article-tag', this.tag )
+                        .then(data => {
+                            this.tag.name = '';
+                            this.tag.slug = '';
+                            this.tag.description = '';
+                            this.fetchTags();
+                        })
+                        .catch(error => console.log(error));
+                    } else {
+                        axios.put(vars.urls.baseUrl + '/api/portfolio-tag', this.tag )
+                        .then(data => {
+                            this.tag.name = '';
+                            this.tag.slug = '';
+                            this.tag.description = '';
+                            this.fetchTags();
+                        })
+                        .catch(error => console.log(error));
+                    }
+                }
+                
+            },
+            deleteTag(id){
+                if(confirm('This action cannot be undone!')){
+                    axios.delete(vars.urls.baseUrl + '/api/article-tag/' + id )
+                    .then(data => {
+                        this.fetchTags();
+                    })
+                    .catch(error => console.log(error));
+                }
+            },
+            editTag(tag){
+                this.edit_state = true;
+                this.tag.id = tag.id;
+                this.tag.tag_id = tag.id;
+                this.tag.name = tag.name;
+                this.tag.slug = tag.slug;
+                this.tag.description = tag.description;
+            }
+        }
+    }
+</script>
