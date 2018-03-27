@@ -87,7 +87,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary btn-sm">Add</button>
+					<button @click="addImage(image)" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add</button>
 				</div>
 			</div>
 		</div>
@@ -116,8 +116,13 @@
 			}
 		},
 
+		props: [
+            'isThumbnail', 'articleImage'
+        ],
+
 		mounted() {
-			this.mediaUploads()
+			this.mediaUploads();
+			this.addImage();
 		},
 
 		created() {
@@ -125,6 +130,17 @@
         },
 
 		methods: {
+			addImage(image) {
+				if(this.isThumbnail === true){
+                	// Add thumbnail image
+                	this.articleImage = image;
+                	this.$emit('addedImage', this.articleImage);
+                	this.$emit('addedThumb', this.isThumbnail);
+                	this.isThumbnail = false
+                } else {
+                	// Add post image / editor Image
+                }
+			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
 				var previewTemplate = previewNode.parentNode.innerHTML;

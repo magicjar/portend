@@ -9,7 +9,7 @@
     <h1 class="h2 mb-0 font-weight-bold card-body text-center">Add Article</h1>
 </div>
 
-<form method="POST" action="{{ route('dashboard.article.store') }}">
+<form id="article" method="POST" action="{{ route('dashboard.article.store') }}">
     @csrf
     <div class="actions-wrapper row no-gutters">
         <div class="actions-body mb-4">
@@ -37,6 +37,4 @@
         <articlecreate-component></articlecreate-component>
     </div>
 </form>
-
-<mediamodal-component></mediamodal-component>
 @endsection

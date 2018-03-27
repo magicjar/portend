@@ -27,7 +27,7 @@ class ApiController extends Controller
 
     public function articleEdit($id)
     {
-        $article = $this->article->with('category', 'tag')->findOrFail($id);
+        $article = $this->article->with('category', 'tag', 'image')->findOrFail($id);
 
         return new Resource($article);
     }

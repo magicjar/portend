@@ -38,6 +38,4 @@
         <articlecreate-component></articlecreate-component>
     </div>
 </form>
-
-<mediamodal-component></mediamodal-component>
 @endsection
