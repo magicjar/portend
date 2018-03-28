@@ -129,6 +129,7 @@
                     name: '',
                 },
                 isThumbnail: false,
+                modalActive: false
             }
         },
 
@@ -148,11 +149,16 @@
             fetchArticle(){
                 let id = $('#article').data('id');
 
-                axios.get(vars.urls.baseUrl + '/api/article/' + id)
-                .then(response => {
-                    this.article = response.data.data;
-                })
-                .catch(error => console.log(error));
+                // If has id = Edit
+                // no = Create
+                if(id != null){
+                    axios.get(vars.urls.baseUrl + '/api/article/' + id)
+                        .then(response => {
+                        this.article = response.data.data;
+                    })
+                    .catch(error => console.log(error));
+                }
+                
             },
             fetchCategories(){
                 axios.get(vars.urls.baseUrl + '/api/article-category')

@@ -63,7 +63,7 @@
 											<li><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 										</ul>
 									</div>
-									<form @submit.prevent="saveMedia" v-show="show" class="form-field p-3">
+									<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
 										<div class="form-group">
 											<input class="form-control" type="text" name="file" v-model="image.image_url" readonly>
 										</div>

@@ -16,16 +16,18 @@ window.Dropzone = require('dropzone')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('about-component', require('./components/AboutComponent.vue'));
-Vue.component('articleindex-component', require('./components/ArticleIndexComponent.vue'));
-Vue.component('articlecreate-component', require('./components/ArticleCreateComponent.vue'));
-Vue.component('skill-component', require('./components/SkillComponent.vue'));
-Vue.component('education-component', require('./components/EducationComponent.vue'));
-Vue.component('experience-component', require('./components/ExperienceComponent.vue'));
-Vue.component('testimonial-component', require('./components/TestimonialComponent.vue'));
-Vue.component('mediamodal-component', require('./components/MediaModalComponent.vue'));
-Vue.component('category-component', require('./components/CategoryComponent.vue'));
-Vue.component('tag-component', require('./components/TagComponent.vue'));
+Vue.component('about-component', require('./components/About.vue'));
+Vue.component('articleindex-component', require('./components/ArticleIndex.vue'));
+Vue.component('articlecreate-component', require('./components/ArticleCreate.vue'));
+Vue.component('skill-component', require('./components/Skill.vue'));
+Vue.component('education-component', require('./components/Education.vue'));
+Vue.component('experience-component', require('./components/Experience.vue'));
+Vue.component('testimonial-component', require('./components/Testimonial.vue'));
+Vue.component('mediamodal-component', require('./components/MediaModal.vue'));
+Vue.component('category-component', require('./components/Category.vue'));
+Vue.component('tag-component', require('./components/Tag.vue'));
+Vue.component('portfoliocreate-component', require('./components/PortfolioCreate'));
+Vue.component('portfoliomedia-component', require('./components/PortfolioMedia'));
 
 const app = new Vue({
     el: '#app'
