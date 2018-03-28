@@ -94,4 +94,5 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 
 	Route::get('portfolio/category', 'DashboardController@portfolioCategory')->name('portfolio.category');
 	Route::get('portfolio/tag', 'DashboardController@portfolioTag')->name('portfolio.tag');
+	Route::resource('portfolio', 'PortfolioController');
 });

@@ -35,7 +35,7 @@
                         <a class="nav-link {{ Request::is('*portfolio') ? 'active' : '' }}" href="#"><span data-feather="book"></span>All Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('*portfolio/create') ? 'active' : '' }}" href="#"><span data-feather="book"></span>Add Portfolio</a>
+                        <a class="nav-link {{ Request::is('*portfolio/create') ? 'active' : '' }}" href="{{ route('dashboard.portfolio.create') }}"><span data-feather="book"></span>Add Portfolio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('*portfolio/category') ? 'active' : '' }}" href="{{ route('dashboard.portfolio.category') }}"><span data-feather="book"></span>Categories</a>
