@@ -35,7 +35,11 @@
                 </div>
             </div>
         </div>
+
         <articlecreate-component></articlecreate-component>
+
+        <mediamodal-component></mediamodal-component>
+        
     </div>
 </form>
 @endsection

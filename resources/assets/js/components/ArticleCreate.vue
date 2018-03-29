@@ -96,19 +96,12 @@
                 </div>
             </div>
         </div>
-
-        <mediamodal-component
-            :isThumbnail="isThumbnail"
-            :articleImage="article.image"
-            @addedImage="article.image = $event"
-            @addedThumb="isThumbnail = $event"
-        ></mediamodal-component>
-
     </div>
 </template>
 
 <script>       
     import axios from 'axios';
+    import { bus } from '../app.js';
 
     export default {
         data(){
@@ -128,8 +121,8 @@
                     id: '',
                     name: '',
                 },
-                isThumbnail: false,
-                modalActive: false
+                modalActive: false,
+                isThumbnail: false
             }
         },
 
@@ -137,11 +130,17 @@
             this.fetchArticle();
             this.fetchCategories();
             this.fetchTags();
+            bus.$on('theImage', (data) => {
+                this.article.image = data
+            });
+            bus.$on('thumbFalse', (data) => {
+                this.isThumbnail = data
+            });
         },
 
         methods: {
             setThumbnail(){
-                this.isThumbnail = true;
+                bus.$emit('thumbTrue', this.isThumbnail = true);
             },
             removeThumbnail(){
                 this.article.image = '';

@@ -29,6 +29,8 @@ Vue.component('tag-component', require('./components/Tag.vue'));
 Vue.component('portfoliocreate-component', require('./components/PortfolioCreate'));
 Vue.component('portfoliomedia-component', require('./components/PortfolioMedia'));
 
+export const bus = new Vue();
+
 const app = new Vue({
     el: '#app'
 });

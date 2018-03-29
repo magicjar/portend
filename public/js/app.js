@@ -513,6 +513,12 @@ module.exports = g;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(19);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -614,7 +620,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -642,7 +648,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3088,7 +3094,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -13459,12 +13465,6 @@ return jQuery;
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(19);
-
-/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13927,13 +13927,16 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(73);
+module.exports = __webpack_require__(76);
 
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13962,8 +13965,10 @@ Vue.component('testimonial-component', __webpack_require__(59));
 Vue.component('mediamodal-component', __webpack_require__(62));
 Vue.component('category-component', __webpack_require__(65));
 Vue.component('tag-component', __webpack_require__(68));
-Vue.component('portfoliocreate-component', __webpack_require__(78));
-Vue.component('portfoliomedia-component', __webpack_require__(71));
+Vue.component('portfoliocreate-component', __webpack_require__(71));
+Vue.component('portfoliomedia-component', __webpack_require__(74));
+
+var bus = new Vue();
 
 var app = new Vue({
   el: '#app'
@@ -13994,7 +13999,7 @@ $(function () {
 
 
 window._ = __webpack_require__(17);
-window.Popper = __webpack_require__(5).default;
+window.Popper = __webpack_require__(6).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14003,7 +14008,7 @@ window.Popper = __webpack_require__(5).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(6);
+  window.$ = window.jQuery = __webpack_require__(7);
 
   __webpack_require__(18);
 } catch (e) {}
@@ -14014,7 +14019,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(7);
+window.axios = __webpack_require__(3);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -31152,7 +31157,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(4)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)(module)))
 
 /***/ }),
 /* 18 */
@@ -31164,7 +31169,7 @@ if (token) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-	 true ? factory(exports, __webpack_require__(6), __webpack_require__(5)) :
+	 true ? factory(exports, __webpack_require__(7), __webpack_require__(6)) :
 	typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
 	(factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -35064,7 +35069,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(8);
 var Axios = __webpack_require__(21);
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 
 /**
  * Create an instance of Axios
@@ -35147,7 +35152,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(30);
 var dispatchRequest = __webpack_require__(31);
@@ -35686,7 +35691,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(32);
 var isCancel = __webpack_require__(12);
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 var isAbsoluteURL = __webpack_require__(33);
 var combineURLs = __webpack_require__(34);
 
@@ -50545,7 +50550,7 @@ function __guardMethod__(obj, methodName, transform) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ }),
 /* 41 */
@@ -51133,8 +51138,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_js__ = __webpack_require__(15);
 //
 //
 //
@@ -51236,14 +51242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -51265,26 +51264,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: '',
                 name: ''
             },
-            isThumbnail: false,
-            modalActive: false
+            modalActive: false,
+            isThumbnail: false
         };
     },
     created: function created() {
+        var _this = this;
+
         this.fetchArticle();
         this.fetchCategories();
         this.fetchTags();
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('theImage', function (data) {
+            _this.article.image = data;
+        });
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('thumbFalse', function (data) {
+            _this.isThumbnail = data;
+        });
     },
 
 
     methods: {
         setThumbnail: function setThumbnail() {
-            this.isThumbnail = true;
+            __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
         },
         removeThumbnail: function removeThumbnail() {
             this.article.image = '';
         },
         fetchArticle: function fetchArticle() {
-            var _this = this;
+            var _this2 = this;
 
             var id = $('#article').data('id');
 
@@ -51292,46 +51299,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // no = Create
             if (id != null) {
                 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article/' + id).then(function (response) {
-                    _this.article = response.data.data;
+                    _this2.article = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
                 });
             }
         },
         fetchCategories: function fetchCategories() {
-            var _this2 = this;
+            var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article-category').then(function (response) {
-                _this2.categories = response.data.data;
+                _this3.categories = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         addCategory: function addCategory() {
-            var _this3 = this;
+            var _this4 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/article-category', this.category).then(function (data) {
-                _this3.category.name = '';
-                _this3.fetchCategories();
+                _this4.category.name = '';
+                _this4.fetchCategories();
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         fetchTags: function fetchTags() {
-            var _this4 = this;
+            var _this5 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article-tag').then(function (response) {
-                _this4.tags = response.data.data;
+                _this5.tags = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         addTag: function addTag() {
-            var _this5 = this;
+            var _this6 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/article-tag', this.tag).then(function (data) {
-                _this5.tag.name = '';
-                _this5.fetchTags();
+                _this6.tag.name = '';
+                _this6.fetchTags();
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -51347,339 +51354,315 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "actions-meta" },
-    [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-body taxo-category" },
-              _vm._l(_vm.categories, function(category) {
-                return _c(
-                  "div",
-                  {
-                    key: category.id,
-                    staticClass: "custom-control custom-checkbox"
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.article.category,
-                          expression: "article.category"
-                        }
-                      ],
-                      staticClass: "custom-control-input",
-                      attrs: {
-                        type: "checkbox",
-                        name: "article.category[]",
-                        id: category.id
-                      },
-                      domProps: {
-                        value: category,
-                        checked: Array.isArray(_vm.article.category)
-                          ? _vm._i(_vm.article.category, category) > -1
-                          : _vm.article.category
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.article.category,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = category,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                (_vm.article.category = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.article.category = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.$set(_vm.article, "category", $$c)
-                          }
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
+  return _c("div", { staticClass: "actions-meta" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body taxo-category" },
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "div",
+                {
+                  key: category.id,
+                  staticClass: "custom-control custom-checkbox"
+                },
+                [
+                  _c("input", {
+                    directives: [
                       {
-                        staticClass: "custom-control-label",
-                        attrs: { for: category.id }
-                      },
-                      [_vm._v(_vm._s(category.name))]
-                    )
-                  ]
-                )
-              })
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "p-4" }, [
-              _vm._v(
-                "\n                Test categories: " +
-                  _vm._s(_vm.article.category)
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "collapse", attrs: { id: "newCategory" } },
-              [
-                _c("div", { staticClass: "card-footer" }, [
-                  _c(
-                    "form",
-                    {
-                      staticClass: "input-group",
-                      attrs: { id: "category" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          _vm.addCategory($event)
-                        }
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.article.category,
+                        expression: "article.category"
                       }
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.category.name,
-                            expression: "category.name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "New categories",
-                          required: ""
-                        },
-                        domProps: { value: _vm.category.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.category, "name", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(2)
-                    ]
-                  )
-                ])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _vm._m(3),
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.article.tag) +
-                "\n                "
-            ),
-            _vm.article.tag.length
-              ? _c(
-                  "ul",
-                  { staticClass: "card-body list-inline mb-0" },
-                  _vm._l(_vm.article.tag, function(tag) {
-                    return _c(
-                      "li",
-                      { key: tag.id, staticClass: "list-inline-item mr-3" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-danger rounded-circle remove-tag mr-1",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.article.tag.pop(_vm.article.tag)
-                              }
-                            }
-                          },
-                          [_vm._v("×\n                        ")]
-                        ),
-                        _vm._v(_vm._s(tag.name) + "\n                        "),
-                        _c("input", {
-                          attrs: { type: "hidden", name: "article.tag[]" },
-                          domProps: { value: tag.id }
-                        })
-                      ]
-                    )
-                  })
-                )
-              : _c("ul", { staticClass: "card-body list-inline mb-0" }, [
-                  _vm._v("\n                    No tag\n                ")
-                ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
-              _vm.tags.length
-                ? _c(
-                    "ul",
-                    { staticClass: "card-footer list-inline mb-0" },
-                    [
-                      _c("h6", [_vm._v("Availlable Tags")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.tags, function(tag) {
-                        return _c(
-                          "li",
-                          { key: tag.id, staticClass: "list-inline-item mr-3" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-success rounded-circle remove-tag mr-1",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.article.tag.push(tag)
-                                  }
-                                }
-                              },
-                              [_vm._v("+")]
-                            ),
-                            _vm._v(
-                              _vm._s(tag.name) + "\n                        "
-                            )
-                          ]
-                        )
-                      })
                     ],
-                    2
-                  )
-                : _c("span"),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-footer" }, [
-                _c(
-                  "form",
-                  {
-                    staticClass: "input-group",
-                    attrs: { id: "tag" },
+                    staticClass: "custom-control-input",
+                    attrs: {
+                      type: "checkbox",
+                      name: "article.category[]",
+                      id: category.id
+                    },
+                    domProps: {
+                      value: category,
+                      checked: Array.isArray(_vm.article.category)
+                        ? _vm._i(_vm.article.category, category) > -1
+                        : _vm.article.category
+                    },
                     on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.addTag($event)
+                      change: function($event) {
+                        var $$a = _vm.article.category,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = category,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              (_vm.article.category = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.article.category = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(_vm.article, "category", $$c)
+                        }
                       }
                     }
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.tag.name,
-                          expression: "tag.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "New tag",
-                        required: ""
-                      },
-                      domProps: { value: _vm.tag.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.tag, "name", $event.target.value)
-                        }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: category.id }
+                    },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                ]
+              )
+            })
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-4" }, [
+            _vm._v(
+              "\n                Test categories: " +
+                _vm._s(_vm.article.category)
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newCategory" } }, [
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "input-group",
+                  attrs: { id: "category" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.addCategory($event)
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.category.name,
+                        expression: "category.name"
                       }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(4)
-                  ]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm.article.image.thumbnail
-                ? _c("div", { staticClass: "text-center" }, [
-                    _c("img", {
-                      staticClass: "img-fluid mb-3",
-                      attrs: { src: _vm.article.image.thumbnail }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "d-block text-left",
-                        attrs: { href: "#" },
-                        on: { click: _vm.removeThumbnail }
-                      },
-                      [_vm._v("Remove featured image")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "image" },
-                      domProps: { value: _vm.article.image.id }
-                    })
-                  ])
-                : _c("div", [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#imagemodal"
-                        },
-                        on: { click: _vm.setThumbnail }
-                      },
-                      [_vm._v("Set featured image")]
-                    )
-                  ])
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "New categories",
+                      required: ""
+                    },
+                    domProps: { value: _vm.category.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.category, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]
+              )
             ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("mediamodal-component", {
-        attrs: {
-          isThumbnail: _vm.isThumbnail,
-          articleImage: _vm.article.image
-        },
-        on: {
-          addedImage: function($event) {
-            _vm.article.image = $event
-          },
-          addedThumb: function($event) {
-            _vm.isThumbnail = $event
-          }
-        }
-      })
-    ],
-    1
-  )
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _vm._m(3),
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.article.tag) +
+              "\n                "
+          ),
+          _vm.article.tag.length
+            ? _c(
+                "ul",
+                { staticClass: "card-body list-inline mb-0" },
+                _vm._l(_vm.article.tag, function(tag) {
+                  return _c(
+                    "li",
+                    { key: tag.id, staticClass: "list-inline-item mr-3" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-danger rounded-circle remove-tag mr-1",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.article.tag.pop(_vm.article.tag)
+                            }
+                          }
+                        },
+                        [_vm._v("×\n                        ")]
+                      ),
+                      _vm._v(_vm._s(tag.name) + "\n                        "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "article.tag[]" },
+                        domProps: { value: tag.id }
+                      })
+                    ]
+                  )
+                })
+              )
+            : _c("ul", { staticClass: "card-body list-inline mb-0" }, [
+                _vm._v("\n                    No tag\n                ")
+              ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
+            _vm.tags.length
+              ? _c(
+                  "ul",
+                  { staticClass: "card-footer list-inline mb-0" },
+                  [
+                    _c("h6", [_vm._v("Availlable Tags")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.tags, function(tag) {
+                      return _c(
+                        "li",
+                        { key: tag.id, staticClass: "list-inline-item mr-3" },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-success rounded-circle remove-tag mr-1",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.article.tag.push(tag)
+                                }
+                              }
+                            },
+                            [_vm._v("+")]
+                          ),
+                          _vm._v(
+                            _vm._s(tag.name) + "\n                        "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              : _c("span"),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "input-group",
+                  attrs: { id: "tag" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.addTag($event)
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.tag.name,
+                        expression: "tag.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "New tag",
+                      required: ""
+                    },
+                    domProps: { value: _vm.tag.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.tag, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm.article.image.thumbnail
+              ? _c("div", { staticClass: "text-center" }, [
+                  _c("img", {
+                    staticClass: "img-fluid mb-3",
+                    attrs: { src: _vm.article.image.thumbnail }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "d-block text-left",
+                      attrs: { href: "#" },
+                      on: { click: _vm.removeThumbnail }
+                    },
+                    [_vm._v("Remove featured image")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "image" },
+                    domProps: { value: _vm.article.image.id }
+                  })
+                ])
+              : _c("div", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "#",
+                        "data-toggle": "modal",
+                        "data-target": "#imagemodal"
+                      },
+                      on: { click: _vm.setThumbnail }
+                    },
+                    [_vm._v("Set featured image")]
+                  )
+                ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -53831,6 +53814,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(15);
 //
 //
 //
@@ -53927,6 +53911,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -53944,33 +53932,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				thumbnail: '',
 				resolution: '',
 				created_at: ''
-			}
+			},
+			img: {},
+			isThumbnail: false,
+			isPortfolioMedia: false,
+			resourceThumbnail: {},
+			portfolioMedia: []
 		};
 	},
-
-
-	props: ['isThumbnail', 'articleImage'],
-
 	mounted: function mounted() {
 		this.mediaUploads();
-		this.addImage();
 	},
 	created: function created() {
+		var _this = this;
+
+		this.isThumbnail = false;
 		this.fetchMedia();
+		__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$on('thumbTrue', function (data) {
+			_this.isThumbnail = data;
+		});
+		__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$on('portfolioMediaTrue', function (data) {
+			_this.isPortfolioMedia = data;
+		});
 	},
 
 
 	methods: {
-		addImage: function addImage(image) {
-			if (this.isThumbnail === true) {
-				// Add thumbnail image
-				this.articleImage = image;
-				this.$emit('addedImage', this.articleImage);
-				this.$emit('addedThumb', this.isThumbnail);
-				this.isThumbnail = false;
-			} else {
-				// Add post image / editor Image
-			}
+		setThumbnail: function setThumbnail() {
+			// Add thumbnail image
+			__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('theImage', this.resourceThumbnail = this.img);
+			__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('thumbFalse', this.isThumbnail = false);
+		},
+		addPortfolioMedia: function addPortfolioMedia() {
+			// Add image to portfolio
+			__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('thePortfolioMedia', this.portfolioMedia = this.img);
+			__WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('portfolioMediaFalse', this.isPortfolioMedia = false);
 		},
 		mediaUploads: function mediaUploads() {
 			var previewNode = document.querySelector("#template");
@@ -53999,10 +53995,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		fetchMedia: function fetchMedia() {
-			var _this = this;
+			var _this2 = this;
 
 			axios.get(vars.urls.baseUrl + '/api/media').then(function (response) {
-				_this.media = response.data.data;
+				_this2.media = response.data.data;
 			}).catch(function (error) {
 				return console.log(error);
 			});
@@ -54018,24 +54014,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.image.thumbnail = image.thumbnail;
 			this.image.resolution = image.resolution;
 			this.image.created_at = image.created_at;
+			this.img = image;
 			this.show = true;
 		},
 		saveMedia: function saveMedia() {
-			var _this2 = this;
+			var _this3 = this;
 
 			axios.put(vars.urls.baseUrl + '/api/media', this.image).then(function (data) {
-				_this2.fetchMedia();
+				_this3.fetchMedia();
 			}).catch(function (error) {
 				return console.log(error);
 			});
 		},
 		deleteMedia: function deleteMedia(id) {
-			var _this3 = this;
+			var _this4 = this;
 
 			if (confirm('This action cannot be undone!')) {
 				axios.delete(vars.urls.baseUrl + '/api/media/' + id).then(function (data) {
-					_this3.show = false;
-					_this3.fetchMedia();
+					_this4.show = false;
+					_this4.fetchMedia();
 				}).catch(function (error) {
 					return console.log(error);
 				});
@@ -54119,6 +54116,7 @@ var render = function() {
                                           staticClass: "media-checkbox",
                                           on: {
                                             click: function($event) {
+                                              $event.preventDefault()
                                               _vm.editMedia(image)
                                             }
                                           }
@@ -54412,19 +54410,46 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  attrs: { "data-dismiss": "modal", type: "button" },
-                  on: {
-                    click: function($event) {
-                      _vm.addImage(_vm.image)
-                    }
-                  }
-                },
-                [_vm._v("Add")]
-              )
+              _vm._v(
+                "\n\t\t\t\tSet Thumbnail: " +
+                  _vm._s(_vm.isThumbnail) +
+                  ", Set Porto Meda: " +
+                  _vm._s(_vm.isPortfolioMedia) +
+                  "\n\t\t\t\t"
+              ),
+              _vm.isThumbnail
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm",
+                      attrs: { "data-dismiss": "modal", type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.setThumbnail($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Set Thumbnail")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.isPortfolioMedia
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm",
+                      attrs: { "data-dismiss": "modal", type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.addPortfolioMedia($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Add Image")]
+                  )
+                : _vm._e()
             ])
           ])
         ]
@@ -55447,181 +55472,9 @@ if (false) {
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(72)
 /* template */
-var __vue_template__ = __webpack_require__(72)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\PortfolioMedia.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-07baecb3", Component.options)
-  } else {
-    hotAPI.reload("data-v-07baecb3", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "actions-body mb-4" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "row px-2" }, [
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
-              _c("div", { staticClass: "bg-info" }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E",
-                    alt: "Sunt qui sed quas est."
-                  }
-                })
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-primary w-100" }, [
-            _vm._v("Add Portfolio Media")
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
-  }
-}
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(79)
-/* template */
-var __vue_template__ = __webpack_require__(80)
+var __vue_template__ = __webpack_require__(73)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -55660,13 +55513,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_js__ = __webpack_require__(15);
 //
 //
 //
@@ -55768,14 +55622,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -55797,26 +55644,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: '',
                 name: ''
             },
-            isThumbnail: false,
-            modalActive: false
+            modalActive: false,
+            isThumbnail: false
         };
     },
     created: function created() {
+        var _this = this;
+
         this.fetchPortfolio();
         this.fetchCategories();
         this.fetchTags();
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('theImage', function (data) {
+            _this.portfolio.image = data;
+            console.log(data.title);
+        });
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('thumbFalse', function (data) {
+            _this.isThumbnail = data;
+        });
     },
 
 
     methods: {
         setThumbnail: function setThumbnail() {
-            this.isThumbnail = true;
+            __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
         },
         removeThumbnail: function removeThumbnail() {
             this.portfolio.image = '';
         },
         fetchPortfolio: function fetchPortfolio() {
-            var _this = this;
+            var _this2 = this;
 
             var id = $('#portfolio').data('id');
 
@@ -55824,46 +55680,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // no = Create
             if (id != null) {
                 __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio/' + id).then(function (response) {
-                    _this.portfolio = response.data.data;
+                    _this2.portfolio = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
                 });
             }
         },
         fetchCategories: function fetchCategories() {
-            var _this2 = this;
+            var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio-category').then(function (response) {
-                _this2.categories = response.data.data;
+                _this3.categories = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         addCategory: function addCategory() {
-            var _this3 = this;
+            var _this4 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/portfolio-category', this.category).then(function (data) {
-                _this3.category.name = '';
-                _this3.fetchCategories();
+                _this4.category.name = '';
+                _this4.fetchCategories();
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         fetchTags: function fetchTags() {
-            var _this4 = this;
+            var _this5 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio-tag').then(function (response) {
-                _this4.tags = response.data.data;
+                _this5.tags = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         addTag: function addTag() {
-            var _this5 = this;
+            var _this6 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
-                _this5.tag.name = '';
-                _this5.fetchTags();
+                _this6.tag.name = '';
+                _this6.fetchTags();
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -55872,346 +55728,327 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "actions-meta" },
-    [
-      _c("div", { staticClass: "row" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "card-body taxo-category" },
-              _vm._l(_vm.categories, function(category) {
-                return _c(
-                  "div",
-                  {
-                    key: category.id,
-                    staticClass: "custom-control custom-checkbox"
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.portfolio.category,
-                          expression: "portfolio.category"
-                        }
-                      ],
-                      staticClass: "custom-control-input",
-                      attrs: {
-                        type: "checkbox",
-                        name: "portfolio.category[]",
-                        id: category.id
-                      },
-                      domProps: {
-                        value: category,
-                        checked: Array.isArray(_vm.portfolio.category)
-                          ? _vm._i(_vm.portfolio.category, category) > -1
-                          : _vm.portfolio.category
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.portfolio.category,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = category,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                (_vm.portfolio.category = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.portfolio.category = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.$set(_vm.portfolio, "category", $$c)
-                          }
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
+  return _c("div", { staticClass: "actions-meta" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body taxo-category" },
+            _vm._l(_vm.categories, function(category) {
+              return _c(
+                "div",
+                {
+                  key: category.id,
+                  staticClass: "custom-control custom-checkbox"
+                },
+                [
+                  _c("input", {
+                    directives: [
                       {
-                        staticClass: "custom-control-label",
-                        attrs: { for: category.id }
-                      },
-                      [_vm._v(_vm._s(category.name))]
-                    )
-                  ]
-                )
-              })
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "p-4" }, [
-              _vm._v(
-                "\n                Test categories: " +
-                  _vm._s(_vm.portfolio.category)
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "collapse", attrs: { id: "newCategory" } },
-              [
-                _c("div", { staticClass: "card-footer" }, [
-                  _c(
-                    "form",
-                    {
-                      staticClass: "input-group",
-                      attrs: { id: "category" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          _vm.addCategory($event)
-                        }
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.portfolio.category,
+                        expression: "portfolio.category"
                       }
-                    },
-                    [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.category.name,
-                            expression: "category.name"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "New categories",
-                          required: ""
-                        },
-                        domProps: { value: _vm.category.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.category, "name", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm._m(2)
-                    ]
-                  )
-                ])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _vm._m(3),
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.portfolio.tag) +
-                "\n                "
-            ),
-            _vm.portfolio.tag.length
-              ? _c(
-                  "ul",
-                  { staticClass: "card-body list-inline mb-0" },
-                  _vm._l(_vm.portfolio.tag, function(tag) {
-                    return _c(
-                      "li",
-                      { key: tag.id, staticClass: "list-inline-item mr-3" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-danger rounded-circle remove-tag mr-1",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                _vm.portfolio.tag.pop(_vm.portfolio.tag)
-                              }
-                            }
-                          },
-                          [_vm._v("×\n                        ")]
-                        ),
-                        _vm._v(_vm._s(tag.name) + "\n                        "),
-                        _c("input", {
-                          attrs: { type: "hidden", name: "portfolio.tag[]" },
-                          domProps: { value: tag.id }
-                        })
-                      ]
-                    )
-                  })
-                )
-              : _c("ul", { staticClass: "card-body list-inline mb-0" }, [
-                  _vm._v("\n                    No tag\n                ")
-                ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
-              _vm.tags.length
-                ? _c(
-                    "ul",
-                    { staticClass: "card-footer list-inline mb-0" },
-                    [
-                      _c("h6", [_vm._v("Availlable Tags")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.tags, function(tag) {
-                        return _c(
-                          "li",
-                          { key: tag.id, staticClass: "list-inline-item mr-3" },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn btn-success rounded-circle remove-tag mr-1",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.portfolio.tag.push(tag)
-                                  }
-                                }
-                              },
-                              [_vm._v("+")]
-                            ),
-                            _vm._v(
-                              _vm._s(tag.name) + "\n                        "
-                            )
-                          ]
-                        )
-                      })
                     ],
-                    2
-                  )
-                : _c("span"),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-footer" }, [
-                _c(
-                  "form",
-                  {
-                    staticClass: "input-group",
-                    attrs: { id: "tag" },
+                    staticClass: "custom-control-input",
+                    attrs: {
+                      type: "checkbox",
+                      name: "portfolio.category[]",
+                      id: category.id
+                    },
+                    domProps: {
+                      value: category,
+                      checked: Array.isArray(_vm.portfolio.category)
+                        ? _vm._i(_vm.portfolio.category, category) > -1
+                        : _vm.portfolio.category
+                    },
                     on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        _vm.addTag($event)
+                      change: function($event) {
+                        var $$a = _vm.portfolio.category,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = category,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              (_vm.portfolio.category = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.portfolio.category = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(_vm.portfolio, "category", $$c)
+                        }
                       }
                     }
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.tag.name,
-                          expression: "tag.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        placeholder: "New tag",
-                        required: ""
-                      },
-                      domProps: { value: _vm.tag.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.tag, "name", $event.target.value)
-                        }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: category.id }
+                    },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                ]
+              )
+            })
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "p-4" }, [
+            _vm._v(
+              "\n                Test categories: " +
+                _vm._s(_vm.portfolio.category)
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newCategory" } }, [
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "input-group",
+                  attrs: { id: "category" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.addCategory($event)
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.category.name,
+                        expression: "category.name"
                       }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(4)
-                  ]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-          _c("div", { staticClass: "card mb-4" }, [
-            _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm.portfolio.image.thumbnail
-                ? _c("div", { staticClass: "text-center" }, [
-                    _c("img", {
-                      staticClass: "img-fluid mb-3",
-                      attrs: { src: _vm.portfolio.image.thumbnail }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "d-block text-left",
-                        attrs: { href: "#" },
-                        on: { click: _vm.removeThumbnail }
-                      },
-                      [_vm._v("Remove featured image")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "image" },
-                      domProps: { value: _vm.portfolio.image.id }
-                    })
-                  ])
-                : _c("div", [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#imagemodal"
-                        },
-                        on: { click: _vm.setThumbnail }
-                      },
-                      [_vm._v("Set featured image")]
-                    )
-                  ])
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "New categories",
+                      required: ""
+                    },
+                    domProps: { value: _vm.category.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.category, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]
+              )
             ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("mediamodal-component", {
-        attrs: {
-          isThumbnail: _vm.isThumbnail,
-          portfolioImage: _vm.portfolio.image
-        },
-        on: {
-          addedImage: function($event) {
-            _vm.portfolio.image = $event
-          },
-          addedThumb: function($event) {
-            _vm.isThumbnail = $event
-          }
-        }
-      })
-    ],
-    1
-  )
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _vm._m(3),
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.portfolio.tag) +
+              "\n                "
+          ),
+          _vm.portfolio.tag.length
+            ? _c(
+                "ul",
+                { staticClass: "card-body list-inline mb-0" },
+                _vm._l(_vm.portfolio.tag, function(tag) {
+                  return _c(
+                    "li",
+                    { key: tag.id, staticClass: "list-inline-item mr-3" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-danger rounded-circle remove-tag mr-1",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.portfolio.tag.pop(_vm.portfolio.tag)
+                            }
+                          }
+                        },
+                        [_vm._v("×\n                        ")]
+                      ),
+                      _vm._v(_vm._s(tag.name) + "\n                        "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "portfolio.tag[]" },
+                        domProps: { value: tag.id }
+                      })
+                    ]
+                  )
+                })
+              )
+            : _c("ul", { staticClass: "card-body list-inline mb-0" }, [
+                _vm._v("\n                    No tag\n                ")
+              ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
+            _vm.tags.length
+              ? _c(
+                  "ul",
+                  { staticClass: "card-footer list-inline mb-0" },
+                  [
+                    _c("h6", [_vm._v("Availlable Tags")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.tags, function(tag) {
+                      return _c(
+                        "li",
+                        { key: tag.id, staticClass: "list-inline-item mr-3" },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-success rounded-circle remove-tag mr-1",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  _vm.portfolio.tag.push(tag)
+                                }
+                              }
+                            },
+                            [_vm._v("+")]
+                          ),
+                          _vm._v(
+                            _vm._s(tag.name) + "\n                        "
+                          )
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
+              : _c("span"),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "input-group",
+                  attrs: { id: "tag" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.addTag($event)
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.tag.name,
+                        expression: "tag.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "New tag",
+                      required: ""
+                    },
+                    domProps: { value: _vm.tag.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.tag, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(4)
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
+        _c("div", { staticClass: "card mb-4" }, [
+          _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm.portfolio.image.thumbnail
+              ? _c("div", { staticClass: "text-center" }, [
+                  _c("img", {
+                    staticClass: "img-fluid mb-3",
+                    attrs: { src: _vm.portfolio.image.thumbnail }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "d-block text-left",
+                      attrs: { href: "#" },
+                      on: { click: _vm.removeThumbnail }
+                    },
+                    [_vm._v("Remove featured image")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "image" },
+                    domProps: { value: _vm.portfolio.image.id }
+                  })
+                ])
+              : _c("div", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: "#",
+                        "data-toggle": "modal",
+                        "data-target": "#imagemodal"
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.setThumbnail($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Set featured image")]
+                  )
+                ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -56336,6 +56173,172 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-5f80bf86", module.exports)
   }
 }
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(81)
+/* template */
+var __vue_template__ = __webpack_require__(75)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\PortfolioMedia.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-07baecb3", Component.options)
+  } else {
+    hotAPI.reload("data-v-07baecb3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "actions-body mb-4" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          { staticClass: "row px-2" },
+          _vm._l(_vm.portfolioMedia, function(media) {
+            return _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
+              _c("div", { staticClass: "bg-info" }, [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: { src: media.thumbnail }
+                })
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary w-100",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#imagemodal"
+            },
+            on: { click: _vm.addPortfolioMedia }
+          },
+          [_vm._v("Add Portfolio Media")]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
+  }
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_js__ = __webpack_require__(15);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            portfolioMedia: [],
+            isPortfolioMedia: false
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('thePortfolioMedia', function (data) {
+            _this.portfolioMedia.push(data);
+        });
+        __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$on('portfolioMediaFalse', function (data) {
+            _this.isPortfolioMedia = data;
+        });
+    },
+
+
+    methods: {
+        addPortfolioMedia: function addPortfolioMedia() {
+            __WEBPACK_IMPORTED_MODULE_1__app_js__["bus"].$emit('portfolioMediaTrue', this.isPortfolioMedia = true);
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

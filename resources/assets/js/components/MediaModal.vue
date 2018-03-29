@@ -45,7 +45,7 @@
 											</div>
 										</li>
 										<li v-for="image in media" v-bind:key="image.id" class="col-4 col-lg-3 px-2 mb-3">
-											<div @click="editMedia(image)" class="media-checkbox">
+											<div @click.prevent="editMedia(image)" class="media-checkbox">
 												<img class="media-thumbnail img-fluid rounded-0" :title="image.title" :alt="image.alt" :src="image.thumbnail">
 											</div>
 										</li>
@@ -87,7 +87,9 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button @click="addImage(image)" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add</button>
+					Set Thumbnail: {{ isThumbnail }}, Set Porto Meda: {{ isPortfolioMedia }}
+					<button v-if="isThumbnail" @click.prevent="setThumbnail" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Set Thumbnail</button>
+					<button v-if="isPortfolioMedia" @click.prevent="addPortfolioMedia" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add Image</button>
 				</div>
 			</div>
 		</div>
@@ -95,6 +97,8 @@
 </template>
 
 <script>
+	import { bus } from '../app.js';
+
 	export default {
 
 		data(){
@@ -113,33 +117,39 @@
 					resolution: '',
 					created_at: ''
 				},
+				img: {},
+				isThumbnail: false,
+				isPortfolioMedia: false,
+				resourceThumbnail: {},
+				portfolioMedia: [],
 			}
 		},
 
-		props: [
-            'isThumbnail', 'articleImage'
-        ],
-
 		mounted() {
 			this.mediaUploads();
-			this.addImage();
 		},
 
 		created() {
+			this.isThumbnail = false;
             this.fetchMedia();
+            bus.$on('thumbTrue', (data) => {
+            	this.isThumbnail = data
+            });
+            bus.$on('portfolioMediaTrue', (data) => {
+            	this.isPortfolioMedia = data
+            });
         },
 
 		methods: {
-			addImage(image) {
-				if(this.isThumbnail === true){
-                	// Add thumbnail image
-                	this.articleImage = image;
-                	this.$emit('addedImage', this.articleImage);
-                	this.$emit('addedThumb', this.isThumbnail);
-                	this.isThumbnail = false
-                } else {
-                	// Add post image / editor Image
-                }
+			setThumbnail() {
+            	// Add thumbnail image
+            	bus.$emit('theImage', this.resourceThumbnail = this.img);
+            	bus.$emit('thumbFalse', this.isThumbnail = false);
+			},
+			addPortfolioMedia() {
+            	// Add image to portfolio
+            	bus.$emit('thePortfolioMedia', this.portfolioMedia = this.img);
+            	bus.$emit('portfolioMediaFalse', this.isPortfolioMedia = false);
 			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
@@ -187,6 +197,7 @@
                 this.image.thumbnail = image.thumbnail;
                 this.image.resolution = image.resolution;
                 this.image.created_at = image.created_at;
+                this.img = image;
                 this.show = true;
 			},
 			saveMedia(){

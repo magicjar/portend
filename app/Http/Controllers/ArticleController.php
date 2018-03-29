@@ -23,9 +23,7 @@ class ArticleController extends DashboardController
      */
     public function create()
     {
-        $article = new $this->article;
-
-        return view('dashboard.article.create', compact('article'));
+        return view('dashboard.article.create');
     }
 
     /**
