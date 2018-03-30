@@ -90,25 +90,18 @@
                             <input type="hidden" name="image" :value="portfolio.image.id">
                         </div>
                         <div v-else>
-                            <a href="#" @click="setThumbnail" data-toggle="modal" data-target="#imagemodal">Set featured image</a>
+                            <a href="#" @click.prevent="setThumbnail" data-toggle="modal" data-target="#imagemodal">Set featured image</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <mediamodal-component
-            :isThumbnail="isThumbnail"
-            :portfolioImage="portfolio.image"
-            @addedImage="portfolio.image = $event"
-            @addedThumb="isThumbnail = $event"
-        ></mediamodal-component>
-
     </div>
 </template>
 
-<script>       
+<script>
     import axios from 'axios';
+    import { bus } from '../app.js';
 
     export default {
         data(){
@@ -128,8 +121,8 @@
                     id: '',
                     name: '',
                 },
-                isThumbnail: false,
-                modalActive: false
+                modalActive: false,
+                isThumbnail: false
             }
         },
 
@@ -137,11 +130,18 @@
             this.fetchPortfolio();
             this.fetchCategories();
             this.fetchTags();
+            bus.$on('theImage', (data) => {
+                this.portfolio.image = data
+                                console.log(data.title)
+            });
+            bus.$on('thumbFalse', (data) => {
+                this.isThumbnail = data
+            });
         },
 
         methods: {
             setThumbnail(){
-                this.isThumbnail = true;
+                bus.$emit('thumbTrue', this.isThumbnail = true);
             },
             removeThumbnail(){
                 this.portfolio.image = '';

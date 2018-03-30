@@ -34,7 +34,18 @@ class PortfolioController extends DashboardController
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:10',
+            'description' => 'required|min:20',
+        ]);
+
+        $input = $request->all();
+
+        $portfolio = $this->portfolio;
+
+        $portfolio->create($input);
+
+        return redirect()->back();
     }
 
     /**

@@ -20,7 +20,7 @@ class CreatePortfoliosTable extends Migration
             $table->string('url')->nullable();
             $table->string('client')->nullable();
             $table->string('client_url')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->datetime('deleted_at');
         });
