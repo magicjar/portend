@@ -288,11 +288,4 @@ class ApiController extends Controller
             return new Resource($testimonial);
         }
     }
-
-    public function settingIndex()
-    {
-        $setting = $this->setting->all();
-
-        return Resource::collection($setting);
-    }
 }

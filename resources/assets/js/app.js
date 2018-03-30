@@ -17,6 +17,7 @@ window.Dropzone = require('dropzone')
  */
 
 Vue.component('about-component', require('./components/About.vue'));
+Vue.component('socialmedia-component', require('./components/SocialMedia.vue'));
 Vue.component('articleindex-component', require('./components/ArticleIndex.vue'));
 Vue.component('articlecreate-component', require('./components/ArticleCreate.vue'));
 Vue.component('skill-component', require('./components/Skill.vue'));

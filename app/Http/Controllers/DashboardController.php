@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Portfolio;
 use App\Resume;
 use App\Article;
 use App\Setting;
+use App\Http\Resources\Resource;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -90,8 +93,39 @@ class DashboardController extends Controller
         return view('dashboard.setting');
     }
 
-    public function settingStore(Request $request)
+    public function settingIndex()
     {
-        //
+        $setting = $this->setting->all();
+
+        return Resource::collection($setting);
+    }
+
+    public function settingUpdate(Request $request)
+    {
+        $options = $request->except('_token', '_method');
+
+        foreach($options as $i => $option) {
+            if (is_array($option)) {
+                $options[$i] = json_encode($option);
+            }
+        }
+
+        $this->updateSettings($options);
+
+        return redirect()->back();
+    }
+
+    public function updateSettings(array $options)
+    {
+        foreach ($options as $name => $value)
+        {
+            $option = DB::table('settings')->where('name', $name)->first();
+            
+            if ($option) {
+                DB::table('settings')->where('name', $name)->update(array('value' => $value, 'updated_at' => Carbon::now()));
+            } else {
+                DB::table('settings')->insert(array('name' => $name, 'value' => $value));
+            }
+        }
     }
 }

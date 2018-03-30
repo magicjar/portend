@@ -6,8 +6,16 @@
 
 @section('content')
 <div class="card mb-4">
-    <h1 class="h2 mb-0 font-weight-bold card-body text-center">About Me</h1>
+    <h1 class="h2 mb-0 font-weight-bold card-body text-center">About</h1>
 </div>
 
-<about-component></about-component>
+<form action="{{ route('api.setting.update') }}" method="POST">
+	@csrf
+	{{ method_field('PUT') }}
+	<about-component></about-component>
+
+	<socialmedia-component></socialmedia-component>
+	
+</form>
+
 @endsection
