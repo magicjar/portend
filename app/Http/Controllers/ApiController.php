@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Article;
+use App\Portfolio;
 use App\Resume;
 use App\Category;
 use App\Tag;
@@ -14,10 +15,11 @@ use App\Http\Resources\Resource;
 
 class ApiController extends Controller
 {
-    public function __construct(Article $article, Resume $resume, Category $category, Tag $tag, Testimonial $testimonial, Setting $setting)
+    public function __construct(Article $article, Portfolio $portfolio, Resume $resume, Category $category, Tag $tag, Testimonial $testimonial, Setting $setting)
     {
         $this->middleware('auth');
         $this->article = $article;
+        $this->portfolio = $portfolio;
         $this->resume = $resume;
         $this->category = $category;
         $this->tag = $tag;
@@ -30,6 +32,13 @@ class ApiController extends Controller
         $article = $this->article->with('category', 'tag', 'image')->findOrFail($id);
 
         return new Resource($article);
+    }
+
+    public function portfolioEdit($id)
+    {
+        $portfolio = $this->portfolio->with('category', 'tag', 'image')->findOrFail($id);
+
+        return new Resource($portfolio);
     }
 
     public function skillIndex()

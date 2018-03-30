@@ -67,7 +67,9 @@ class PortfolioController extends DashboardController
      */
     public function edit($id)
     {
-        //
+        $portfolio = $this->portfolio->findOrFail($id);
+
+        return view('dashboard.portfolio.edit', compact('portfolio'));
     }
 
     /**
@@ -79,7 +81,22 @@ class PortfolioController extends DashboardController
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:10',
+            'description' => 'required|min:20',
+        ]);
+
+        $input = $request->all();
+        
+        $portfolio = $this->portfolio->findOrFail($id);
+
+        $portfolio->update($input);
+
+        $portfolio->category()->sync($request['portfolio_category']);
+
+        $portfolio->tag()->sync($request['portfolio_tag']);
+        
+        return redirect()->back();
     }
 
     /**
