@@ -21,11 +21,14 @@
                             <a class="badge badge-dark" data-toggle="collapse" href="#newCategory" role="button" aria-expanded="false" aria-controls="newCategory">+ Add new category</a>
                         </span>
                     </h5>
-                    <div class="card-body taxo-category">
+                    <div class="card-body taxo-category" v-if="categories.length">
                         <div v-for="category in categories" v-bind:key="category.id" class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="article.category[]" :id="category.id" :value="category.id" v-model="article.category_id">
                             <label class="custom-control-label" :for="category.id">{{ category.name }}</label>
                         </div>
+                    </div>
+                    <div class="card-body taxo-category" v-else>
+                        No category
                     </div>
                     <div class="collapse" id="newCategory">
                         <div class="card-footer">

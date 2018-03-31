@@ -55858,6 +55858,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -55979,74 +55982,81 @@ var render = function() {
         _c("div", { staticClass: "card mb-4" }, [
           _vm._m(1),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body taxo-category" },
-            _vm._l(_vm.categories, function(category) {
-              return _c(
+          _vm.categories.length
+            ? _c(
                 "div",
-                {
-                  key: category.id,
-                  staticClass: "custom-control custom-checkbox"
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.portfolio.category_id,
-                        expression: "portfolio.category_id"
-                      }
-                    ],
-                    staticClass: "custom-control-input",
-                    attrs: {
-                      type: "checkbox",
-                      name: "portfolio.category[]",
-                      id: category.id
-                    },
-                    domProps: {
-                      value: category.id,
-                      checked: Array.isArray(_vm.portfolio.category_id)
-                        ? _vm._i(_vm.portfolio.category_id, category.id) > -1
-                        : _vm.portfolio.category_id
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.portfolio.category_id,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = category.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              (_vm.portfolio.category_id = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.portfolio.category_id = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.$set(_vm.portfolio, "category_id", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
+                { staticClass: "card-body taxo-category" },
+                _vm._l(_vm.categories, function(category) {
+                  return _c(
+                    "div",
                     {
-                      staticClass: "custom-control-label",
-                      attrs: { for: category.id }
+                      key: category.id,
+                      staticClass: "custom-control custom-checkbox"
                     },
-                    [_vm._v(_vm._s(category.name))]
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.portfolio.category_id,
+                            expression: "portfolio.category_id"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: {
+                          type: "checkbox",
+                          name: "portfolio.category[]",
+                          id: category.id
+                        },
+                        domProps: {
+                          value: category.id,
+                          checked: Array.isArray(_vm.portfolio.category_id)
+                            ? _vm._i(_vm.portfolio.category_id, category.id) >
+                              -1
+                            : _vm.portfolio.category_id
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.portfolio.category_id,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = category.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.portfolio.category_id = $$a.concat([
+                                    $$v
+                                  ]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.portfolio.category_id = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.$set(_vm.portfolio, "category_id", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          attrs: { for: category.id }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    ]
                   )
-                ]
+                })
               )
-            })
-          ),
+            : _c("div", { staticClass: "card-body taxo-category" }, [
+                _vm._v("\n                    No category\n                ")
+              ]),
           _vm._v(" "),
           _c("div", { staticClass: "collapse", attrs: { id: "newCategory" } }, [
             _c("div", { staticClass: "card-footer" }, [
