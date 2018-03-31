@@ -522,6 +522,10 @@ Vue.component('portfoliomedia-component', __webpack_require__(77));
 
 var bus = new Vue();
 
+var baseUrl = document.head.querySelector('meta[name="base-url"]');
+
+Vue.prototype.$baseUrl = baseUrl.content;
+
 var app = new Vue({
   el: '#app'
 });
@@ -50857,7 +50861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // If has id = Edit
             // no = Create
             if (id != null) {
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article/' + id).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/article/' + id).then(function (response) {
                     _this2.article = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
@@ -50867,7 +50871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchCategories: function fetchCategories() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article-category').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/article-category').then(function (response) {
                 _this3.categories = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -50876,7 +50880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addCategory: function addCategory() {
             var _this4 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/article-category', this.category).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(this.$baseUrl + '/api/article-category', this.category).then(function (data) {
                 _this4.category.name = '';
                 _this4.fetchCategories();
             }).catch(function (error) {
@@ -50886,7 +50890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchTags: function fetchTags() {
             var _this5 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/article-tag').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/article-tag').then(function (response) {
                 _this5.tags = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -50895,7 +50899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addTag: function addTag() {
             var _this6 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/article-tag', this.tag).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(this.$baseUrl + '/api/article-tag', this.tag).then(function (data) {
                 _this6.tag.name = '';
                 _this6.fetchTags();
             }).catch(function (error) {
@@ -51477,7 +51481,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchSkills: function fetchSkills() {
             var _this = this;
 
-            axios.get(vars.urls.baseUrl + '/api/skill').then(function (response) {
+            axios.get(this.$baseUrl + '/api/skill').then(function (response) {
                 _this.skills = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -51488,7 +51492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(vars.urls.baseUrl + '/api/skill', this.skill).then(function (data) {
+                axios.post(this.$baseUrl + '/api/skill', this.skill).then(function (data) {
                     _this2.skill.name = '';
                     _this2.skill.institution = '';
                     _this2.skill.description = '';
@@ -51498,7 +51502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(vars.urls.baseUrl + '/api/skill', this.skill).then(function (data) {
+                axios.put(this.$baseUrl + '/api/skill', this.skill).then(function (data) {
                     _this2.skill.name = '';
                     _this2.skill.institution = '';
                     _this2.skill.description = '';
@@ -51512,7 +51516,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/skill/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/skill/' + id).then(function (data) {
                     _this3.fetchSkills();
                 }).catch(function (error) {
                     return console.log(error);
@@ -51913,7 +51917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchEducations: function fetchEducations() {
             var _this = this;
 
-            axios.get(vars.urls.baseUrl + '/api/education').then(function (response) {
+            axios.get(this.$baseUrl + '/api/education').then(function (response) {
                 _this.educations = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -51924,7 +51928,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(vars.urls.baseUrl + '/api/education', this.education).then(function (data) {
+                axios.post(this.$baseUrl + '/api/education', this.education).then(function (data) {
                     _this2.education.name = '';
                     _this2.education.institution = '';
                     _this2.education.date_start = '';
@@ -51936,7 +51940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(vars.urls.baseUrl + '/api/education', this.education).then(function (data) {
+                axios.put(this.$baseUrl + '/api/education', this.education).then(function (data) {
                     _this2.education.name = '';
                     _this2.education.institution = '';
                     _this2.education.date_start = '';
@@ -51952,7 +51956,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/education/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/education/' + id).then(function (data) {
                     _this3.fetchEducations();
                 }).catch(function (error) {
                     return console.log(error);
@@ -52450,7 +52454,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchExperiences: function fetchExperiences() {
             var _this = this;
 
-            axios.get(vars.urls.baseUrl + '/api/experience').then(function (response) {
+            axios.get(this.$baseUrl + '/api/experience').then(function (response) {
                 _this.experiences = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -52461,7 +52465,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(vars.urls.baseUrl + '/api/experience', this.experience).then(function (data) {
+                axios.post(this.$baseUrl + '/api/experience', this.experience).then(function (data) {
                     _this2.experience.name = '';
                     _this2.experience.institution = '';
                     _this2.experience.date_start = '';
@@ -52473,7 +52477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(vars.urls.baseUrl + '/api/experience', this.experience).then(function (data) {
+                axios.put(this.$baseUrl + '/api/experience', this.experience).then(function (data) {
                     _this2.experience.name = '';
                     _this2.experience.institution = '';
                     _this2.experience.date_start = '';
@@ -52489,7 +52493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/experience/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/experience/' + id).then(function (data) {
                     _this3.fetchExperiences();
                 }).catch(function (error) {
                     return console.log(error);
@@ -52984,7 +52988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchTestimonials: function fetchTestimonials() {
             var _this = this;
 
-            axios.get(vars.urls.baseUrl + '/api/testimonial').then(function (response) {
+            axios.get(this.$baseUrl + '/api/testimonial').then(function (response) {
                 _this.testimonials = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -52995,7 +52999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(vars.urls.baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
+                axios.post(this.$baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
                     _this2.testimonial.title = '';
                     _this2.testimonial.content = '';
                     _this2.testimonial.author = '';
@@ -53006,7 +53010,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(vars.urls.baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
+                axios.put(this.$baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
                     _this2.testimonial.title = '';
                     _this2.testimonial.content = '';
                     _this2.testimonial.author = '';
@@ -53021,7 +53025,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/testimonial/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/testimonial/' + id).then(function (data) {
                     _this3.fetchTestimonials();
                 }).catch(function (error) {
                     return console.log(error);
@@ -53527,7 +53531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			previewNode.parentNode.removeChild(previewNode);
 
 			new Dropzone("#fileDropzone", {
-				url: vars.urls.baseUrl + '/api/media/upload',
+				url: this.$baseUrl + '/api/media/upload',
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"').attr('content')
 				},
@@ -53550,7 +53554,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		fetchMedia: function fetchMedia() {
 			var _this2 = this;
 
-			axios.get(vars.urls.baseUrl + '/api/media').then(function (response) {
+			axios.get(this.$baseUrl + '/api/media').then(function (response) {
 				_this2.media = response.data.data;
 			}).catch(function (error) {
 				return console.log(error);
@@ -53574,7 +53578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		saveMedia: function saveMedia() {
 			var _this3 = this;
 
-			axios.put(vars.urls.baseUrl + '/api/media', this.image).then(function (data) {
+			axios.put(this.$baseUrl + '/api/media', this.image).then(function (data) {
 				_this3.fetchMedia();
 			}).catch(function (error) {
 				return console.log(error);
@@ -53584,7 +53588,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this4 = this;
 
 			if (confirm('This action cannot be undone!')) {
-				axios.delete(vars.urls.baseUrl + '/api/media/' + id).then(function (data) {
+				axios.delete(this.$baseUrl + '/api/media/' + id).then(function (data) {
 					_this4.show = false;
 					_this4.fetchMedia();
 				}).catch(function (error) {
@@ -54322,13 +54326,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             if ($('#category').data('type') === 'article') {
-                axios.get(vars.urls.baseUrl + '/api/article-category').then(function (response) {
+                axios.get(this.$baseUrl + '/api/article-category').then(function (response) {
                     _this.categories = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
                 });
             } else {
-                axios.get(vars.urls.baseUrl + '/api/portfolio-category').then(function (response) {
+                axios.get(this.$baseUrl + '/api/portfolio-category').then(function (response) {
                     _this.categories = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
@@ -54340,7 +54344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 if ($('#category').data('type') === 'article') {
-                    axios.post(vars.urls.baseUrl + '/api/article-category', this.category).then(function (data) {
+                    axios.post(this.$baseUrl + '/api/article-category', this.category).then(function (data) {
                         _this2.category.name = '';
                         _this2.category.slug = '';
                         _this2.category.description = '';
@@ -54349,7 +54353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         return console.log(error);
                     });
                 } else {
-                    axios.post(vars.urls.baseUrl + '/api/portfolio-category', this.category).then(function (data) {
+                    axios.post(this.$baseUrl + '/api/portfolio-category', this.category).then(function (data) {
                         _this2.category.name = '';
                         _this2.category.slug = '';
                         _this2.category.description = '';
@@ -54360,7 +54364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             } else {
                 if ($('#category').data('type') === 'article') {
-                    axios.put(vars.urls.baseUrl + '/api/article-category', this.category).then(function (data) {
+                    axios.put(this.$baseUrl + '/api/article-category', this.category).then(function (data) {
                         _this2.category.name = '';
                         _this2.category.slug = '';
                         _this2.category.description = '';
@@ -54369,7 +54373,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         return console.log(error);
                     });
                 } else {
-                    axios.put(vars.urls.baseUrl + '/api/portfolio-category', this.category).then(function (data) {
+                    axios.put(this.$baseUrl + '/api/portfolio-category', this.category).then(function (data) {
                         _this2.category.name = '';
                         _this2.category.slug = '';
                         _this2.category.description = '';
@@ -54384,7 +54388,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/article-category/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/article-category/' + id).then(function (data) {
                     _this3.fetchCategories();
                 }).catch(function (error) {
                     return console.log(error);
@@ -54736,13 +54740,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             if ($('#tag').data('type') === 'article') {
-                axios.get(vars.urls.baseUrl + '/api/article-tag').then(function (response) {
+                axios.get(this.$baseUrl + '/api/article-tag').then(function (response) {
                     _this.tags = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
                 });
             } else {
-                axios.get(vars.urls.baseUrl + '/api/portfolio-tag').then(function (response) {
+                axios.get(this.$baseUrl + '/api/portfolio-tag').then(function (response) {
                     _this.tags = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
@@ -54755,7 +54759,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.edit_state === false) {
                 // Create
                 if ($('#tag').data('type') === 'article') {
-                    axios.post(vars.urls.baseUrl + '/api/article-tag', this.tag).then(function (data) {
+                    axios.post(this.$baseUrl + '/api/article-tag', this.tag).then(function (data) {
                         _this2.tag.name = '';
                         _this2.tag.slug = '';
                         _this2.tag.description = '';
@@ -54764,7 +54768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         return console.log(error);
                     });
                 } else {
-                    axios.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
+                    axios.post(this.$baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
                         _this2.tag.name = '';
                         _this2.tag.slug = '';
                         _this2.tag.description = '';
@@ -54776,7 +54780,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 // Update
                 if ($('#tag').data('type') === 'article') {
-                    axios.put(vars.urls.baseUrl + '/api/article-tag', this.tag).then(function (data) {
+                    axios.put(this.$baseUrl + '/api/article-tag', this.tag).then(function (data) {
                         _this2.tag.name = '';
                         _this2.tag.slug = '';
                         _this2.tag.description = '';
@@ -54785,7 +54789,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         return console.log(error);
                     });
                 } else {
-                    axios.put(vars.urls.baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
+                    axios.put(this.$baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
                         _this2.tag.name = '';
                         _this2.tag.slug = '';
                         _this2.tag.description = '';
@@ -54800,7 +54804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(vars.urls.baseUrl + '/api/article-tag/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/article-tag/' + id).then(function (data) {
                     _this3.fetchTags();
                 }).catch(function (error) {
                     return console.log(error);
@@ -55237,7 +55241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // If has id = Edit
             // no = Create
             if (id != null) {
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio/' + id).then(function (response) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/portfolio/' + id).then(function (response) {
                     _this2.portfolio = response.data.data;
                 }).catch(function (error) {
                     return console.log(error);
@@ -55247,7 +55251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchCategories: function fetchCategories() {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio-category').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/portfolio-category').then(function (response) {
                 _this3.categories = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -55256,7 +55260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addCategory: function addCategory() {
             var _this4 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/portfolio-category', this.category).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(this.$baseUrl + '/api/portfolio-category', this.category).then(function (data) {
                 _this4.category.name = '';
                 _this4.fetchCategories();
             }).catch(function (error) {
@@ -55266,7 +55270,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchTags: function fetchTags() {
             var _this5 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(vars.urls.baseUrl + '/api/portfolio-tag').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.$baseUrl + '/api/portfolio-tag').then(function (response) {
                 _this5.tags = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -55275,7 +55279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addTag: function addTag() {
             var _this6 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(this.$baseUrl + '/api/portfolio-tag', this.tag).then(function (data) {
                 _this6.tag.name = '';
                 _this6.fetchTags();
             }).catch(function (error) {

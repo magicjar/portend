@@ -71,7 +71,6 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::delete('media/{id}', 'MediaController@mediaDelete')->name('media.destroy');
 
 	// Setting
-	Route::get('setting', 'DashboardController@settingIndex')->name('setting.index');
 	Route::put('setting', 'DashboardController@settingUpdate')->name('setting.update');
 });
 

@@ -84,7 +84,7 @@
 
         methods: {
             fetchTestimonials(){
-                axios.get(vars.urls.baseUrl + '/api/testimonial')
+                axios.get(this.$baseUrl + '/api/testimonial')
                 .then(response => {
                     this.testimonials = response.data.data;
                 })
@@ -93,7 +93,7 @@
             addTestimonial(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(vars.urls.baseUrl + '/api/testimonial', this.testimonial )
+                    axios.post(this.$baseUrl + '/api/testimonial', this.testimonial )
                     .then(data => {
                         this.testimonial.title = '';
                         this.testimonial.content = '';
@@ -104,7 +104,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(vars.urls.baseUrl + '/api/testimonial', this.testimonial )
+                    axios.put(this.$baseUrl + '/api/testimonial', this.testimonial )
                     .then(data => {
                         this.testimonial.title = '';
                         this.testimonial.content = '';
@@ -117,7 +117,7 @@
             },
             deleteTestimonial(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/testimonial/' + id )
+                    axios.delete(this.$baseUrl + '/api/testimonial/' + id )
                     .then(data => {
                         this.fetchTestimonials();
                     })

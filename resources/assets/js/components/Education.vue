@@ -91,7 +91,7 @@
 
         methods: {
             fetchEducations(){
-                axios.get(vars.urls.baseUrl + '/api/education')
+                axios.get(this.$baseUrl + '/api/education')
                 .then(response => {
                     this.educations = response.data.data;
                 })
@@ -100,7 +100,7 @@
             addEducation(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(vars.urls.baseUrl + '/api/education', this.education )
+                    axios.post(this.$baseUrl + '/api/education', this.education )
                     .then(data => {
                         this.education.name = '';
                         this.education.institution = '';
@@ -112,7 +112,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(vars.urls.baseUrl + '/api/education', this.education )
+                    axios.put(this.$baseUrl + '/api/education', this.education )
                     .then(data => {
                         this.education.name = '';
                         this.education.institution = '';
@@ -126,7 +126,7 @@
             },
             deleteEducation(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/education/' + id )
+                    axios.delete(this.$baseUrl + '/api/education/' + id )
                     .then(data => {
                         this.fetchEducations();
                     })

@@ -151,7 +151,7 @@
                 // If has id = Edit
                 // no = Create
                 if(id != null){
-                    axios.get(vars.urls.baseUrl + '/api/article/' + id)
+                    axios.get(this.$baseUrl + '/api/article/' + id)
                         .then(response => {
                         this.article = response.data.data;
                     })
@@ -160,14 +160,14 @@
                 
             },
             fetchCategories(){
-                axios.get(vars.urls.baseUrl + '/api/article-category')
+                axios.get(this.$baseUrl + '/api/article-category')
                 .then(response => {
                     this.categories = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addCategory(){
-                axios.post(vars.urls.baseUrl + '/api/article-category', this.category )
+                axios.post(this.$baseUrl + '/api/article-category', this.category )
                 .then(data => {
                     this.category.name = '';
                     this.fetchCategories();
@@ -175,14 +175,14 @@
                 .catch(error => console.log(error));
             },
             fetchTags(){
-                axios.get(vars.urls.baseUrl + '/api/article-tag')
+                axios.get(this.$baseUrl + '/api/article-tag')
                 .then(response => {
                     this.tags = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addTag(){
-                axios.post(vars.urls.baseUrl + '/api/article-tag', this.tag)
+                axios.post(this.$baseUrl + '/api/article-tag', this.tag)
                 .then(data => {
                     this.tag.name = '';
                     this.fetchTags();

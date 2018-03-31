@@ -91,7 +91,7 @@
 
         methods: {
             fetchExperiences(){
-                axios.get(vars.urls.baseUrl + '/api/experience')
+                axios.get(this.$baseUrl + '/api/experience')
                 .then(response => {
                     this.experiences = response.data.data;
                 })
@@ -100,7 +100,7 @@
             addExperience(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(vars.urls.baseUrl + '/api/experience', this.experience )
+                    axios.post(this.$baseUrl + '/api/experience', this.experience )
                     .then(data => {
                         this.experience.name = '';
                         this.experience.institution = '';
@@ -112,7 +112,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(vars.urls.baseUrl + '/api/experience', this.experience )
+                    axios.put(this.$baseUrl + '/api/experience', this.experience )
                     .then(data => {
                         this.experience.name = '';
                         this.experience.institution = '';
@@ -126,7 +126,7 @@
             },
             deleteExperience(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/experience/' + id )
+                    axios.delete(this.$baseUrl + '/api/experience/' + id )
                     .then(data => {
                         this.fetchExperiences();
                     })

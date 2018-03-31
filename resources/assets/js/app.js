@@ -32,6 +32,10 @@ Vue.component('portfoliomedia-component', require('./components/PortfolioMedia.v
 
 export const bus = new Vue();
 
+let baseUrl = document.head.querySelector('meta[name="base-url"]');
+
+Vue.prototype.$baseUrl = baseUrl.content;
+
 const app = new Vue({
     el: '#app'
 });

@@ -72,13 +72,13 @@
         methods: {
             fetchTags(){
                 if($('#tag').data('type') === 'article'){
-                    axios.get(vars.urls.baseUrl + '/api/article-tag')
+                    axios.get(this.$baseUrl + '/api/article-tag')
                     .then(response => {
                         this.tags = response.data.data;
                     })
                     .catch(error => console.log(error));
                 } else {
-                    axios.get(vars.urls.baseUrl + '/api/portfolio-tag')
+                    axios.get(this.$baseUrl + '/api/portfolio-tag')
                     .then(response => {
                         this.tags = response.data.data;
                     })
@@ -89,7 +89,7 @@
                 if(this.edit_state === false){
                     // Create
                     if($('#tag').data('type') === 'article'){
-                        axios.post(vars.urls.baseUrl + '/api/article-tag', this.tag )
+                        axios.post(this.$baseUrl + '/api/article-tag', this.tag )
                         .then(data => {
                             this.tag.name = '';
                             this.tag.slug = '';
@@ -98,7 +98,7 @@
                         })
                         .catch(error => console.log(error));
                     } else {
-                        axios.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag )
+                        axios.post(this.$baseUrl + '/api/portfolio-tag', this.tag )
                         .then(data => {
                             this.tag.name = '';
                             this.tag.slug = '';
@@ -110,7 +110,7 @@
                 } else {
                     // Update
                     if($('#tag').data('type') === 'article'){
-                        axios.put(vars.urls.baseUrl + '/api/article-tag', this.tag )
+                        axios.put(this.$baseUrl + '/api/article-tag', this.tag )
                         .then(data => {
                             this.tag.name = '';
                             this.tag.slug = '';
@@ -119,7 +119,7 @@
                         })
                         .catch(error => console.log(error));
                     } else {
-                        axios.put(vars.urls.baseUrl + '/api/portfolio-tag', this.tag )
+                        axios.put(this.$baseUrl + '/api/portfolio-tag', this.tag )
                         .then(data => {
                             this.tag.name = '';
                             this.tag.slug = '';
@@ -133,7 +133,7 @@
             },
             deleteTag(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/article-tag/' + id )
+                    axios.delete(this.$baseUrl + '/api/article-tag/' + id )
                     .then(data => {
                         this.fetchTags();
                     })

@@ -152,7 +152,7 @@
                 // If has id = Edit
                 // no = Create
                 if(id != null){
-                    axios.get(vars.urls.baseUrl + '/api/portfolio/' + id)
+                    axios.get(this.$baseUrl + '/api/portfolio/' + id)
                         .then(response => {
                         this.portfolio = response.data.data;
                     })
@@ -161,14 +161,14 @@
                 
             },
             fetchCategories(){
-                axios.get(vars.urls.baseUrl + '/api/portfolio-category')
+                axios.get(this.$baseUrl + '/api/portfolio-category')
                 .then(response => {
                     this.categories = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addCategory(){
-                axios.post(vars.urls.baseUrl + '/api/portfolio-category', this.category )
+                axios.post(this.$baseUrl + '/api/portfolio-category', this.category )
                 .then(data => {
                     this.category.name = '';
                     this.fetchCategories();
@@ -176,14 +176,14 @@
                 .catch(error => console.log(error));
             },
             fetchTags(){
-                axios.get(vars.urls.baseUrl + '/api/portfolio-tag')
+                axios.get(this.$baseUrl + '/api/portfolio-tag')
                 .then(response => {
                     this.tags = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addTag(){
-                axios.post(vars.urls.baseUrl + '/api/portfolio-tag', this.tag)
+                axios.post(this.$baseUrl + '/api/portfolio-tag', this.tag)
                 .then(data => {
                     this.tag.name = '';
                     this.fetchTags();

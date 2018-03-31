@@ -158,7 +158,7 @@
 				previewNode.parentNode.removeChild(previewNode);
 
 				new Dropzone("#fileDropzone", {
-					url: vars.urls.baseUrl + '/api/media/upload',
+					url: this.$baseUrl + '/api/media/upload',
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"').attr('content')
 					},
@@ -181,7 +181,7 @@
 				});
 			},
 			fetchMedia(){
-				axios.get(vars.urls.baseUrl + '/api/media')
+				axios.get(this.$baseUrl + '/api/media')
                 .then(response => {
                     this.media = response.data.data;
                 })
@@ -203,7 +203,7 @@
                 this.show = true;
 			},
 			saveMedia(){
-				axios.put(vars.urls.baseUrl + '/api/media', this.image )
+				axios.put(this.$baseUrl + '/api/media', this.image )
 				.then(data => {
 				    this.fetchMedia();
 				})
@@ -211,7 +211,7 @@
 			},
 			deleteMedia(id){
 				if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/media/' + id )
+                    axios.delete(this.$baseUrl + '/api/media/' + id )
                     .then(data => {
                     	this.show = false;
                         this.fetchMedia();

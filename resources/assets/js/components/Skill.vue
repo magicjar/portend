@@ -80,7 +80,7 @@
 
         methods: {
             fetchSkills(){
-                axios.get(vars.urls.baseUrl + '/api/skill')
+                axios.get(this.$baseUrl + '/api/skill')
                 .then(response => {
                     this.skills = response.data.data;
                 })
@@ -89,7 +89,7 @@
             addSkill(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(vars.urls.baseUrl + '/api/skill', this.skill )
+                    axios.post(this.$baseUrl + '/api/skill', this.skill )
                     .then(data => {
                         this.skill.name = '';
                         this.skill.institution = '';
@@ -99,7 +99,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(vars.urls.baseUrl + '/api/skill', this.skill )
+                    axios.put(this.$baseUrl + '/api/skill', this.skill )
                     .then(data => {
                         this.skill.name = '';
                         this.skill.institution = '';
@@ -111,7 +111,7 @@
             },
             deleteSkill(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(vars.urls.baseUrl + '/api/skill/' + id )
+                    axios.delete(this.$baseUrl + '/api/skill/' + id )
                     .then(data => {
                         this.fetchSkills();
                     })
