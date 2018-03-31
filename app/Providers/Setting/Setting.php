@@ -72,6 +72,21 @@ class Setting
     }
 
     /**
+     * Returns avatar.
+     * 
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        if ( isset($this->setting['avatar']) && $this->setting['avatar'])
+        {
+            return $this->setting['avatar'];
+        }
+
+        return asset('storage/avatar.png');
+    }
+
+    /**
      * Returns facebook url.
      * 
      * @return mixed

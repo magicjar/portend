@@ -55956,36 +55956,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "avatar mb-3 text-center" }, [
-      _c("img", {
-        staticClass: "img-fluid mb-2",
-        attrs: {
-          src:
-            "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_16210743329%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_16210743329%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22217.7%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: {
-            href: "#",
-            "data-toggle": "modal",
-            "data-target": "#imagemodal"
+  return _c("div", { staticClass: "avatar mb-3 text-center" }, [
+    _c("input", {
+      directives: [
+        { name: "model", rawName: "v-model", value: _vm.ava, expression: "ava" }
+      ],
+      attrs: { type: "hidden", name: "avatar" },
+      domProps: { value: _vm.ava },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
           }
-        },
-        [_vm._v("Set avatar")]
-      )
-    ])
-  }
-]
+          _vm.ava = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("img", { staticClass: "img-fluid mb-3", attrs: { src: _vm.ava } }),
+    _vm._v(" "),
+    _vm.ava.length
+      ? _c(
+          "a",
+          {
+            staticClass: "btn btn-primary btn-sm",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#imagemodal"
+            },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.setAvatar($event)
+              }
+            }
+          },
+          [_vm._v("Change avatar")]
+        )
+      : _c(
+          "a",
+          {
+            staticClass: "btn btn-primary btn-sm",
+            attrs: {
+              href: "#",
+              "data-toggle": "modal",
+              "data-target": "#imagemodal"
+            },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.setAvatar($event)
+              }
+            }
+          },
+          [_vm._v("Set avatar")]
+        )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -56001,9 +56030,7 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_js__ = __webpack_require__(2);
 //
 //
 //
@@ -56011,15 +56038,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            avatar: ''
+            ava: ''
         };
+    },
+
+
+    props: ['avatar'],
+
+    mounted: function mounted() {
+        this.ava = this.avatar;
+    },
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$on('theImage', function (data) {
+            _this.ava = data.image_url;
+        });
+    },
+
+
+    methods: {
+        setAvatar: function setAvatar() {
+            __WEBPACK_IMPORTED_MODULE_0__app_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
+        }
     }
 });
 

@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-sm-4 col-md-3">
                         
-                    	<avatar-component :avatar={!! json_encode($setting->setting["avatar"]) !!}></avatar-component>
+                    	<avatar-component :avatar='{!! json_encode($setting->setting["avatar"]) !!}'></avatar-component>
 
                     </div>
                     <div class="col-sm-8 col-md-9">
