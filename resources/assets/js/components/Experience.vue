@@ -78,9 +78,9 @@
                     date_start: '',
                     date_end: '',
                     description: '',
-                    resume_type: 'Experience',
+                    resume_type: 'experience',
                 },
-                experience_id: '',
+                resume_id: '',
                 edit_state: false,
             }
         },
@@ -91,7 +91,7 @@
 
         methods: {
             fetchExperiences(){
-                axios.get(this.$baseUrl + '/api/experience')
+                axios.get(this.$baseUrl + '/api/resume?type=experience')
                 .then(response => {
                     this.experiences = response.data.data;
                 })
@@ -100,7 +100,7 @@
             addExperience(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(this.$baseUrl + '/api/experience', this.experience )
+                    axios.post(this.$baseUrl + '/api/resume', this.experience )
                     .then(data => {
                         this.experience.name = '';
                         this.experience.institution = '';
@@ -112,7 +112,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(this.$baseUrl + '/api/experience', this.experience )
+                    axios.put(this.$baseUrl + '/api/resume', this.experience )
                     .then(data => {
                         this.experience.name = '';
                         this.experience.institution = '';
@@ -126,7 +126,7 @@
             },
             deleteExperience(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(this.$baseUrl + '/api/experience/' + id )
+                    axios.delete(this.$baseUrl + '/api/resume/' + id )
                     .then(data => {
                         this.fetchExperiences();
                     })
@@ -136,7 +136,7 @@
             editExperience(experience){
                 this.edit_state = true;
                 this.experience.id = experience.id;
-                this.experience.experience_id = experience.id;
+                this.experience.resume_id = experience.id;
                 this.experience.name = experience.name;
                 this.experience.institution = experience.institution;
                 this.experience.date_start = experience.date_start;

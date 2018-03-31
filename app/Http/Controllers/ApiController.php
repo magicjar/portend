@@ -102,100 +102,36 @@ class ApiController extends Controller
         }
     }
 
-    public function skillIndex()
+    public function resumeIndex()
     {
-        $educations = $this->resume->where('resume_type', 'Skill')->orderBy('created_at', 'desc')->get();
+        $resume = $this->resume->where('resume_type', Input::get('type'))->orderBy('created_at', 'desc')->get();
 
-        return Resource::collection($educations);
+        return Resource::collection($resume);
     }
 
-    public function skillStore(Request $request)
+    public function resumeStore(Request $request)
     {
-        $skill = $request->isMethod('put') ? $this->resume->findOrFail($request->skill_id) : new $this->resume;
+        $resume = $request->isMethod('put') ? $this->resume->findOrFail($request->resume_id) : new $this->resume;
 
-        $skill->id = $request['skill_id'];
-        $skill->name = $request['name'];
-        $skill->institution = $request['institution'];
-        $skill->description = $request['description'];
-        $skill->resume_type = $request['resume_type'];
+        $resume->id = $request['resume_id'];
+        $resume->name = $request['name'];
+        $resume->institution = $request['institution'];
+        $resume->date_start = $request['date_start'];
+        $resume->date_end = $request['date_end'];
+        $resume->description = $request['description'];
+        $resume->resume_type = $request['resume_type'];
 
-        if($skill->save()){
-            return new Resource($skill);
+        if($resume->save()){
+            return new Resource($resume);
         }
     }
 
-    public function skillDestroy($id)
+    public function resumeDestroy($id)
     {
-        $skill = $this->resume->findOrFail($id);
+        $resume = $this->resume->findOrFail($id);
 
-        if($skill->delete()){
-            return new Resource($skill);
-        }
-    }
-
-    public function educationIndex()
-    {
-        $skills = $this->resume->where('resume_type', 'Skill')->orderBy('created_at', 'desc')->get();
-
-        return Resource::collection($skills);
-    }
-
-    public function educationStore(Request $request)
-    {
-        $education = $request->isMethod('put') ? $this->resume->findOrFail($request->education_id) : new $this->resume;
-
-        $education->id = $request['education_id'];
-        $education->name = $request['name'];
-        $education->institution = $request['institution'];
-        $education->date_start = $request['date_start'];
-        $education->date_end = $request['date_end'];
-        $education->description = $request['description'];
-        $education->resume_type = $request['resume_type'];
-
-        if($education->save()){
-            return new Resource($education);
-        }
-    }
-
-    public function educationDestroy($id)
-    {
-        $education = $this->resume->findOrFail($id);
-
-        if($education->delete()){
-            return new Resource($education);
-        }
-    }
-
-    public function experienceIndex()
-    {
-        $experiences = $this->resume->where('resume_type', 'Experience')->orderBy('created_at', 'desc')->get();
-
-        return Resource::collection($experiences);
-    }
-
-    public function experienceStore(Request $request)
-    {
-        $experience = $request->isMethod('put') ? $this->resume->findOrFail($request->experience_id) : new $this->resume;
-
-        $experience->id = $request['experience_id'];
-        $experience->name = $request['name'];
-        $experience->institution = $request['institution'];
-        $experience->date_start = $request['date_start'];
-        $experience->date_end = $request['date_end'];
-        $experience->description = $request['description'];
-        $experience->resume_type = $request['resume_type'];
-
-        if($experience->save()){
-            return new Resource($experience);
-        }
-    }
-
-    public function experienceDestroy($id)
-    {
-        $experience = $this->resume->findOrFail($id);
-
-        if($experience->delete()){
-            return new Resource($experience);
+        if($resume->delete()){
+            return new Resource($resume);
         }
     }
 

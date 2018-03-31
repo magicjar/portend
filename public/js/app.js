@@ -34527,9 +34527,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 institution: '',
                 description: '',
-                resume_type: 'Skill'
+                resume_type: 'skill'
             },
-            skill_id: '',
+            resume_id: '',
             edit_state: false
         };
     },
@@ -34542,7 +34542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchSkills: function fetchSkills() {
             var _this = this;
 
-            axios.get(this.$baseUrl + '/api/skill').then(function (response) {
+            axios.get(this.$baseUrl + '/api/resume?type=skill').then(function (response) {
                 _this.skills = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -34553,7 +34553,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(this.$baseUrl + '/api/skill', this.skill).then(function (data) {
+                axios.post(this.$baseUrl + '/api/resume', this.skill).then(function (data) {
                     _this2.skill.name = '';
                     _this2.skill.institution = '';
                     _this2.skill.description = '';
@@ -34563,7 +34563,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(this.$baseUrl + '/api/skill', this.skill).then(function (data) {
+                axios.put(this.$baseUrl + '/api/resume', this.skill).then(function (data) {
                     _this2.skill.name = '';
                     _this2.skill.institution = '';
                     _this2.skill.description = '';
@@ -34577,7 +34577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(this.$baseUrl + '/api/skill/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/resume/' + id).then(function (data) {
                     _this3.fetchSkills();
                 }).catch(function (error) {
                     return console.log(error);
@@ -34587,7 +34587,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         editSkill: function editSkill(skill) {
             this.edit_state = true;
             this.skill.id = skill.id;
-            this.skill.skill_id = skill.id;
+            this.skill.resume_id = skill.id;
             this.skill.name = skill.name;
             this.skill.institution = skill.institution;
             this.skill.description = skill.description;
@@ -34963,9 +34963,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 date_start: '',
                 date_end: '',
                 description: '',
-                resume_type: 'Education'
+                resume_type: 'education'
             },
-            education_id: '',
+            resume_id: '',
             edit_state: false
         };
     },
@@ -34978,7 +34978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchEducations: function fetchEducations() {
             var _this = this;
 
-            axios.get(this.$baseUrl + '/api/education').then(function (response) {
+            axios.get(this.$baseUrl + '/api/resume?type=education').then(function (response) {
                 _this.educations = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -34989,7 +34989,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(this.$baseUrl + '/api/education', this.education).then(function (data) {
+                axios.post(this.$baseUrl + '/api/resume', this.education).then(function (data) {
                     _this2.education.name = '';
                     _this2.education.institution = '';
                     _this2.education.date_start = '';
@@ -35001,7 +35001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(this.$baseUrl + '/api/education', this.education).then(function (data) {
+                axios.put(this.$baseUrl + '/api/resume', this.education).then(function (data) {
                     _this2.education.name = '';
                     _this2.education.institution = '';
                     _this2.education.date_start = '';
@@ -35017,7 +35017,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(this.$baseUrl + '/api/education/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/resume/' + id).then(function (data) {
                     _this3.fetchEducations();
                 }).catch(function (error) {
                     return console.log(error);
@@ -35027,7 +35027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         editEducation: function editEducation(education) {
             this.edit_state = true;
             this.education.id = education.id;
-            this.education.education_id = education.id;
+            this.education.resume_id = education.id;
             this.education.name = education.name;
             this.education.institution = education.institution;
             this.education.date_start = education.date_start;
@@ -35500,9 +35500,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 date_start: '',
                 date_end: '',
                 description: '',
-                resume_type: 'Experience'
+                resume_type: 'experience'
             },
-            experience_id: '',
+            resume_id: '',
             edit_state: false
         };
     },
@@ -35515,7 +35515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchExperiences: function fetchExperiences() {
             var _this = this;
 
-            axios.get(this.$baseUrl + '/api/experience').then(function (response) {
+            axios.get(this.$baseUrl + '/api/resume?type=experience').then(function (response) {
                 _this.experiences = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
@@ -35526,7 +35526,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.edit_state === false) {
                 // Create
-                axios.post(this.$baseUrl + '/api/experience', this.experience).then(function (data) {
+                axios.post(this.$baseUrl + '/api/resume', this.experience).then(function (data) {
                     _this2.experience.name = '';
                     _this2.experience.institution = '';
                     _this2.experience.date_start = '';
@@ -35538,7 +35538,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // Update
-                axios.put(this.$baseUrl + '/api/experience', this.experience).then(function (data) {
+                axios.put(this.$baseUrl + '/api/resume', this.experience).then(function (data) {
                     _this2.experience.name = '';
                     _this2.experience.institution = '';
                     _this2.experience.date_start = '';
@@ -35554,7 +35554,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             if (confirm('This action cannot be undone!')) {
-                axios.delete(this.$baseUrl + '/api/experience/' + id).then(function (data) {
+                axios.delete(this.$baseUrl + '/api/resume/' + id).then(function (data) {
                     _this3.fetchExperiences();
                 }).catch(function (error) {
                     return console.log(error);
@@ -35564,7 +35564,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         editExperience: function editExperience(experience) {
             this.edit_state = true;
             this.experience.id = experience.id;
-            this.experience.experience_id = experience.id;
+            this.experience.resume_id = experience.id;
             this.experience.name = experience.name;
             this.experience.institution = experience.institution;
             this.experience.date_start = experience.date_start;

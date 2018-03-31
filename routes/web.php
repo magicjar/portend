@@ -20,24 +20,6 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::get('article/{article}', 'ApiController@articleEdit')->name('article.edit');
 	Route::get('portfolio/{portfolio}', 'ApiController@portfolioEdit')->name('portfolio.edit');
 
-	// Skill
-	Route::get('skill', 'ApiController@skillIndex')->name('skill.index');
-	Route::post('skill', 'ApiController@skillStore')->name('skill.store');
-	Route::put('skill', 'ApiController@skillStore')->name('skill.update');
-	Route::delete('skill/{id}', 'ApiController@skillDestroy')->name('skill.destroy');
-
-	// Education
-	Route::get('education', 'ApiController@educationIndex')->name('education.index');
-	Route::post('education', 'ApiController@educationStore')->name('education.store');
-	Route::put('education', 'ApiController@educationStore')->name('education.update');
-	Route::delete('education/{id}', 'ApiController@educationDestroy')->name('education.destroy');
-
-	// Experience
-	Route::get('experience', 'ApiController@experienceIndex')->name('experience.index');
-	Route::post('experience', 'ApiController@experienceStore')->name('experience.store');
-	Route::put('experience', 'ApiController@experienceStore')->name('experience.update');
-	Route::delete('experience/{id}', 'ApiController@experienceDestroy')->name('experience.destroy');
-
 	// Testimonial
 	Route::get('testimonial', 'ApiController@testimonialIndex')->name('testimonial.index');
 	Route::post('testimonial', 'ApiController@testimonialStore')->name('testimonial.store');
@@ -53,16 +35,23 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	// Setting
 	Route::put('setting', 'DashboardController@settingUpdate')->name('setting.update');
 
-
+	// Category
 	Route::get('category', 'ApiController@categoryIndex')->name('portfolio.index');
 	Route::post('category', 'ApiController@categoryStore')->name('portfolio.store');
 	Route::put('category', 'ApiController@categoryStore')->name('portfolio.update');
 	Route::delete('category/{category}', 'ApiController@categoryDestroy')->name('portfolio.destroy');
 
+	// Tag
 	Route::get('tag', 'ApiController@tagIndex')->name('tag.index');
 	Route::post('tag', 'ApiController@tagStore')->name('tag.store');
 	Route::put('tag', 'ApiController@tagStore')->name('tag.update');
 	Route::delete('tag/{tag}', 'ApiController@tagDestroy')->name('tag.destroy');
+
+	// Resume (Skill, Experience, Education)
+	Route::get('resume', 'ApiController@resumeIndex')->name('resume.index');
+	Route::post('resume', 'ApiController@resumeStore')->name('resume.store');
+	Route::put('resume', 'ApiController@resumeStore')->name('resume.update');
+	Route::delete('resume/{id}', 'ApiController@resumeDestroy')->name('resume.destroy');
 });
 
 // Controller Route

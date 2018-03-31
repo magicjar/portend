@@ -78,9 +78,9 @@
                     date_start: '',
                     date_end: '',
                     description: '',
-                    resume_type: 'Education',
+                    resume_type: 'education',
                 },
-                education_id: '',
+                resume_id: '',
                 edit_state: false
             }
         },
@@ -91,7 +91,7 @@
 
         methods: {
             fetchEducations(){
-                axios.get(this.$baseUrl + '/api/education')
+                axios.get(this.$baseUrl + '/api/resume?type=education')
                 .then(response => {
                     this.educations = response.data.data;
                 })
@@ -100,7 +100,7 @@
             addEducation(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(this.$baseUrl + '/api/education', this.education )
+                    axios.post(this.$baseUrl + '/api/resume', this.education )
                     .then(data => {
                         this.education.name = '';
                         this.education.institution = '';
@@ -112,7 +112,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(this.$baseUrl + '/api/education', this.education )
+                    axios.put(this.$baseUrl + '/api/resume', this.education )
                     .then(data => {
                         this.education.name = '';
                         this.education.institution = '';
@@ -126,7 +126,7 @@
             },
             deleteEducation(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(this.$baseUrl + '/api/education/' + id )
+                    axios.delete(this.$baseUrl + '/api/resume/' + id )
                     .then(data => {
                         this.fetchEducations();
                     })
@@ -136,7 +136,7 @@
             editEducation(education){
                 this.edit_state = true;
                 this.education.id = education.id;
-                this.education.education_id = education.id;
+                this.education.resume_id = education.id;
                 this.education.name = education.name;
                 this.education.institution = education.institution;
                 this.education.date_start = education.date_start;

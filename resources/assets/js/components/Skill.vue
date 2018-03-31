@@ -67,9 +67,9 @@
                     name: '',
                     institution: '',
                     description: '',
-                    resume_type: 'Skill',
+                    resume_type: 'skill',
                 },
-                skill_id: '',
+                resume_id: '',
                 edit_state: false
             }
         },
@@ -80,7 +80,7 @@
 
         methods: {
             fetchSkills(){
-                axios.get(this.$baseUrl + '/api/skill')
+                axios.get(this.$baseUrl + '/api/resume?type=skill')
                 .then(response => {
                     this.skills = response.data.data;
                 })
@@ -89,7 +89,7 @@
             addSkill(){
                 if(this.edit_state === false){
                     // Create
-                    axios.post(this.$baseUrl + '/api/skill', this.skill )
+                    axios.post(this.$baseUrl + '/api/resume', this.skill )
                     .then(data => {
                         this.skill.name = '';
                         this.skill.institution = '';
@@ -99,7 +99,7 @@
                     .catch(error => console.log(error));
                 } else {
                     // Update
-                    axios.put(this.$baseUrl + '/api/skill', this.skill )
+                    axios.put(this.$baseUrl + '/api/resume', this.skill )
                     .then(data => {
                         this.skill.name = '';
                         this.skill.institution = '';
@@ -111,7 +111,7 @@
             },
             deleteSkill(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(this.$baseUrl + '/api/skill/' + id )
+                    axios.delete(this.$baseUrl + '/api/resume/' + id )
                     .then(data => {
                         this.fetchSkills();
                     })
@@ -121,7 +121,7 @@
             editSkill(skill){
                 this.edit_state = true;
                 this.skill.id = skill.id;
-                this.skill.skill_id = skill.id;
+                this.skill.resume_id = skill.id;
                 this.skill.name = skill.name;
                 this.skill.institution = skill.institution;
                 this.skill.description = skill.description;
