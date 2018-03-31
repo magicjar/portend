@@ -27,8 +27,8 @@ Vue.component('testimonial-component', require('./components/Testimonial.vue'));
 Vue.component('mediamodal-component', require('./components/MediaModal.vue'));
 Vue.component('category-component', require('./components/Category.vue'));
 Vue.component('tag-component', require('./components/Tag.vue'));
-Vue.component('portfoliocreate-component', require('./components/PortfolioCreate'));
-Vue.component('portfoliomedia-component', require('./components/PortfolioMedia'));
+Vue.component('portfoliocreate-component', require('./components/PortfolioCreate.vue'));
+Vue.component('portfoliomedia-component', require('./components/PortfolioMedia.vue'));
 
 export const bus = new Vue();
 

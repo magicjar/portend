@@ -17,6 +17,8 @@ class Article extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['category_id'];
+
     public function category()
     {
     	return $this->belongsToMany('App\Category', 'resources_categories', 'resource_id')->withTimestamps();
@@ -30,5 +32,10 @@ class Article extends Model
     public function image()
     {
         return $this->belongsTo('App\Image', 'image');
+    }
+
+    public function getCategoryIdAttribute()
+    {
+        return $this->category->pluck('id');
     }
 }

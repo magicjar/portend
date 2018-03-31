@@ -23,12 +23,10 @@
                     </h5>
                     <div class="card-body taxo-category">
                         <div v-for="category in categories" v-bind:key="category.id" class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="article.category[]" :id="category.id" :value="category" v-model="article.category">
+                            <input type="checkbox" class="custom-control-input" name="article.category[]" :id="category.id" :value="category.id" v-model="article.category_id">
                             <label class="custom-control-label" :for="category.id">{{ category.name }}</label>
                         </div>
                     </div>
-                    <span class="p-4">
-                    Test categories: {{ article.category }}</span>
                     <div class="collapse" id="newCategory">
                         <div class="card-footer">
                             <form @submit.prevent="addCategory" id="category" class="input-group">
@@ -49,7 +47,6 @@
                             <a class="badge badge-dark" data-toggle="collapse" href="#newTag" role="button" aria-expanded="false" aria-controls="newCategory">+ Add new tag</a>
                         </span>
                     </h5>
-                    {{ article.tag }}
                     <ul class="card-body list-inline mb-0" v-if="article.tag.length">
                         <li class="list-inline-item mr-3" v-for="tag in article.tag" v-bind:key="tag.id">
                             <button type="button" class="btn btn-danger rounded-circle remove-tag mr-1" v-on:click="article.tag.pop(article.tag)">&times;

@@ -17,6 +17,8 @@ class Portfolio extends Model
     	'title', 'description', 'url', 'client', 'client_url', 'image'
     ];
 
+    protected $appends = ['category_id'];
+
     public function category()
     {
     	return $this->belongsToMany('App\Category', 'resources_categories', 'resource_id')->withTimestamps();
@@ -34,5 +36,10 @@ class Portfolio extends Model
 
     public function media(){
     	return $this->belongsToMany('App/Image', 'portfolio_image');
+    }
+
+    public function getCategoryIdAttribute()
+    {
+        return $this->category->pluck('id');
     }
 }
