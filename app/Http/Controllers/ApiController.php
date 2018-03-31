@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 use App\Article;
 use App\Portfolio;
@@ -39,6 +40,66 @@ class ApiController extends Controller
         $portfolio = $this->portfolio->with('category', 'tag', 'image')->findOrFail($id);
 
         return new Resource($portfolio);
+    }
+
+    public function categoryIndex()
+    {
+        $categories = $this->category->where('type', Input::get('type'))->get();
+
+        return Resource::collection($categories);
+    }
+
+    public function categoryStore(Request $request)
+    {
+        $category = $request->isMethod('put') ? $this->category->findOrFail($request->category_id) : new $this->category;
+
+        $category->name = $request['name'];
+        $category->slug = $request['slug'];
+        $category->description = $request['description'];
+        $category->type = $request['type'];
+
+        if($category->save()){
+            return new Resource($category);
+        }
+    }
+
+    public function categoryDestroy($id)
+    {
+        $category = $this->category->findOrFail($id);
+
+        if($category->delete()){
+            return new Resource($category);
+        }
+    }
+
+    public function tagIndex()
+    {
+        $tags = $this->tag->where('type', Input::get('type'))->get();
+
+        return Resource::collection($tags);
+    }
+
+    public function tagStore(Request $request)
+    {
+        $tag = $request->isMethod('put') ? $this->tag->findOrFail($request->tag_id) : new $this->tag;
+
+        $tag->name = $request['name'];
+        $tag->slug = $request['slug'];
+        $tag->description = $request['description'];
+        $tag->type = $request['type'];
+
+        if($tag->save()){
+            return new Resource($tag);
+        }
+    }
+
+    public function tagDestroy($id)
+    {
+        $tag = $this->tag->findOrFail($id);
+
+        if($tag->delete()){
+            return new Resource($tag);
+        }
     }
 
     public function skillIndex()
@@ -135,126 +196,6 @@ class ApiController extends Controller
 
         if($experience->delete()){
             return new Resource($experience);
-        }
-    }
-
-    public function articleCategoryIndex()
-    {
-        $categories = $this->category->where('type', 'Article')->get();
-
-        return Resource::collection($categories);
-    }
-
-    public function articleCategoryStore(Request $request)
-    {
-        $category = $request->isMethod('put') ? $this->category->findOrFail($request->category_id) : new $this->category;
-
-        $category->name = $request['name'];
-        $category->slug = $request['slug'];
-        $category->description = $request['description'];
-        $category->type = 'Article';
-
-        if($category->save()){
-            return new Resource($category);
-        }
-    }
-
-    public function articleCategoryDestroy($id)
-    {
-        $category = $this->category->findOrFail($id);
-
-        if($category->delete()){
-            return new Resource($category);
-        }
-    }
-
-    public function portfolioCategoryIndex()
-    {
-        $categories = $this->category->where('type', 'Portfolio')->get();
-
-        return Resource::collection($categories);
-    }
-
-    public function portfolioCategoryStore(Request $request)
-    {
-        $category = $request->isMethod('put') ? $this->category->findOrFail($request->category_id) : new $this->category;
-
-        $category->name = $request['name'];
-        $category->slug = $request['slug'];
-        $category->description = $request['description'];
-        $category->type = 'Portfolio';
-
-        if($category->save()){
-            return new Resource($category);
-        }
-    }
-
-    public function portfolioCategoryDestroy($id)
-    {
-        $category = $this->category->findOrFail($id);
-
-        if($category->delete()){
-            return new Resource($category);
-        }
-    }
-
-    public function articleTagIndex()
-    {
-        $tags = $this->tag->where('type', 'Article')->get();
-
-        return Resource::collection($tags);
-    }
-
-    public function articleTagStore(Request $request)
-    {
-        $tag = $request->isMethod('put') ? $this->tag->findOrFail($request->tag_id) : new $this->tag;
-
-        $tag->name = $request['name'];
-        $tag->slug = $request['slug'];
-        $tag->description = $request['description'];
-        $tag->type = 'Article';
-
-        if($tag->save()){
-            return new Resource($tag);
-        }
-    }
-
-    public function articleTagDestroy($id)
-    {
-        $tag = $this->tag->findOrFail($id);
-
-        if($tag->delete()){
-            return new Resource($tag);
-        }
-    }
-
-    public function portfolioTagIndex()
-    {
-        $tags = $this->tag->where('type', 'Portfolio')->get();
-
-        return Resource::collection($tags);
-    }
-
-    public function portfolioTagStore(Request $request)
-    {
-        $tag = $request->isMethod('put') ? $this->tag->findOrFail($request->tag_id) : new $this->tag;
-
-        $tag->name = $request['name'];
-        $tag->slug = $request['slug'];
-        $tag->description = $request['description'];
-        $tag->type = 'Portfolio';
-
-        if($tag->save()){
-            return new Resource($tag);
-        }
-    }
-
-    public function portfolioTagDestroy($id)
-    {
-        $tag = $this->tag->findOrFail($id);
-
-        if($tag->delete()){
-            return new Resource($tag);
         }
     }
 

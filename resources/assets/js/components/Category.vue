@@ -58,7 +58,8 @@
                     id: '',
                     name: '',
                     slug: '',
-                    description: ''
+                    description: '',
+                    type: $('#category').data('type') === 'article' ? 'article' : 'portfolio'
                 },
                 category_id: '',
                 edit_state: false,
@@ -72,13 +73,13 @@
         methods: {
             fetchCategories(){
                 if($('#category').data('type') === 'article'){
-                    axios.get(this.$baseUrl + '/api/article-category')
+                    axios.get(this.$baseUrl + '/api/category?type=article')
                     .then(response => {
                         this.categories = response.data.data;
                     })
                     .catch(error => console.log(error));
                 } else {
-                    axios.get(this.$baseUrl + '/api/portfolio-category')
+                    axios.get(this.$baseUrl + '/api/category?type=portfolio')
                     .then(response => {
                         this.categories = response.data.data;
                     })
@@ -87,51 +88,28 @@
             },
             addCategory(){
                 if(this.edit_state === false){
-                    if($('#category').data('type') === 'article'){
-                        axios.post(this.$baseUrl + '/api/article-category', this.category )
-                        .then(data => {
-                            this.category.name = '';
-                            this.category.slug = '';
-                            this.category.description = '';
-                            this.fetchCategories();
-                        })
-                        .catch(error => console.log(error));
-                    } else {
-                        axios.post(this.$baseUrl + '/api/portfolio-category', this.category )
-                        .then(data => {
-                            this.category.name = '';
-                            this.category.slug = '';
-                            this.category.description = '';
-                            this.fetchCategories();
-                        })
-                        .catch(error => console.log(error));
-                    }
+                    axios.post(this.$baseUrl + '/api/category', this.category )
+                    .then(data => {
+                        this.category.name = '';
+                        this.category.slug = '';
+                        this.category.description = '';
+                        this.fetchCategories();
+                    })
+                    .catch(error => console.log(error));
                 } else {
-                    if($('#category').data('type') === 'article'){
-                        axios.put(this.$baseUrl + '/api/article-category', this.category )
-                        .then(data => {
-                            this.category.name = '';
-                            this.category.slug = '';
-                            this.category.description = '';
-                            this.fetchCategories();
-                        })
-                        .catch(error => console.log(error));
-                    } else {
-                        axios.put(this.$baseUrl + '/api/portfolio-category', this.category )
-                        .then(data => {
-                            this.category.name = '';
-                            this.category.slug = '';
-                            this.category.description = '';
-                            this.fetchCategories();
-                        })
-                        .catch(error => console.log(error));
-                    }
+                    axios.put(this.$baseUrl + '/api/category', this.category )
+                    .then(data => {
+                        this.category.name = '';
+                        this.category.slug = '';
+                        this.category.description = '';
+                        this.fetchCategories();
+                    })
                 }
                 
             },
             deleteCategory(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(this.$baseUrl + '/api/article-category/' + id )
+                    axios.delete(this.$baseUrl + '/api/category/' + id )
                     .then(data => {
                         this.fetchCategories();
                     })

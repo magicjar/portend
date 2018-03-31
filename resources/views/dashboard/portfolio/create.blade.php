@@ -57,13 +57,14 @@
                     </div>
                 </div>
             </div>
+
+            <portfoliomedia-component></portfoliomedia-component>
+            
+            <mediamodal-component></mediamodal-component>
+
         </div>
 
-        <portfoliomedia-component></portfoliomedia-component>
-
         <portfoliocreate-component></portfoliocreate-component>
-
-        <mediamodal-component></mediamodal-component>
 
     </div>
 </form>

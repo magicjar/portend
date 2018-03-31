@@ -38,26 +38,6 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::put('experience', 'ApiController@experienceStore')->name('experience.update');
 	Route::delete('experience/{id}', 'ApiController@experienceDestroy')->name('experience.destroy');
 
-	Route::get('article-category', 'ApiController@articleCategoryIndex')->name('category.article.index');
-	Route::post('article-category', 'ApiController@articleCategoryStore')->name('category.article.store');
-	Route::put('article-category', 'ApiController@articleCategoryStore')->name('category.article.update');
-	Route::delete('article-category/{id}', 'ApiController@articleCategoryDestroy')->name('category.article.destroy');
-
-	Route::get('article-tag', 'ApiController@articleTagIndex')->name('tag.article.index');
-	Route::post('article-tag', 'ApiController@articleTagStore')->name('tag.article.store');
-	Route::put('article-tag', 'ApiController@articleTagStore')->name('tag.article.update');
-	Route::delete('article-tag/{id}', 'ApiController@articleTagDestroy')->name('tag.article.destroy');
-
-	Route::get('portfolio-category', 'ApiController@portfolioCategoryIndex')->name('category.portfolio.index');
-	Route::post('portfolio-category', 'ApiController@portfolioCategoryStore')->name('category.portfolio.store');
-	Route::put('portfolio-category', 'ApiController@portfolioCategoryStore')->name('category.portfolio.update');
-	Route::delete('portfolio-category/{id}', 'ApiController@portfolioCategoryDestroy')->name('category.portfolio.destroy');
-
-	Route::get('portfolio-tag', 'ApiController@portfolioTagIndex')->name('tag.portfolio.index');
-	Route::post('portfolio-tag', 'ApiController@portfolioTagStore')->name('tag.portfolio.store');
-	Route::put('portfolio-tag', 'ApiController@portfolioTagStore')->name('tag.portfolio.update');
-	Route::delete('portfolio-tag/{id}', 'ApiController@aportfolioTagDestroy')->name('tag.portfolio.destroy');
-
 	// Testimonial
 	Route::get('testimonial', 'ApiController@testimonialIndex')->name('testimonial.index');
 	Route::post('testimonial', 'ApiController@testimonialStore')->name('testimonial.store');
@@ -72,6 +52,17 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 
 	// Setting
 	Route::put('setting', 'DashboardController@settingUpdate')->name('setting.update');
+
+
+	Route::get('category', 'ApiController@categoryIndex')->name('portfolio.index');
+	Route::post('category', 'ApiController@categoryStore')->name('portfolio.store');
+	Route::put('category', 'ApiController@categoryStore')->name('portfolio.update');
+	Route::delete('category/{category}', 'ApiController@categoryDestroy')->name('portfolio.destroy');
+
+	Route::get('tag', 'ApiController@tagIndex')->name('tag.index');
+	Route::post('tag', 'ApiController@tagStore')->name('tag.store');
+	Route::put('tag', 'ApiController@tagStore')->name('tag.update');
+	Route::delete('tag/{tag}', 'ApiController@tagDestroy')->name('tag.destroy');
 });
 
 // Controller Route

@@ -1,5 +1,5 @@
 <template>
-    <div class="actions-body mb-4">
+    <div class="actions-body mt-4">
         <div class="card">
             <div class="card-body">
                 <div v-if="portfolioMedia.length" class="row px-2">

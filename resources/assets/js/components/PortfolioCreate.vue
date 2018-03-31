@@ -115,11 +115,13 @@
                 category: {
                     id: '',
                     name: '',
+                    type: 'portfolio'
                 },
                 tags: [],
                 tag: {
                     id: '',
                     name: '',
+                    type: 'portfolio'
                 },
                 modalActive: false,
                 isThumbnail: false
@@ -161,14 +163,14 @@
                 
             },
             fetchCategories(){
-                axios.get(this.$baseUrl + '/api/portfolio-category')
+                axios.get(this.$baseUrl + '/api/category?type=portfolio')
                 .then(response => {
                     this.categories = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addCategory(){
-                axios.post(this.$baseUrl + '/api/portfolio-category', this.category )
+                axios.post(this.$baseUrl + '/api/category', this.category )
                 .then(data => {
                     this.category.name = '';
                     this.fetchCategories();
@@ -176,14 +178,14 @@
                 .catch(error => console.log(error));
             },
             fetchTags(){
-                axios.get(this.$baseUrl + '/api/portfolio-tag')
+                axios.get(this.$baseUrl + '/api/tag?type=portfolio')
                 .then(response => {
                     this.tags = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addTag(){
-                axios.post(this.$baseUrl + '/api/portfolio-tag', this.tag)
+                axios.post(this.$baseUrl + '/api/tag', this.tag)
                 .then(data => {
                     this.tag.name = '';
                     this.fetchTags();

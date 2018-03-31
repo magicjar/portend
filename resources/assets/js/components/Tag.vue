@@ -58,7 +58,8 @@
                     id: '',
                     name: '',
                     slug: '',
-                    description: ''
+                    description: '',
+                    type: $('#tag').data('type') === 'article' ? 'article' : 'portfolio'
                 },
                 tag_id: '',
                 edit_state: false,
@@ -72,13 +73,13 @@
         methods: {
             fetchTags(){
                 if($('#tag').data('type') === 'article'){
-                    axios.get(this.$baseUrl + '/api/article-tag')
+                    axios.get(this.$baseUrl + '/api/tag?type=article')
                     .then(response => {
                         this.tags = response.data.data;
                     })
                     .catch(error => console.log(error));
                 } else {
-                    axios.get(this.$baseUrl + '/api/portfolio-tag')
+                    axios.get(this.$baseUrl + '/api/tag?type=portfolio')
                     .then(response => {
                         this.tags = response.data.data;
                     })
@@ -88,52 +89,30 @@
             addTag(){
                 if(this.edit_state === false){
                     // Create
-                    if($('#tag').data('type') === 'article'){
-                        axios.post(this.$baseUrl + '/api/article-tag', this.tag )
-                        .then(data => {
-                            this.tag.name = '';
-                            this.tag.slug = '';
-                            this.tag.description = '';
-                            this.fetchTags();
-                        })
-                        .catch(error => console.log(error));
-                    } else {
-                        axios.post(this.$baseUrl + '/api/portfolio-tag', this.tag )
-                        .then(data => {
-                            this.tag.name = '';
-                            this.tag.slug = '';
-                            this.tag.description = '';
-                            this.fetchTags();
-                        })
-                        .catch(error => console.log(error));
-                    }
+                    axios.post(this.$baseUrl + '/api/tag', this.tag )
+                    .then(data => {
+                        this.tag.name = '';
+                        this.tag.slug = '';
+                        this.tag.description = '';
+                        this.fetchTags();
+                    })
+                    .catch(error => console.log(error));
                 } else {
                     // Update
-                    if($('#tag').data('type') === 'article'){
-                        axios.put(this.$baseUrl + '/api/article-tag', this.tag )
-                        .then(data => {
-                            this.tag.name = '';
-                            this.tag.slug = '';
-                            this.tag.description = '';
-                            this.fetchTags();
-                        })
-                        .catch(error => console.log(error));
-                    } else {
-                        axios.put(this.$baseUrl + '/api/portfolio-tag', this.tag )
-                        .then(data => {
-                            this.tag.name = '';
-                            this.tag.slug = '';
-                            this.tag.description = '';
-                            this.fetchTags();
-                        })
-                        .catch(error => console.log(error));
-                    }
+                    axios.put(this.$baseUrl + '/api/tag', this.tag )
+                    .then(data => {
+                        this.tag.name = '';
+                        this.tag.slug = '';
+                        this.tag.description = '';
+                        this.fetchTags();
+                    })
+                    .catch(error => console.log(error));
                 }
                 
             },
             deleteTag(id){
                 if(confirm('This action cannot be undone!')){
-                    axios.delete(this.$baseUrl + '/api/article-tag/' + id )
+                    axios.delete(this.$baseUrl + '/api/tag/' + id )
                     .then(data => {
                         this.fetchTags();
                     })

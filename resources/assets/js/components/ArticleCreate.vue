@@ -115,11 +115,13 @@
                 category: {
                     id: '',
                     name: '',
+                    type: 'article'
                 },
                 tags: [],
                 tag: {
                     id: '',
                     name: '',
+                    type: 'article'
                 },
                 modalActive: false,
                 isThumbnail: false
@@ -160,14 +162,14 @@
                 
             },
             fetchCategories(){
-                axios.get(this.$baseUrl + '/api/article-category')
+                axios.get(this.$baseUrl + '/api/category?type=article')
                 .then(response => {
                     this.categories = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addCategory(){
-                axios.post(this.$baseUrl + '/api/article-category', this.category )
+                axios.post(this.$baseUrl + '/api/category', this.category )
                 .then(data => {
                     this.category.name = '';
                     this.fetchCategories();
@@ -175,14 +177,14 @@
                 .catch(error => console.log(error));
             },
             fetchTags(){
-                axios.get(this.$baseUrl + '/api/article-tag')
+                axios.get(this.$baseUrl + '/api/tag?type=article')
                 .then(response => {
                     this.tags = response.data.data;
                 })
                 .catch(error => console.log(error));
             },
             addTag(){
-                axios.post(this.$baseUrl + '/api/article-tag', this.tag)
+                axios.post(this.$baseUrl + '/api/tag', this.tag)
                 .then(data => {
                     this.tag.name = '';
                     this.fetchTags();
