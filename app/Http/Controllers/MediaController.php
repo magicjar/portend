@@ -40,8 +40,6 @@ class MediaController extends Controller
 
         for ($i = 0; $i < count($photos); $i++) {
             $thumbnail = 250;
-            $medium = 500;
-            $large = 1000;
 
             $photo = $photos[$i];
 
@@ -56,6 +54,10 @@ class MediaController extends Controller
 
             $image = Intervention::make($photo);
 
+            $resolution = $image->width() . ' x ' .$image->height();
+
+            $filesize = $image->filesize();
+
             Intervention::make($photo)
                 ->resize($thumbnail, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -69,6 +71,8 @@ class MediaController extends Controller
             $upload = new $this->media;
             $upload->file = $save_name;
             $upload->title = $original_name;
+            $upload->resolution = $resolution;
+            $upload->filesize = $filesize;
             $upload->save();
         }
     }

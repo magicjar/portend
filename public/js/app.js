@@ -51479,6 +51479,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -51599,74 +51602,78 @@ var render = function() {
         _c("div", { staticClass: "card mb-4" }, [
           _vm._m(1),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body taxo-category" },
-            _vm._l(_vm.categories, function(category) {
-              return _c(
+          _vm.categories.length
+            ? _c(
                 "div",
-                {
-                  key: category.id,
-                  staticClass: "custom-control custom-checkbox"
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.article.category_id,
-                        expression: "article.category_id"
-                      }
-                    ],
-                    staticClass: "custom-control-input",
-                    attrs: {
-                      type: "checkbox",
-                      name: "article.category[]",
-                      id: category.id
-                    },
-                    domProps: {
-                      value: category.id,
-                      checked: Array.isArray(_vm.article.category_id)
-                        ? _vm._i(_vm.article.category_id, category.id) > -1
-                        : _vm.article.category_id
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.article.category_id,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = category.id,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              (_vm.article.category_id = $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              (_vm.article.category_id = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
-                          }
-                        } else {
-                          _vm.$set(_vm.article, "category_id", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
+                { staticClass: "card-body taxo-category" },
+                _vm._l(_vm.categories, function(category) {
+                  return _c(
+                    "div",
                     {
-                      staticClass: "custom-control-label",
-                      attrs: { for: category.id }
+                      key: category.id,
+                      staticClass: "custom-control custom-checkbox"
                     },
-                    [_vm._v(_vm._s(category.name))]
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.article.category_id,
+                            expression: "article.category_id"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: {
+                          type: "checkbox",
+                          name: "article.category[]",
+                          id: category.id
+                        },
+                        domProps: {
+                          value: category.id,
+                          checked: Array.isArray(_vm.article.category_id)
+                            ? _vm._i(_vm.article.category_id, category.id) > -1
+                            : _vm.article.category_id
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.article.category_id,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = category.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.article.category_id = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.article.category_id = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.$set(_vm.article, "category_id", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          attrs: { for: category.id }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    ]
                   )
-                ]
+                })
               )
-            })
-          ),
+            : _c("div", { staticClass: "card-body taxo-category" }, [
+                _vm._v("\n                    No category\n                ")
+              ]),
           _vm._v(" "),
           _c("div", { staticClass: "collapse", attrs: { id: "newCategory" } }, [
             _c("div", { staticClass: "card-footer" }, [
@@ -54157,6 +54164,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				image_url: '',
 				thumbnail: '',
 				resolution: '',
+				filesize: '',
 				created_at: ''
 			},
 			img: {},
@@ -54239,6 +54247,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.image.image_url = image.image_url;
 			this.image.thumbnail = image.thumbnail;
 			this.image.resolution = image.resolution;
+			this.image.filesize = image.filesize;
 			this.image.created_at = image.created_at;
 			this.img = image;
 			this.show = true;
@@ -54412,7 +54421,11 @@ var render = function() {
                                       _vm._v(_vm._s(_vm.image.created_at))
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", [_vm._v("1 MB")]),
+                                    _c("li", [
+                                      _vm._v(
+                                        _vm._s(_vm.image.filesize) + " Byte"
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c("li", [
                                       _vm._v(_vm._s(_vm.image.resolution))

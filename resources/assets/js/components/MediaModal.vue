@@ -58,7 +58,7 @@
 										<ul class="list-unstyled mb-0 text-muted">
 											<li class="font-weight-bold">{{image.file}}</li>
 											<li>{{image.created_at}}</li>
-											<li>1 MB</li>
+											<li>{{image.filesize}} Byte</li>
 											<li>{{image.resolution}}</li>
 											<li><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 										</ul>
@@ -115,6 +115,7 @@
 					image_url: '',
 					thumbnail: '',
 					resolution: '',
+					filesize: '',
 					created_at: ''
 				},
 				img: {},
@@ -196,6 +197,7 @@
                 this.image.image_url = image.image_url;
                 this.image.thumbnail = image.thumbnail;
                 this.image.resolution = image.resolution;
+                this.image.filesize = image.filesize;
                 this.image.created_at = image.created_at;
                 this.img = image;
                 this.show = true;

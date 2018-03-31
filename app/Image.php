@@ -15,7 +15,7 @@ class Image extends Model
     	'file', 'title', 'caption', 'alt', 'description'
     ];
 
-    protected $appends = ['image_url', 'thumbnail', 'resolution'];
+    protected $appends = ['image_url', 'thumbnail'];
 
     public function getImageUrlAttribute()
     {
@@ -25,16 +25,5 @@ class Image extends Model
     public function getThumbnailAttribute()
     {
     	return asset('storage/thumbnail/' . $this->file);
-    }
-
-    public function getResolutionAttribute()
-    {
-    	$image = Intervention::make(asset('storage/' . $this->file));
-
-    	$height = $image->height();
-
-    	$width = $image->width();
-
-    	return $width . ' x ' . $height; 
     }
 }

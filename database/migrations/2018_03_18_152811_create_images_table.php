@@ -20,6 +20,8 @@ class CreateImagesTable extends Migration
             $table->text('caption')->nullable();
             $table->string('alt')->nullable();
             $table->text('description')->nullable();
+            $table->string('resolution', 13)->nullable();
+            $table->integer('filesize')->nullable();
             $table->timestamps();
         });
     }
