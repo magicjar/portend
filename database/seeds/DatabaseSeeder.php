@@ -56,12 +56,40 @@ class DatabaseSeeder extends Seeder
                 'value' => 'Portfolio, CMS, Open Source, MIT, Laravel, Vue, Bootstrap 4',
                 'created_at' => Carbon::now()
             ],[
+                'name' => 'showArticle',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'showTestimonial',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'showContact',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'showSkill',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'showExperience',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'showEducation',
+                'value' => '1',
+                'created_at' => Carbon::now()
+            ],[
                 'name' => 'first_name',
                 'value' => 'Karen',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'last_name',
                 'value' => 'Iwata',
+                'created_at' => Carbon::now()
+            ],[
+                'name' => 'avatar',
+                'value' => '1',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'title',

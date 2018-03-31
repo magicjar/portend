@@ -72,7 +72,7 @@
 
             <!-- Setting -->
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('setting') ? 'active' : '' }}" href="#"><span data-feather="home"></span>Setting</a>
+                <a class="nav-link {{ Request::is('setting') ? 'active' : '' }}" href="{{ route('dashboard.setting') }}"><span data-feather="home"></span>Setting</a>
             </li>
         </ul>
     </aside>

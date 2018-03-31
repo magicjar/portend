@@ -16,8 +16,7 @@ window.Dropzone = require('dropzone')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('about-component', require('./components/About.vue'));
-Vue.component('socialmedia-component', require('./components/SocialMedia.vue'));
+Vue.component('avatar-component', require('./components/Avatar.vue'));
 Vue.component('articleindex-component', require('./components/ArticleIndex.vue'));
 Vue.component('articlecreate-component', require('./components/ArticleCreate.vue'));
 Vue.component('skill-component', require('./components/Skill.vue'));
@@ -29,6 +28,7 @@ Vue.component('category-component', require('./components/Category.vue'));
 Vue.component('tag-component', require('./components/Tag.vue'));
 Vue.component('portfoliocreate-component', require('./components/PortfolioCreate.vue'));
 Vue.component('portfoliomedia-component', require('./components/PortfolioMedia.vue'));
+
 
 export const bus = new Vue();
 

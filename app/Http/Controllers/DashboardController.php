@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
+use DB, App;
 use App\Portfolio;
 use App\Resume;
 use App\Article;
@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
     public function about()
     {
-        return view('dashboard.about');
+        return view('dashboard.about')->withSetting(App::make('setting'));;
     }
 
     public function skill()
@@ -90,7 +90,7 @@ class DashboardController extends Controller
 
     public function setting()
     {
-        return view('dashboard.setting');
+        return view('dashboard.setting')->withSetting(App::make('setting'));
     }
 
     public function settingIndex()
@@ -103,7 +103,7 @@ class DashboardController extends Controller
     public function settingUpdate(Request $request)
     {
         $options = $request->except('_token', '_method');
-
+        
         foreach($options as $i => $option) {
             if (is_array($option)) {
                 $options[$i] = json_encode($option);
@@ -124,7 +124,7 @@ class DashboardController extends Controller
             if ($option) {
                 DB::table('settings')->where('name', $name)->update(array('value' => $value, 'updated_at' => Carbon::now()));
             } else {
-                DB::table('settings')->insert(array('name' => $name, 'value' => $value));
+                DB::table('settings')->insert(array('name' => $name, 'value' => $value, 'created_at' => Carbon::now()));
             }
         }
     }
