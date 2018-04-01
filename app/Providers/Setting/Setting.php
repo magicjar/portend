@@ -100,4 +100,19 @@ class Setting
 
         return null;
     }
+
+    /**
+     * Returns facebook url.
+     * 
+     * @return mixed
+     */
+    public function getContactEmail()
+    {
+        if ( isset($this->setting['email']) && $this->setting['email'])
+        {
+            return $this->setting['email'];
+        }
+
+        return null;
+    }
 }

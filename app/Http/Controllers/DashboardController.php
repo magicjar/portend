@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use DB, App;
-use App\Portfolio;
 use App\Resume;
 use App\Article;
-use App\Setting;
+use App\Portfolio;
 use App\Http\Resources\Resource;
-use Carbon\Carbon;
+
 
 class DashboardController extends Controller
 {
@@ -19,13 +19,12 @@ class DashboardController extends Controller
      *
      * @return void
      */
-    public function __construct(Portfolio $portfolio, Resume $resume, Article $article, Setting $setting)
+    public function __construct(Portfolio $portfolio, Resume $resume, Article $article)
     {
         $this->middleware('auth');
         $this->portfolio = $portfolio;
         $this->resume = $resume;
         $this->article = $article;
-        $this->setting = $setting;
     }
 
     public function index()
@@ -51,16 +50,6 @@ class DashboardController extends Controller
     public function experience()
     {
         return view('dashboard.experience');
-    }
-
-    public function portfolio()
-    {
-        return view('dashboard.portfolio');
-    }
-
-    public function portfolioStore(Request $request)
-    {
-        //
     }
 
     public function articleCategory()
@@ -91,13 +80,6 @@ class DashboardController extends Controller
     public function setting()
     {
         return view('dashboard.setting')->withSetting(App::make('setting'));
-    }
-
-    public function settingIndex()
-    {
-        $setting = $this->setting->all();
-
-        return Resource::collection($setting);
     }
 
     public function settingUpdate(Request $request)

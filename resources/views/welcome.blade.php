@@ -180,7 +180,8 @@
                 </section>
                 <section id="contact" class="p-5 bg-danger">
                     <h2>Contact</h2>
-                    <form>
+                    <form method="POST" action="{{ route('contact') }}">
+                        @csrf
                         <div class="form-row form-group">
                             <div class="col">
                                 <input class="form-control" type="text" name="name" placeholder="Your name" required>

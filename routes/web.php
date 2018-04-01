@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@index')->name('homepage');
 
+Route::post('contact', 'HomeController@contact')->name('contact');
+
 Auth::routes();
 
 // Api Route
