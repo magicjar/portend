@@ -489,7 +489,6 @@ module.exports = function normalizeComponent (
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bus", function() { return bus; });
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -520,11 +519,11 @@ Vue.component('tag-component', __webpack_require__(67));
 Vue.component('portfoliocreate-component', __webpack_require__(70));
 Vue.component('portfoliomedia-component', __webpack_require__(73));
 
-var bus = new Vue();
-
 var baseUrl = document.head.querySelector('meta[name="base-url"]');
 
 Vue.prototype.$baseUrl = baseUrl.content;
+
+var bus = new Vue();
 
 var app = new Vue({
   el: '#app'
@@ -537,12 +536,12 @@ var app = new Vue({
  */
 
 // Collapse sidebar and active state
-if ($('.sidebar .nav-link').hasClass('active')) {
-  $('.active').siblings('.collapse').addClass('show');
-};
-
 $(function () {
   'use strict';
+
+  if ($('.sidebar .nav-link').hasClass('active')) {
+    $('.active').siblings('.collapse').addClass('show');
+  };
 
   $('[data-toggle="offcanvas"]').on('click', function () {
     $('.sidebar').toggleClass('collapse show');
@@ -33874,7 +33873,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             article: {
                 image: {},
                 category: [],
-                tag: []
+                tag: [],
+                category_id: []
             },
             categories: [],
             category: {
@@ -38211,7 +38211,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             portfolio: {
                 image: {},
                 category: [],
-                tag: []
+                tag: [],
+                category_id: []
             },
             categories: [],
             category: {

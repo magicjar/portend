@@ -109,7 +109,8 @@
                 article: {
                     image: {},
                     category: [],
-                    tag: []
+                    tag: [],
+                    category_id: []
                 },
                 categories: [],
                 category: {

@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-window.Dropzone = require('dropzone')
+window.Dropzone = require('dropzone');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,12 +28,11 @@ Vue.component('tag-component', require('./components/Tag.vue'));
 Vue.component('portfoliocreate-component', require('./components/PortfolioCreate.vue'));
 Vue.component('portfoliomedia-component', require('./components/PortfolioMedia.vue'));
 
-
-export const bus = new Vue();
-
 let baseUrl = document.head.querySelector('meta[name="base-url"]');
 
 Vue.prototype.$baseUrl = baseUrl.content;
+
+export const bus = new Vue();
 
 const app = new Vue({
     el: '#app'
@@ -47,15 +45,15 @@ const app = new Vue({
  *
  */
 
- // Collapse sidebar and active state
-if($('.sidebar .nav-link').hasClass('active')){
-    $('.active').siblings('.collapse').addClass('show');
-};
-
+// Collapse sidebar and active state
 $(function () {
 	'use strict'
+
+	if($('.sidebar .nav-link').hasClass('active')){
+	    $('.active').siblings('.collapse').addClass('show');
+	};
 
 	$('[data-toggle="offcanvas"]').on('click', function () {
 		$('.sidebar').toggleClass('collapse show')
 	})
-})
+});
