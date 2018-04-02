@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import { bus } from '../app.js';
+    import { bus } from '../dashboard.js';
 
     export default {
         data(){

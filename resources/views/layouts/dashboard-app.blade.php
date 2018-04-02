@@ -12,7 +12,7 @@
     <title>{{ config('app.name', 'Blvckgold') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 </head>
 <body id="dashboard">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-nowrap p-0">
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/feather.min.js') }}"></script>
     <script>
         feather.replace()

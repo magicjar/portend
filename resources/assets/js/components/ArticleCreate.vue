@@ -99,9 +99,8 @@
     </div>
 </template>
 
-<script>       
-    import axios from 'axios';
-    import { bus } from '../app.js';
+<script>
+    import { bus } from '../dashboard.js';
 
     export default {
         data(){
