@@ -54,6 +54,7 @@
         selector: '#content',
         menubar: false,
         content_css : '/css/dashboard.css',
+        height : 600,
         plugins: [
             'advlist link image lists',
             'wordcount code fullscreen media',

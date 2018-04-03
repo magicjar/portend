@@ -51,10 +51,11 @@ $(function () {
 
 	if($('.sidebar .nav-link').hasClass('active')){
 	    $('.active').siblings('.collapse').addClass('show');
+	    $('.active').removeClass('collapsed');
 	};
 
 	$('[data-toggle="offcanvas"]').on('click', function () {
-		$('.sidebar').toggleClass('collapse show')
+		$('.sidebar').toggleClass('collapse show');
 	})
 
 	feather.replace();

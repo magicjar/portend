@@ -26,7 +26,7 @@
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    <i data-feather="log-out"></i> {{ __('Logout') }}
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -34,7 +34,7 @@
                 </form>
                 @else
                 <a class="nav-link" href="{{ route('login') }}">
-                    {{ __('Login') }}
+                    <i data-feather="log-in"></i> {{ __('Login') }}
                 </a>
                 @endauth
             </li>

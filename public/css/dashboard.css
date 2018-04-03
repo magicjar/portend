@@ -32,7 +32,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Raleway", sans-serif;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -72,7 +72,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -6092,7 +6092,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6217,7 +6217,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Raleway", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -9998,6 +9998,10 @@ a.text-dark:focus {
   background-color: #e9fff9;
 }
 
+.navbar {
+  height: 40px;
+}
+
 .sidebar {
   width: 300px;
   z-index: 1010;
@@ -10017,6 +10021,7 @@ a.text-dark:focus {
             box-shadow: none;
     display: block;
     width: 300px;
+    z-index: 99;
   }
 }
 
@@ -10040,13 +10045,14 @@ a.text-dark:focus {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.sidebar footer {
-  position: absolute;
-  bottom: 0;
-  height: 60px;
-  /* Set the fixed height of the footer here */
-  line-height: 60px;
-  /* Vertically center the text there */
+.sidebar .feather-chevron-down {
+  -webkit-transition: .2s transform ease-in-out;
+  transition: .2s transform ease-in-out;
+}
+
+.sidebar .collapsed .feather-chevron-down {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 .content-wrapper {
@@ -10070,6 +10076,10 @@ a.text-dark:focus {
   .media-modal {
     max-width: 1200px;
   }
+}
+
+.modal-backdrop.show {
+  opacity: 0.8;
 }
 
 .navbar-laravel {
@@ -10172,7 +10182,6 @@ a.text-dark:focus {
 .feather {
   width: 18px;
   height: 18px;
-  padding-top: 2px;
   vertical-align: text-bottom;
 }
 
