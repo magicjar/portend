@@ -56,4 +56,6 @@ $(function () {
 	$('[data-toggle="offcanvas"]').on('click', function () {
 		$('.sidebar').toggleClass('collapse show')
 	})
+
+	feather.replace();
 });

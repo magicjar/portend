@@ -54,8 +54,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/feather.min.js') }}"></script>
-    <script>
-        feather.replace()
-    </script>
+    
+    @yield('scripts')
 </body>
 </html>

@@ -8,8 +8,8 @@
                         <a href="#" class="btn btn-sm btn-success float-right">View</a>
                     </div>
                     <div class="card-footer d-flex">
-                        <a href="#" class="btn btn-sm btn-danger mt-auto">Move to Trash</a>
-                        <button type="submit" class="btn btn-primary ml-auto">Publish</button>
+                        <a href="#" class="btn btn-sm btn-danger mt-auto"><i data-feather="trash"></i> Move to Trash</a>
+                        <button type="submit" class="btn btn-primary ml-auto"><i data-feather="save"></i> Save</button>
                     </div>
                 </div>
             </div>

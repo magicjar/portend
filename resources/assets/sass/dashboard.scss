@@ -3,66 +3,28 @@
 // @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
-// @import "variables";
+@import "dashboard_variables";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 #dashboard {
 	background-color: #e9fff9;
-
-	.sidebar {
-		width: 300px;
-		z-index: 1010;
-		background-color: $dark;
-		box-shadow: 7px 0px 20px 0px #343a40;
-
-		@include media-breakpoint-up(lg) {
-			background-color: transparent;
-			box-shadow: none;
-		}
-	}
-
-	.content-wrapper {
-		font-size: inherit;
-		width: 100%;
-		padding: 1.5rem;
-
-		@include media-breakpoint-up(md) {
-			padding: 3rem;
-		}
-	}
-
-	.media-modal {
-		max-width: inherit;
-		margin: 0 auto;
-
-		@include media-breakpoint-up(xl) {
-			max-width: 1200px;
-		}
-	}
-}
-
-.navbar-laravel {
-	background-color: #fff;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.container-flexible {
-	@include make-container();
-
-	@include media-breakpoint-up(xl) {
-		max-width: 1140px;
-	}
 }
 
 .sidebar {
+	width: 300px;
+	z-index: 1010;
+	background-color: #673AB7;
+	box-shadow: 7px 0px 20px 0px #343a40;
 	height: 100%;
 	left: inherit;
 	right: inherit;
 	display: none;
 
 	@include media-breakpoint-up(lg) {
+		background-color: transparent;
+		box-shadow: none;
 		display: block;
 		width: 300px;
 	}
@@ -80,6 +42,11 @@
 
 	a:hover {
 		color: $light;
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.active {
+		background-color: rgba(255, 255, 255, 0.2);
 	}
 
 	footer {
@@ -87,6 +54,38 @@
 		bottom: 0;
 		height: 60px; /* Set the fixed height of the footer here */
 		line-height: 60px; /* Vertically center the text there */
+	}
+}
+
+.content-wrapper {
+	font-size: inherit;
+	width: 100%;
+	padding: 1.5rem;
+
+	@include media-breakpoint-up(md) {
+		padding: 3rem;
+	}
+}
+
+.media-modal {
+	max-width: inherit;
+	margin: 0 auto;
+
+	@include media-breakpoint-up(xl) {
+		max-width: 1200px;
+	}
+}
+
+.navbar-laravel {
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.container-flexible {
+	@include make-container();
+
+	@include media-breakpoint-up(xl) {
+		max-width: 1140px;
 	}
 }
 
@@ -160,10 +159,14 @@
 }
 
 .feather {
- 	width: 16px;
- 	height: 16px;
+ 	width: 18px;
+    height: 18px;
+    padding-top: 2px;
  	vertical-align: text-bottom;
- 	margin-right: 8px;
+}
+
+.feather-chevron-right {
+	margin-top: 1px;
 }
 
 .media-checkbox {
@@ -204,4 +207,34 @@
 			max-height: 150px;
 		}
 	}
+}
+
+.border-pill {
+	border-radius: 99999999rem;
+}
+
+div.mce-fullscreen {
+	top: 39px !important;
+}
+
+.mce-tinymce, .mce-top-part::before {
+	box-shadow: none !important;
+	border: 0 !important;
+}
+
+.mce-content-body {
+	line-height: 1.6rem !important;
+	padding: 2rem;
+	color: #495057;
+}
+
+.mce-branding {
+	display: none !important;
+}
+
+.add-media-button {
+	border-bottom: 0;
+	border-color: #c5c5c5;
+	border-bottom-right-radius: 0rem !important;
+	border-bottom-left-radius: 0rem !important;
 }

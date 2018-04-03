@@ -90,6 +90,7 @@
 					Set Thumbnail: {{ isThumbnail }}, Set Porto Meda: {{ isPortfolioMedia }}
 					<button v-if="isThumbnail" @click.prevent="setThumbnail" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Set Thumbnail</button>
 					<button v-if="isPortfolioMedia" @click.prevent="addPortfolioMedia" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add Image</button>
+					<button v-else @click.prevent="insertImage" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add Media</button>
 				</div>
 			</div>
 		</div>
@@ -151,6 +152,11 @@
             	// Add image to portfolio
             	bus.$emit('thePortfolioMedia', this.portfolioMedia = this.img);
             	bus.$emit('portfolioMediaFalse', this.isPortfolioMedia = false);
+			},
+			insertImage() {
+				let image_alt = this.image.alt !== null ? this.image.alt : this.image.title
+				let html = '<img class="img-fluid mb-2" src="' + this.img.image_url + '" alt="' + image_alt + '">'
+				tinymce.activeEditor.insertContent(html)
 			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
