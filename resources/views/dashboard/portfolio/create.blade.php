@@ -23,7 +23,7 @@
                         </span>
                         @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="border: 1px solid #c5c5c5">
                         <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description" placeholder="Enter description here" rows="10" required>{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
                         <span class="invalid-feedback">
@@ -68,4 +68,21 @@
 
     </div>
 </form>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+<script>
+    tinymce.init({
+        selector: '#description',
+        menubar: false,
+        content_css : '/css/dashboard.css',
+        height : 400,
+        plugins: [
+            'advlist autolink link',
+            'wordcount fullscreen',
+        ],
+        toolbar: 'undo redo | styleselect | bold underline italic | alignleft aligncenter alignright alignjustify | link | fullscreen',
+    });
+</script>
 @endsection
