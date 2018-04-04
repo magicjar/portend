@@ -24,7 +24,7 @@
                         @endif
                     </div>
                     <div class="form-group" style="border: 1px solid #c5c5c5">
-                        <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description" placeholder="Enter description here" rows="10" required>{{ old('description') }}</textarea>
+                        <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description" placeholder="Enter description here" rows="10">{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('description') }}</strong>
