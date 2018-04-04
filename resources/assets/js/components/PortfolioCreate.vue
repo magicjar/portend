@@ -60,15 +60,15 @@
                     <ul class="card-body list-inline mb-0" v-else>
                         No tag
                     </ul>
+                    <ul class="card-footer list-inline mb-0" v-if="tags.length">
+                        <h6>Availlable Tags</h6>
+                        <li class="list-inline-item mr-3" v-for="tag in tags" v-bind:key="tag.id">
+                            <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" v-on:click="portfolio.tag.push(tag)">&plus;</button>{{ tag.name }}
+                        </li>
+                    </ul>
+                    <span v-else>
+                    </span>
                     <div class="collapse" id="newTag">
-                        <ul class="card-footer list-inline mb-0" v-if="tags.length">
-                            <h6>Availlable Tags</h6>
-                            <li class="list-inline-item mr-3" v-for="tag in tags" v-bind:key="tag.id">
-                                <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" v-on:click="portfolio.tag.push(tag)">&plus;</button>{{ tag.name }}
-                            </li>
-                        </ul>
-                        <span v-else>
-                        </span>
                         <div class="card-footer">
                             <form @submit.prevent="addTag" id="tag" class="input-group">
                                 <input type="text" class="form-control" placeholder="New tag" v-model="tag.name" required>
@@ -84,7 +84,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Thumbnail</h5>
                     <div class="card-body">
-                        <div v-if="portfolio.image.thumbnail" class="text-center">
+                        <div v-if="portfolio.image !== null" class="text-center">
                             <img :src="portfolio.image.thumbnail" class="img-fluid mb-3">
                             <a class="d-block text-left" @click="removeThumbnail" href="#" >Remove featured image</a>
                             <input type="hidden" name="image" :value="portfolio.image.id">
@@ -106,9 +106,10 @@
         data(){
             return {
                 portfolio: {
-                    image: {},
+                    image: null,
                     category: [],
                     tag: [],
+                    media: [],
                     category_id: []
                 },
                 categories: [],
@@ -124,7 +125,8 @@
                     type: 'portfolio'
                 },
                 modalActive: false,
-                isThumbnail: false
+                isThumbnail: false,
+                portfolioMedia: []
             }
         },
 
@@ -134,7 +136,6 @@
             this.fetchTags();
             bus.$on('theImage', (data) => {
                 this.portfolio.image = data
-                                console.log(data.title)
             });
             bus.$on('thumbFalse', (data) => {
                 this.isThumbnail = data
@@ -146,7 +147,7 @@
                 bus.$emit('thumbTrue', this.isThumbnail = true);
             },
             removeThumbnail(){
-                this.portfolio.image = '';
+                this.portfolio.image = null;
             },
             fetchPortfolio(){
                 let id = $('#portfolio').data('id');
@@ -157,6 +158,7 @@
                     axios.get(this.$baseUrl + '/api/portfolio/' + id)
                         .then(response => {
                         this.portfolio = response.data.data;
+                        bus.$emit('thePortfolio', this.portfolio = response.data.data);
                     })
                     .catch(error => console.log(error));
                 }

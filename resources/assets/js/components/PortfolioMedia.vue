@@ -2,10 +2,11 @@
     <div class="actions-body mt-4">
         <div class="card">
             <div class="card-body">
-                <div v-if="portfolioMedia.length" class="row px-2">
-                    <div class="col-4 col-lg-3 px-2 mb-3" v-for="media in portfolioMedia">
+                <div v-if="portfolio.media" class="row px-2">
+                    <div class="col-4 col-lg-3 px-2 mb-3" v-for="media in portfolio.media">
                         <div class="bg-info">
                             <img class="card-img-top" :src="media.thumbnail">
+                            <input type="hidden" name="portfolio.media[]" :value="media.id">
                         </div>
                     </div>
                 </div>
@@ -24,17 +25,23 @@
     export default {
         data(){
             return {
-                portfolioMedia: [],
+                portfolio: {
+                    media: []
+                },
                 isPortfolioMedia: false,
             }
         },
 
         created(){
             bus.$on('thePortfolioMedia', data => {
-                this.portfolioMedia.push(data)
+                this.portfolio.media.push(data)
             });
             bus.$on('portfolioMediaFalse', (data) => {
                 this.isPortfolioMedia = data
+            });
+            bus.$on('thePortfolio', (data) => {
+                console.log(data)
+                this.portfolio = data
             });
         },
 

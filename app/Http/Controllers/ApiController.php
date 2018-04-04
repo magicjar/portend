@@ -37,7 +37,7 @@ class ApiController extends Controller
 
     public function portfolioEdit($id)
     {
-        $portfolio = $this->portfolio->with('category', 'tag', 'image')->findOrFail($id);
+        $portfolio = $this->portfolio->with('category', 'tag', 'image', 'media')->findOrFail($id);
 
         return new Resource($portfolio);
     }

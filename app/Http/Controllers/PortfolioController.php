@@ -39,11 +39,22 @@ class PortfolioController extends DashboardController
             'description' => 'required|min:20',
         ]);
 
-        $input = $request->all();
-
         $portfolio = $this->portfolio;
+        
+        $portfolio->title = $request->title;
+        $portfolio->description = $request->description;
+        $portfolio->url = $request->url;
+        $portfolio->client = $request->client;
+        $portfolio->client_url = $request->client_url;
+        $portfolio->image = $request->image;
 
-        $portfolio->create($input);
+        $portfolio->save();
+
+        $portfolio->category()->sync($request['portfolio_category']);
+
+        $portfolio->tag()->sync($request['portfolio_tag']);
+
+        $portfolio->media()->sync($request['portfolio_media']);
 
         return redirect()->back();
     }
@@ -95,6 +106,8 @@ class PortfolioController extends DashboardController
         $portfolio->category()->sync($request['portfolio_category']);
 
         $portfolio->tag()->sync($request['portfolio_tag']);
+
+        $portfolio->media()->sync($request['portfolio_media']);
         
         return redirect()->back();
     }

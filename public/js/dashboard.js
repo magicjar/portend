@@ -34157,44 +34157,42 @@ var render = function() {
                 _vm._v("\n                    No tag\n                ")
               ]),
           _vm._v(" "),
-          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
-            _vm.tags.length
-              ? _c(
-                  "ul",
-                  { staticClass: "card-footer list-inline mb-0" },
-                  [
-                    _c("h6", [_vm._v("Availlable Tags")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.tags, function(tag) {
-                      return _c(
-                        "li",
-                        { key: tag.id, staticClass: "list-inline-item mr-3" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-success rounded-circle remove-tag mr-1",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.article.tag.push(tag)
-                                }
+          _vm.tags.length
+            ? _c(
+                "ul",
+                { staticClass: "card-footer list-inline mb-0" },
+                [
+                  _c("h6", [_vm._v("Availlable Tags")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tags, function(tag) {
+                    return _c(
+                      "li",
+                      { key: tag.id, staticClass: "list-inline-item mr-3" },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-success rounded-circle remove-tag mr-1",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.article.tag.push(tag)
                               }
-                            },
-                            [_vm._v("+")]
-                          ),
-                          _vm._v(
-                            _vm._s(tag.name) + "\n                        "
-                          )
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
-              : _c("span"),
-            _vm._v(" "),
+                            }
+                          },
+                          [_vm._v("+")]
+                        ),
+                        _vm._v(_vm._s(tag.name) + "\n                    ")
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            : _c("span"),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
             _c("div", { staticClass: "card-footer" }, [
               _c(
                 "form",
@@ -38235,9 +38233,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             portfolio: {
-                image: {},
+                image: null,
                 category: [],
                 tag: [],
+                media: [],
                 category_id: []
             },
             categories: [],
@@ -38253,7 +38252,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 type: 'portfolio'
             },
             modalActive: false,
-            isThumbnail: false
+            isThumbnail: false,
+            portfolioMedia: []
         };
     },
     created: function created() {
@@ -38264,7 +38264,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.fetchTags();
         __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('theImage', function (data) {
             _this.portfolio.image = data;
-            console.log(data.title);
         });
         __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('thumbFalse', function (data) {
             _this.isThumbnail = data;
@@ -38277,7 +38276,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
         },
         removeThumbnail: function removeThumbnail() {
-            this.portfolio.image = '';
+            this.portfolio.image = null;
         },
         fetchPortfolio: function fetchPortfolio() {
             var _this2 = this;
@@ -38289,6 +38288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (id != null) {
                 axios.get(this.$baseUrl + '/api/portfolio/' + id).then(function (response) {
                     _this2.portfolio = response.data.data;
+                    __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('thePortfolio', _this2.portfolio = response.data.data);
                 }).catch(function (error) {
                     return console.log(error);
                 });
@@ -38516,44 +38516,42 @@ var render = function() {
                 _vm._v("\n                    No tag\n                ")
               ]),
           _vm._v(" "),
-          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
-            _vm.tags.length
-              ? _c(
-                  "ul",
-                  { staticClass: "card-footer list-inline mb-0" },
-                  [
-                    _c("h6", [_vm._v("Availlable Tags")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.tags, function(tag) {
-                      return _c(
-                        "li",
-                        { key: tag.id, staticClass: "list-inline-item mr-3" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-success rounded-circle remove-tag mr-1",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.portfolio.tag.push(tag)
-                                }
+          _vm.tags.length
+            ? _c(
+                "ul",
+                { staticClass: "card-footer list-inline mb-0" },
+                [
+                  _c("h6", [_vm._v("Availlable Tags")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.tags, function(tag) {
+                    return _c(
+                      "li",
+                      { key: tag.id, staticClass: "list-inline-item mr-3" },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-success rounded-circle remove-tag mr-1",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.portfolio.tag.push(tag)
                               }
-                            },
-                            [_vm._v("+")]
-                          ),
-                          _vm._v(
-                            _vm._s(tag.name) + "\n                        "
-                          )
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
-              : _c("span"),
-            _vm._v(" "),
+                            }
+                          },
+                          [_vm._v("+")]
+                        ),
+                        _vm._v(_vm._s(tag.name) + "\n                    ")
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            : _c("span"),
+          _vm._v(" "),
+          _c("div", { staticClass: "collapse", attrs: { id: "newTag" } }, [
             _c("div", { staticClass: "card-footer" }, [
               _c(
                 "form",
@@ -38607,7 +38605,7 @@ var render = function() {
           _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm.portfolio.image.thumbnail
+            _vm.portfolio.image !== null
               ? _c("div", { staticClass: "text-center" }, [
                   _c("img", {
                     staticClass: "img-fluid mb-3",
@@ -38855,13 +38853,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            portfolioMedia: [],
+            portfolio: {
+                media: []
+            },
             isPortfolioMedia: false
         };
     },
@@ -38869,10 +38870,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('thePortfolioMedia', function (data) {
-            _this.portfolioMedia.push(data);
+            _this.portfolio.media.push(data);
         });
         __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('portfolioMediaFalse', function (data) {
             _this.isPortfolioMedia = data;
+        });
+        __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('thePortfolio', function (data) {
+            console.log(data);
+            _this.portfolio = data;
         });
     },
 
@@ -38895,16 +38900,21 @@ var render = function() {
   return _c("div", { staticClass: "actions-body mt-4" }, [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
-        _vm.portfolioMedia.length
+        _vm.portfolio.media
           ? _c(
               "div",
               { staticClass: "row px-2" },
-              _vm._l(_vm.portfolioMedia, function(media) {
+              _vm._l(_vm.portfolio.media, function(media) {
                 return _c("div", { staticClass: "col-4 col-lg-3 px-2 mb-3" }, [
                   _c("div", { staticClass: "bg-info" }, [
                     _c("img", {
                       staticClass: "card-img-top",
                       attrs: { src: media.thumbnail }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "portfolio.media[]" },
+                      domProps: { value: media.id }
                     })
                   ])
                 ])

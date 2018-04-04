@@ -35,7 +35,7 @@ class Portfolio extends Model
     }
 
     public function media(){
-    	return $this->belongsToMany('App/Image', 'portfolio_image');
+    	return $this->belongsToMany('App\Image', 'portfolio_image')->withTimestamps();
     }
 
     public function getCategoryIdAttribute()

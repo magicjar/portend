@@ -60,15 +60,15 @@
                     <ul class="card-body list-inline mb-0" v-else>
                         No tag
                     </ul>
+                    <ul class="card-footer list-inline mb-0" v-if="tags.length">
+                        <h6>Availlable Tags</h6>
+                        <li class="list-inline-item mr-3" v-for="tag in tags" v-bind:key="tag.id">
+                            <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" v-on:click="article.tag.push(tag)">&plus;</button>{{ tag.name }}
+                        </li>
+                    </ul>
+                    <span v-else>
+                    </span>
                     <div class="collapse" id="newTag">
-                        <ul class="card-footer list-inline mb-0" v-if="tags.length">
-                            <h6>Availlable Tags</h6>
-                            <li class="list-inline-item mr-3" v-for="tag in tags" v-bind:key="tag.id">
-                                <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" v-on:click="article.tag.push(tag)">&plus;</button>{{ tag.name }}
-                            </li>
-                        </ul>
-                        <span v-else>
-                        </span>
                         <div class="card-footer">
                             <form @submit.prevent="addTag" id="tag" class="input-group">
                                 <input type="text" class="form-control" placeholder="New tag" v-model="tag.name" required>
