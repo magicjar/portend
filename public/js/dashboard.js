@@ -33880,7 +33880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             article: {
-                image: {},
+                image: null,
                 category: [],
                 tag: [],
                 category_id: []
@@ -33921,7 +33921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
         },
         removeThumbnail: function removeThumbnail() {
-            this.article.image = '';
+            this.article.image = null;
         },
         fetchArticle: function fetchArticle() {
             var _this2 = this;
@@ -34248,7 +34248,7 @@ var render = function() {
           _c("h5", { staticClass: "card-header" }, [_vm._v("Thumbnail")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm.article.image.thumbnail
+            _vm.article.image !== null
               ? _c("div", { staticClass: "text-center" }, [
                   _c("img", {
                     staticClass: "img-fluid mb-3",

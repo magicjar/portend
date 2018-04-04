@@ -39,9 +39,21 @@ class ArticleController extends DashboardController
             'content' => 'required|min:30',
         ]);
 
-        $article = $this->article->findOrFail(1);
+        $request['slug'] = str_slug($request['title'], '-');
 
-        $article->category()->sync($request['categories']);
+        $article = $this->article;
+        
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->slug = $request->slug;
+
+        $article->save();
+
+        $article->category()->sync($request['article_category']);
+
+        $article->tag()->sync($request['article_tag']);
+
+        return redirect()->back();
     }
 
     /**

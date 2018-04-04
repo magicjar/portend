@@ -84,7 +84,7 @@
                 <div class="card mb-4">
                     <h5 class="card-header">Thumbnail</h5>
                     <div class="card-body">
-                        <div v-if="article.image.thumbnail" class="text-center">
+                        <div v-if="article.image !== null" class="text-center">
                             <img :src="article.image.thumbnail" class="img-fluid mb-3">
                             <a class="d-block text-left" @click="removeThumbnail" href="#" >Remove featured image</a>
                             <input type="hidden" name="image" :value="article.image.id">
@@ -106,7 +106,7 @@
         data(){
             return {
                 article: {
-                    image: {},
+                    image: null,
                     category: [],
                     tag: [],
                     category_id: []
@@ -145,7 +145,7 @@
                 bus.$emit('thumbTrue', this.isThumbnail = true);
             },
             removeThumbnail(){
-                this.article.image = '';
+                this.article.image = null;
             },
             fetchArticle(){
                 let id = $('#article').data('id');

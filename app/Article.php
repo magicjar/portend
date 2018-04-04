@@ -12,7 +12,7 @@ class Article extends Model
     protected $table = 'articles';
 
     protected $fillable = [
-    	'title', 'content', 'image'
+    	'title', 'content', 'image', 'slug'
     ];
 
     protected $dates = ['deleted_at'];
