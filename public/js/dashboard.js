@@ -551,6 +551,10 @@ var baseUrl = document.head.querySelector('meta[name="base-url"]');
 
 Vue.prototype.$baseUrl = baseUrl.content;
 
+Vue.filter('truncate', function (text, stop, clamp) {
+  return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '');
+});
+
 var bus = new Vue();
 
 var app = new Vue({
@@ -33914,15 +33918,20 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(article.content))]),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm._f("truncate")(article.content, 100)))
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     article.image !== null
                       ? _c("img", {
-                          staticClass: "img-fluid",
+                          staticClass: "index-thumbnail img-fluid",
                           attrs: { src: article.image.thumbnail }
                         })
-                      : _c("img", { attrs: { src: "adsdj" } })
+                      : _c("img", {
+                          staticClass: "index-thumbnail img-fluid",
+                          attrs: { src: "adsdj" }
+                        })
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(article.created_at))])
@@ -39495,15 +39504,22 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(portfolio.description))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm._f("truncate")(portfolio.description, 100))
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     portfolio.image !== null
                       ? _c("img", {
-                          staticClass: "img-fluid",
+                          staticClass: "index-thumbnail img-fluid",
                           attrs: { src: portfolio.image.thumbnail }
                         })
-                      : _c("img", { attrs: { src: "adsdj" } })
+                      : _c("img", {
+                          staticClass: "index-thumbnail img-fluid",
+                          attrs: { src: "adsdj" }
+                        })
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(portfolio.created_at))])

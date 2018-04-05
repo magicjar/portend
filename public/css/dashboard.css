@@ -10264,3 +10264,7 @@ div.mce-fullscreen {
   width: max-content;
 }
 
+.index-thumbnail {
+  max-width: 100px;
+}
+

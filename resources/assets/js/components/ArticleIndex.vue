@@ -43,10 +43,10 @@
 										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deleteArticle(article.id)">Trash</button>
 									</div>
 								</td>
-								<td>{{ article.content }}</td>
+								<td>{{ article.content | truncate(100) }}</td>
 								<td>
-									<img v-if="article.image !== null"  :src="article.image.thumbnail" class="img-fluid">
-									<img v-else src="adsdj">
+									<img v-if="article.image !== null"  :src="article.image.thumbnail" class="index-thumbnail img-fluid">
+									<img v-else src="adsdj" class="index-thumbnail img-fluid">
 								</td>
 								<td>{{ article.created_at }}</td>
 							</tr>

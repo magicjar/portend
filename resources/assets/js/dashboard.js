@@ -33,6 +33,10 @@ let baseUrl = document.head.querySelector('meta[name="base-url"]');
 
 Vue.prototype.$baseUrl = baseUrl.content;
 
+Vue.filter('truncate', (text, stop, clamp) => {
+	return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
+})
+
 export const bus = new Vue();
 
 const app = new Vue({

@@ -43,10 +43,10 @@
 										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deletePortfolio(portfolio.id)">Trash</button>
 									</div>
 								</td>
-								<td>{{ portfolio.description }}</td>
+								<td>{{ portfolio.description | truncate(100) }}</td>
 								<td>
-									<img v-if="portfolio.image !== null"  :src="portfolio.image.thumbnail" class="img-fluid">
-									<img v-else src="adsdj">
+									<img v-if="portfolio.image !== null"  :src="portfolio.image.thumbnail" class="index-thumbnail img-fluid">
+									<img v-else src="adsdj" class="index-thumbnail img-fluid">
 								</td>
 								<td>{{ portfolio.created_at }}</td>
 							</tr>
