@@ -543,6 +543,7 @@ Vue.component('testimonial-component', __webpack_require__(62));
 Vue.component('mediamodal-component', __webpack_require__(65));
 Vue.component('category-component', __webpack_require__(68));
 Vue.component('tag-component', __webpack_require__(71));
+Vue.component('portfolioindex-component', __webpack_require__(85));
 Vue.component('portfoliocreate-component', __webpack_require__(74));
 Vue.component('portfoliomedia-component', __webpack_require__(77));
 
@@ -33762,11 +33763,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchArticle: function fetchArticle(page_url) {
             var _this = this;
 
-            var vm = this;
             page_url = page_url || this.$baseUrl + '/api/article';
             axios.get(page_url).then(function (response) {
                 _this.articles = response.data.data;
-                vm.createPagination(response.data.meta, response.data.links);
+                _this.createPagination(response.data.meta, response.data.links);
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -36861,6 +36861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var previewNode = document.querySelector("#template");
 			var previewTemplate = previewNode.parentNode.innerHTML;
 			previewNode.parentNode.removeChild(previewNode);
+			var vm = this;
 
 			new Dropzone("#fileDropzone", {
 				url: this.$baseUrl + '/api/media/upload',
@@ -36880,7 +36881,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					$('#library, #library-tab').addClass('show active');
 					$('#dropzone, #dropzone-tab').removeClass('show active');
 				},
-				successmultiple: function successmultiple() {}
+				successmultiple: function successmultiple() {
+					vm.fetchMedia();
+				}
 			});
 		},
 		fetchMedia: function fetchMedia() {
@@ -39203,6 +39206,351 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
+  }
+}
+
+/***/ }),
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(86)
+/* template */
+var __vue_template__ = __webpack_require__(87)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\PortfolioIndex.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-58047ea1", Component.options)
+  } else {
+    hotAPI.reload("data-v-58047ea1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            portfolios: [],
+            pagination: {}
+        };
+    },
+    created: function created() {
+        this.fetchPortfolio();
+    },
+
+
+    methods: {
+        fetchPortfolio: function fetchPortfolio(page_url) {
+            var _this = this;
+
+            page_url = page_url || this.$baseUrl + '/api/portfolio';
+            axios.get(page_url).then(function (response) {
+                _this.portfolios = response.data.data;
+                _this.createPagination(response.data.meta, response.data.links);
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        },
+        createPagination: function createPagination(meta, links) {
+            var pagination = {
+                current_page: meta.current_page,
+                last_page: meta.last_page,
+                next_page: links.next,
+                prev_page: links.prev
+            };
+            this.pagination = pagination;
+        }
+    }
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "d-block d-sm-flex mb-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "nav",
+        { staticClass: "d-flex", attrs: { "aria-label": "pagination" } },
+        [
+          _c("ul", { staticClass: "pagination my-auto mx-auto ml-sm-4" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.prev_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-left" } })]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("span", { staticClass: "page-link text-mute" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t" +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page) +
+                    "\n\t\t\t\t\t"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.next_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-right" } })]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.portfolios, function(portfolio) {
+                return _c("tr", { key: portfolio.id }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\t\t" +
+                        _vm._s(portfolio.title) +
+                        "\n\t\t\t\t\t\t\t\t"
+                    ),
+                    _c("div", { staticClass: "d-block" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "edit btn btn-sm btn-primary",
+                          attrs: { href: portfolio.url + "/edit" }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "view btn btn-sm btn-info",
+                          attrs: { href: portfolio.url }
+                        },
+                        [_vm._v("View")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "trash btn btn-sm btn-danger",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.deletePortfolio(portfolio.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Trash")]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(portfolio.description))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    portfolio.image !== null
+                      ? _c("img", {
+                          staticClass: "img-fluid",
+                          attrs: { src: portfolio.image.thumbnail }
+                        })
+                      : _c("img", { attrs: { src: "adsdj" } })
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(portfolio.created_at))])
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-100 mb-3 mb-sm-0" }, [
+      _c("input", {
+        staticClass: "form-control form-control-lg",
+        attrs: { type: "text", name: "search", placeholder: "Search..." }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thumbnail")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-58047ea1", module.exports)
   }
 }
 

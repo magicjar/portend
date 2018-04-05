@@ -32,7 +32,7 @@
                 <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*portfolio*') ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#menu-portfolio" aria-expanded="false" role="button"><span class="mr-2" data-feather="paperclip"></span>Portfolio<span class="float-right" data-feather="chevron-down"></span></a>
                 <ul data-toggled="#menu-portfolio" id="menu-portfolio" class="ml-4 list-unstyled flex-column collapse" data-parent="#menus">
                     <li class="nav-item">
-                        <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*portfolio') ? 'active' : '' }}" href="#"><span class="mr-2" data-feather="list"></span>All Portfolio</a>
+                        <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*portfolio') ? 'active' : '' }}" href="{{ route('dashboard.portfolio.index') }}"><span class="mr-2" data-feather="list"></span>All Portfolio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*portfolio/create') ? 'active' : '' }}" href="{{ route('dashboard.portfolio.create') }}"><span class="mr-2" data-feather="file-plus"></span>Add Portfolio</a>

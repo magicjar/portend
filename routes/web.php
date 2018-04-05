@@ -21,6 +21,8 @@ Auth::routes();
 Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::get('article', 'ApiController@articleIndex')->name('article.index');
 	Route::get('article/{article}', 'ApiController@articleEdit')->name('article.edit');
+
+	Route::get('portfolio', 'ApiController@portfolioIndex')->name('portfolio.index');
 	Route::get('portfolio/{portfolio}', 'ApiController@portfolioEdit')->name('portfolio.edit');
 
 	// Testimonial

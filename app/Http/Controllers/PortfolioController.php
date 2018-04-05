@@ -13,7 +13,7 @@ class PortfolioController extends DashboardController
      */
     public function index()
     {
-        //
+        return view('dashboard.portfolio.index');
     }
 
     /**

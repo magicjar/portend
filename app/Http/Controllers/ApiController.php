@@ -42,6 +42,13 @@ class ApiController extends Controller
         return new Resource($article);
     }
 
+    public function portfolioIndex()
+    {
+        $portfolios = $this->portfolio->with('image')->orderBy('created_at', 'desc')->paginate(5);
+
+        return Resource::collection($portfolios);
+    }
+
     public function portfolioEdit($id)
     {
         $portfolio = $this->portfolio->with('category', 'tag', 'image', 'media')->findOrFail($id);

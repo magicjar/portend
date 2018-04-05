@@ -162,6 +162,7 @@
 				var previewNode = document.querySelector("#template");
 				var previewTemplate = previewNode.parentNode.innerHTML;
 				previewNode.parentNode.removeChild(previewNode);
+				let vm = this;
 
 				new Dropzone("#fileDropzone", {
 					url: this.$baseUrl + '/api/media/upload',
@@ -182,7 +183,7 @@
 						$('#dropzone, #dropzone-tab').removeClass('show active');
 					},
 					successmultiple() {
-
+						vm.fetchMedia();
 					}
 				});
 			},

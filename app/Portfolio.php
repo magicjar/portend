@@ -17,7 +17,7 @@ class Portfolio extends Model
     	'title', 'description', 'url', 'client', 'client_url', 'image'
     ];
 
-    protected $appends = ['category_id'];
+    protected $appends = ['category_id', 'url'];
 
     public function category()
     {
@@ -41,5 +41,10 @@ class Portfolio extends Model
     public function getCategoryIdAttribute()
     {
         return $this->category->pluck('id');
+    }
+
+    public function getUrlAttribute()
+    {
+        return url('dashboard/portfolio') . '/' . $this->id;
     }
 }

@@ -28,27 +28,27 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Title</th>
-								<th scope="col">Content</th>
+								<th scope="col">Description</th>
 								<th scope="col">Thumbnail</th>
 								<th scope="col">Date</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="article in articles" :key="article.id">
+							<tr v-for="portfolio in portfolios" :key="portfolio.id">
 								<td>
-									{{ article.title }}
+									{{ portfolio.title }}
 									<div class="d-block">
-										<a class="edit btn btn-sm btn-primary" :href="article.url + '/edit'">Edit</a>
-										<a class="view btn btn-sm btn-info" :href="article.url">View</a>
-										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deleteArticle(article.id)">Trash</button>
+										<a class="edit btn btn-sm btn-primary" :href="portfolio.url + '/edit'">Edit</a>
+										<a class="view btn btn-sm btn-info" :href="portfolio.url">View</a>
+										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deletePortfolio(portfolio.id)">Trash</button>
 									</div>
 								</td>
-								<td>{{ article.content }}</td>
+								<td>{{ portfolio.description }}</td>
 								<td>
-									<img v-if="article.image !== null"  :src="article.image.thumbnail" class="img-fluid">
+									<img v-if="portfolio.image !== null"  :src="portfolio.image.thumbnail" class="img-fluid">
 									<img v-else src="adsdj">
 								</td>
-								<td>{{ article.created_at }}</td>
+								<td>{{ portfolio.created_at }}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -62,21 +62,21 @@
     export default {
         data(){
             return {
-                articles: [],
+                portfolios: [],
                 pagination: {}
             }
         },
 
         created() {
-        	this.fetchArticle();
+        	this.fetchPortfolio();
         },
 
         methods: {
-        	fetchArticle(page_url){
-        		page_url = page_url || this.$baseUrl + '/api/article'
+        	fetchPortfolio(page_url){
+        		page_url = page_url || this.$baseUrl + '/api/portfolio'
         		axios.get(page_url)
                     .then(response => {
-                    this.articles = response.data.data;
+                    this.portfolios = response.data.data;
                     this.createPagination(response.data.meta, response.data.links);
                 })
                 .catch(error => console.log(error));
