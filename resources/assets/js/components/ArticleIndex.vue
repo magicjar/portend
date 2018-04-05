@@ -44,7 +44,7 @@
 								<td>{{ article.content.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</td>
 								<td>
 									<img v-if="article.image !== null"  :src="article.image.thumbnail" class="index-thumbnail img-fluid">
-									<img v-else src="adsdj" class="index-thumbnail img-fluid">
+									<span v-else class="index-thumbnail">None</span>
 								</td>
 								<td>{{ article.created_at }}</td>
 							</tr>

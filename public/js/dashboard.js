@@ -33970,10 +33970,9 @@ var render = function() {
                           staticClass: "index-thumbnail img-fluid",
                           attrs: { src: article.image.thumbnail }
                         })
-                      : _c("img", {
-                          staticClass: "index-thumbnail img-fluid",
-                          attrs: { src: "adsdj" }
-                        })
+                      : _c("span", { staticClass: "index-thumbnail" }, [
+                          _vm._v("None")
+                        ])
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(article.created_at))])
@@ -34338,6 +34337,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 return console.log(error);
             });
+        },
+        pushTag: function pushTag(tag) {
+            if (this.article.tag.includes(tag)) {
+                alert('You have already added this tag.');
+            } else {
+                this.article.tag.push(tag);
+            }
         }
     }
 });
@@ -34540,7 +34546,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                _vm.article.tag.push(tag)
+                                _vm.pushTag(tag)
                               }
                             }
                           },
@@ -38697,6 +38703,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 return console.log(error);
             });
+        },
+        pushTag: function pushTag(tag) {
+            if (this.portfolio.tag.includes(tag)) {
+                alert('You have already added this tag.');
+            } else {
+                this.portfolio.tag.push(tag);
+            }
         }
     }
 });
@@ -38902,7 +38915,7 @@ var render = function() {
                             attrs: { type: "button" },
                             on: {
                               click: function($event) {
-                                _vm.portfolio.tag.push(tag)
+                                _vm.pushTag(tag)
                               }
                             }
                           },
@@ -39655,10 +39668,9 @@ var render = function() {
                           staticClass: "index-thumbnail img-fluid",
                           attrs: { src: portfolio.image.thumbnail }
                         })
-                      : _c("img", {
-                          staticClass: "index-thumbnail img-fluid",
-                          attrs: { src: "adsdj" }
-                        })
+                      : _c("span", { staticClass: "index-thumbnail" }, [
+                          _vm._v("None")
+                        ])
                   ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(portfolio.created_at))])

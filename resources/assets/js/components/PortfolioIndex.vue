@@ -44,7 +44,7 @@
 								<td>{{ portfolio.description.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</td>
 								<td>
 									<img v-if="portfolio.image !== null"  :src="portfolio.image.thumbnail" class="index-thumbnail img-fluid">
-									<img v-else src="adsdj" class="index-thumbnail img-fluid">
+									<span v-else class="index-thumbnail">None</span>
 								</td>
 								<td>{{ portfolio.created_at }}</td>
 							</tr>

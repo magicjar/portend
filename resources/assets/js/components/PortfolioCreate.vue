@@ -63,7 +63,7 @@
                     <ul class="card-footer list-inline mb-0" v-if="tags.length">
                         <h6>Availlable Tags</h6>
                         <li class="list-inline-item mr-3" v-for="tag in tags" v-bind:key="tag.id">
-                            <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" v-on:click="portfolio.tag.push(tag)">&plus;</button>{{ tag.name }}
+                            <button type="button" class="btn btn-success rounded-circle remove-tag mr-1" @click="pushTag(tag)">&plus;</button>{{ tag.name }}
                         </li>
                     </ul>
                     <span v-else>
@@ -193,6 +193,13 @@
                     this.fetchTags();
                 })
                 .catch(error => console.log(error));
+            },
+            pushTag(tag){
+                if(this.portfolio.tag.includes(tag)){
+                    alert('You have already added this tag.');
+                } else {
+                    this.portfolio.tag.push(tag);
+                }
             }
         }
     }
