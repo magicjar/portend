@@ -42,6 +42,15 @@ class ApiController extends Controller
         return new Resource($article);
     }
 
+    public function articleDestroy($id)
+    {
+        $article = $this->article->findOrFail($id);
+
+        if($article->delete()){
+            return new Resource($article);
+        }
+    }
+
     public function portfolioIndex()
     {
         $portfolios = $this->portfolio->with('image')->orderBy('created_at', 'desc')->paginate(5);
@@ -54,6 +63,15 @@ class ApiController extends Controller
         $portfolio = $this->portfolio->with('category', 'tag', 'image', 'media')->findOrFail($id);
 
         return new Resource($portfolio);
+    }
+
+    public function portfolioDestroy($id)
+    {
+        $portfolio = $this->portfolio->findOrFail($id);
+
+        if($portfolio->delete()){
+            return new Resource($portfolio);
+        }
     }
 
     public function categoryIndex()

@@ -21,9 +21,11 @@ Auth::routes();
 Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::get('article', 'ApiController@articleIndex')->name('article.index');
 	Route::get('article/{article}', 'ApiController@articleEdit')->name('article.edit');
+	Route::delete('article/{article}', 'ApiController@articleDestroy')->name('article.destroy');
 
 	Route::get('portfolio', 'ApiController@portfolioIndex')->name('portfolio.index');
 	Route::get('portfolio/{portfolio}', 'ApiController@portfolioEdit')->name('portfolio.edit');
+	Route::delete('portfolio/{portfolio}', 'ApiController@portfolioDestroy')->name('portfolio.destroy');
 
 	// Testimonial
 	Route::get('testimonial', 'ApiController@testimonialIndex')->name('testimonial.index');

@@ -10251,11 +10251,24 @@ div.mce-fullscreen {
   display: none !important;
 }
 
-.add-media-button {
+.add-media-button,
+.bottom-rounded-0 {
   border-bottom: 0;
   border-color: #c5c5c5;
   border-bottom-right-radius: 0rem !important;
   border-bottom-left-radius: 0rem !important;
+}
+
+.top-rounded-0 {
+  border-top: 0;
+  border-color: #c5c5c5;
+  border-top-right-radius: 0rem !important;
+  border-top-left-radius: 0rem !important;
+}
+
+.right-rounded-0 {
+  border-top-right-radius: 0rem !important;
+  border-bottom-right-radius: 0rem !important;
 }
 
 .pagination .page-item {

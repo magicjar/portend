@@ -33750,6 +33750,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -33777,12 +33792,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         createPagination: function createPagination(meta, links) {
             var pagination = {
+                total_post: meta.total,
                 current_page: meta.current_page,
                 last_page: meta.last_page,
                 next_page: links.next,
                 prev_page: links.prev
             };
             this.pagination = pagination;
+        },
+        deleteArticle: function deleteArticle(id) {
+            var _this2 = this;
+
+            if (confirm('This is soft delete, so it can be restored later!')) {
+                axios.delete(this.$baseUrl + '/api/article/' + id).then(function (data) {
+                    _this2.fetchArticle();
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            }
         }
     }
 });
@@ -33796,14 +33823,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "d-block d-sm-flex mb-4" }, [
-      _vm._m(0),
+    _c("div", { staticClass: "d-flex mb-0" }, [
+      _c(
+        "span",
+        { staticClass: "btn bottom-rounded-0 bg-white ml-auto disabled" },
+        [_vm._v(_vm._s(_vm.pagination.total_post) + " articles")]
+      ),
       _vm._v(" "),
       _c(
         "nav",
-        { staticClass: "d-flex", attrs: { "aria-label": "pagination" } },
+        { staticClass: "ml-2", attrs: { "aria-label": "pagination" } },
         [
-          _c("ul", { staticClass: "pagination my-auto mx-auto ml-sm-4" }, [
+          _c("ul", { staticClass: "pagination mb-0" }, [
             _c(
               "li",
               {
@@ -33814,7 +33845,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link",
+                    staticClass: "page-link bottom-rounded-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
@@ -33828,15 +33859,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("li", { staticClass: "page-item disabled" }, [
-              _c("span", { staticClass: "page-link text-mute" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t" +
-                    _vm._s(_vm.pagination.current_page) +
-                    " of " +
-                    _vm._s(_vm.pagination.last_page) +
-                    "\n\t\t\t\t\t"
-                )
-              ])
+              _c(
+                "span",
+                { staticClass: "page-link disabled bottom-rounded-0" },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t" +
+                      _vm._s(_vm.pagination.current_page) +
+                      " of " +
+                      _vm._s(_vm.pagination.last_page) +
+                      "\n\t\t\t\t\t"
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -33849,7 +33884,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link",
+                    staticClass: "page-link bottom-rounded-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
@@ -33866,11 +33901,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card right-rounded-0" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table" }, [
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "tbody",
@@ -33941,21 +33976,78 @@ var render = function() {
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex mb-4" }, [
+      _c(
+        "nav",
+        { staticClass: "ml-auto", attrs: { "aria-label": "pagination" } },
+        [
+          _c("ul", { staticClass: "pagination mb-0" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link top-rounded-0",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.prev_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-left" } })]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("span", { staticClass: "page-link disabled top-rounded-0" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t" +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page) +
+                    "\n\t\t\t\t\t"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link top-rounded-0",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.next_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-right" } })]
+                )
+              ]
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-100 mb-3 mb-sm-0" }, [
-      _c("input", {
-        staticClass: "form-control form-control-lg",
-        attrs: { type: "text", name: "search", placeholder: "Search..." }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -39336,6 +39428,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -39363,12 +39470,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         createPagination: function createPagination(meta, links) {
             var pagination = {
+                total_post: meta.total,
                 current_page: meta.current_page,
                 last_page: meta.last_page,
                 next_page: links.next,
                 prev_page: links.prev
             };
             this.pagination = pagination;
+        },
+        deletePortfolio: function deletePortfolio(id) {
+            var _this2 = this;
+
+            if (confirm('This is soft delete, so it can be restored later!')) {
+                axios.delete(this.$baseUrl + '/api/portfolio/' + id).then(function (data) {
+                    _this2.fetchPortfolio();
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            }
         }
     }
 });
@@ -39382,14 +39501,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "d-block d-sm-flex mb-4" }, [
-      _vm._m(0),
+    _c("div", { staticClass: "d-flex mb-0" }, [
+      _c(
+        "span",
+        { staticClass: "btn bottom-rounded-0 bg-white ml-auto disabled" },
+        [_vm._v(_vm._s(_vm.pagination.total_post) + " portfolios")]
+      ),
       _vm._v(" "),
       _c(
         "nav",
-        { staticClass: "d-flex", attrs: { "aria-label": "pagination" } },
+        { staticClass: "ml-2", attrs: { "aria-label": "pagination" } },
         [
-          _c("ul", { staticClass: "pagination my-auto mx-auto ml-sm-4" }, [
+          _c("ul", { staticClass: "pagination mb-0" }, [
             _c(
               "li",
               {
@@ -39400,11 +39523,11 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link",
+                    staticClass: "page-link bottom-rounded-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        _vm.fetchArticle(_vm.pagination.prev_page)
+                        _vm.fetchPortfolio(_vm.pagination.prev_page)
                       }
                     }
                   },
@@ -39414,15 +39537,19 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("li", { staticClass: "page-item disabled" }, [
-              _c("span", { staticClass: "page-link text-mute" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t" +
-                    _vm._s(_vm.pagination.current_page) +
-                    " of " +
-                    _vm._s(_vm.pagination.last_page) +
-                    "\n\t\t\t\t\t"
-                )
-              ])
+              _c(
+                "span",
+                { staticClass: "page-link disabled bottom-rounded-0" },
+                [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t" +
+                      _vm._s(_vm.pagination.current_page) +
+                      " of " +
+                      _vm._s(_vm.pagination.last_page) +
+                      "\n\t\t\t\t\t"
+                  )
+                ]
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -39435,11 +39562,11 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link",
+                    staticClass: "page-link bottom-rounded-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        _vm.fetchArticle(_vm.pagination.next_page)
+                        _vm.fetchPortfolio(_vm.pagination.next_page)
                       }
                     }
                   },
@@ -39452,11 +39579,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card right-rounded-0" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table" }, [
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "tbody",
@@ -39529,21 +39656,78 @@ var render = function() {
           ])
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex mb-4" }, [
+      _c(
+        "nav",
+        { staticClass: "ml-auto", attrs: { "aria-label": "pagination" } },
+        [
+          _c("ul", { staticClass: "pagination mb-0" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link top-rounded-0",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPortfolio(_vm.pagination.prev_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-left" } })]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("span", { staticClass: "page-link disabled top-rounded-0" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t" +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page) +
+                    "\n\t\t\t\t\t"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link top-rounded-0",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPortfolio(_vm.pagination.next_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-right" } })]
+                )
+              ]
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-100 mb-3 mb-sm-0" }, [
-      _c("input", {
-        staticClass: "form-control form-control-lg",
-        attrs: { type: "text", name: "search", placeholder: "Search..." }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
