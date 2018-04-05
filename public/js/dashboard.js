@@ -33954,7 +33954,14 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(_vm._s(_vm._f("truncate")(article.content, 100)))
+                    _vm._v(
+                      _vm._s(
+                        _vm._f("truncate")(
+                          article.content.replace(/(<([^>]+)>)/gi, ""),
+                          100
+                        )
+                      )
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [
@@ -39633,7 +39640,12 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _vm._v(
-                      _vm._s(_vm._f("truncate")(portfolio.description, 100))
+                      _vm._s(
+                        _vm._f("truncate")(
+                          portfolio.description.replace(/(<([^>]+)>)/gi, ""),
+                          100
+                        )
+                      )
                     )
                   ]),
                   _vm._v(" "),
