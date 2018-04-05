@@ -51,7 +51,7 @@
                 <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*article*') ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#menu-article" aria-expanded="false" role="button"><span class="mr-2" data-feather="edit-3"></span>Article<span class="float-right" data-feather="chevron-down"></span></a>
                 <ul data-toggled="#menu-article" id="menu-article" class="ml-4 list-unstyled flex-column collapse" data-parent="#menus">
                     <li class="nav-item">
-                        <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*article') ? 'active' : '' }}" href="#"><span class="mr-2" data-feather="list"></span>All Article</a>
+                        <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*article') ? 'active' : '' }}" href="{{ route('dashboard.article.index') }}"><span class="mr-2" data-feather="list"></span>All Article</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*article/create') ? 'active' : '' }}" href="{{ route('dashboard.article.create') }}"><span class="mr-2" data-feather="file-plus"></span>Add Article</a>

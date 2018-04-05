@@ -250,3 +250,9 @@ div.mce-fullscreen {
 	border-bottom-right-radius: 0rem !important;
 	border-bottom-left-radius: 0rem !important;
 }
+
+.pagination {
+	.page-item {
+		width: max-content;
+	}
+}

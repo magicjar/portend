@@ -10258,3 +10258,9 @@ div.mce-fullscreen {
   border-bottom-left-radius: 0rem !important;
 }
 
+.pagination .page-item {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+

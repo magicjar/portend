@@ -17,7 +17,7 @@ class Article extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['category_id'];
+    protected $appends = ['category_id', 'url'];
 
     public function category()
     {
@@ -37,5 +37,10 @@ class Article extends Model
     public function getCategoryIdAttribute()
     {
         return $this->category->pluck('id');
+    }
+
+    public function getUrlAttribute()
+    {
+        return url('dashboard/article') . '/' . $this->id;
     }
 }

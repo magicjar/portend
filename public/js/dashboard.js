@@ -33691,10 +33691,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            articles: [],
+            pagination: {}
+        };
+    },
+    created: function created() {
+        this.fetchArticle();
+    },
+
+
+    methods: {
+        fetchArticle: function fetchArticle(page_url) {
+            var _this = this;
+
+            var vm = this;
+            page_url = page_url || this.$baseUrl + '/api/article';
+            axios.get(page_url).then(function (response) {
+                _this.articles = response.data.data;
+                vm.createPagination(response.data.meta, response.data.links);
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        },
+        createPagination: function createPagination(meta, links) {
+            var pagination = {
+                current_page: meta.current_page,
+                last_page: meta.last_page,
+                next_page: links.next,
+                prev_page: links.prev
+            };
+            this.pagination = pagination;
+        }
     }
 });
 
@@ -33706,9 +33791,179 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Article Index\n")])
+  return _c("div", [
+    _c("div", { staticClass: "d-block d-sm-flex mb-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "nav",
+        { staticClass: "d-flex", attrs: { "aria-label": "pagination" } },
+        [
+          _c("ul", { staticClass: "pagination my-auto mx-auto ml-sm-4" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.prev_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-left" } })]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("span", { staticClass: "page-link text-mute" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t\t" +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page) +
+                    "\n\t\t\t\t\t"
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchArticle(_vm.pagination.next_page)
+                      }
+                    }
+                  },
+                  [_c("i", { attrs: { "data-feather": "chevron-right" } })]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.articles, function(article) {
+                return _c("tr", { key: article.id }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\t\t" +
+                        _vm._s(article.title) +
+                        "\n\t\t\t\t\t\t\t\t"
+                    ),
+                    _c("div", { staticClass: "d-block" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "edit btn btn-sm btn-primary",
+                          attrs: { href: article.url + "/edit" }
+                        },
+                        [_vm._v("Edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "view btn btn-sm btn-info",
+                          attrs: { href: article.url }
+                        },
+                        [_vm._v("View")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "trash btn btn-sm btn-danger",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.deleteArticle(article.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Trash")]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.content))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    article.image !== null
+                      ? _c("img", {
+                          staticClass: "img-fluid",
+                          attrs: { src: article.image.thumbnail }
+                        })
+                      : _c("img", { attrs: { src: "adsdj" } })
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(article.created_at))])
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-100 mb-3 mb-sm-0" }, [
+      _c("input", {
+        staticClass: "form-control form-control-lg",
+        attrs: { type: "text", name: "search", placeholder: "Search..." }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Content")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Thumbnail")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

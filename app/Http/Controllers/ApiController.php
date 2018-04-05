@@ -28,6 +28,13 @@ class ApiController extends Controller
         $this->setting = $setting;
     }
 
+    public function articleIndex()
+    {
+        $articles = $this->article->with('image')->orderBy('created_at', 'desc')->paginate(5);
+
+        return Resource::collection($articles);
+    }
+
     public function articleEdit($id)
     {
         $article = $this->article->with('category', 'tag', 'image')->findOrFail($id);
