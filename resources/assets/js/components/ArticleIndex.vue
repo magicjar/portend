@@ -20,7 +20,7 @@
 			</nav>
 		</div>
 		
-		<div class="card right-rounded-0 top-rounded-0">
+		<div class="card top-rounded-0">
 			<div class="card-body">
 			    <div class="table-responsive">
 					<table class="table">
@@ -54,23 +54,6 @@
 			    </div>
 			</div>
 		</div>
-		<!-- <div class="d-flex mb-4">
-			<nav aria-label="pagination" class="ml-auto">
-				<ul class="pagination mb-0">
-					<li :class="[{ disabled: !pagination.prev_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.prev_page)" class="page-link top-rounded-0 border-0" href="#"><i data-feather="chevron-left"></i></a>
-					</li>
-					<li class="page-item disabled">
-						<span class="page-link disabled top-rounded-0 border-0">
-							{{ pagination.current_page }} of {{ pagination.last_page }}
-						</span>
-					</li>
-					<li :class="[{ disabled: !pagination.next_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.next_page)" class="page-link top-rounded-0 border-0" href="#"><i data-feather="chevron-right"></i></a>
-					</li>
-				</ul>
-			</nav>
-		</div> -->
 	</div>
 </template>
 
@@ -95,7 +78,6 @@
                     .then(response => {
                     this.articles = response.data.data;
                     this.createPagination(response.data.meta, response.data.links);
-                    console.log(this.searchQuery)
                 })
                 .catch(error => console.log(error));
         	},

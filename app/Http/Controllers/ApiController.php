@@ -55,9 +55,13 @@ class ApiController extends Controller
         }
     }
 
-    public function portfolioIndex()
+    public function portfolioIndex(Request $request)
     {
-        $portfolios = $this->portfolio->with('image')->orderBy('created_at', 'desc')->paginate(5);
+        $searchQuery = $request->search;
+
+        $portfolios = $this->portfolio->where('title', 'LIKE', "%$searchQuery%")->with('image')->orderBy('created_at', 'desc')->paginate(5);
+
+        $portfolios->appends(['search' => $searchQuery]);
 
         return Resource::collection($portfolios);
     }

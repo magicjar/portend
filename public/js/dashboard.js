@@ -33749,23 +33749,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -33788,7 +33771,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(page_url).then(function (response) {
                 _this.articles = response.data.data;
                 _this.createPagination(response.data.meta, response.data.links);
-                console.log(_this.searchQuery);
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -33929,7 +33911,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card right-rounded-0 top-rounded-0" }, [
+    _c("div", { staticClass: "card top-rounded-0" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table" }, [
@@ -38531,12 +38513,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             portfolios: [],
-            pagination: {}
+            pagination: {},
+            searchQuery: ''
         };
     },
     created: function created() {
@@ -38548,7 +38532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchPortfolio: function fetchPortfolio(page_url) {
             var _this = this;
 
-            page_url = page_url || this.$baseUrl + '/api/portfolio';
+            page_url = page_url || this.$baseUrl + '/api/portfolio?search=' + this.searchQuery;
             axios.get(page_url).then(function (response) {
                 _this.portfolios = response.data.data;
                 _this.createPagination(response.data.meta, response.data.links);
@@ -38590,9 +38574,34 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "d-flex mb-0" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchQuery,
+            expression: "searchQuery"
+          }
+        ],
+        staticClass: "form-control mb-0 bottom-rounded-0 border-0",
+        attrs: { type: "text", name: "search", placeholder: "Search..." },
+        domProps: { value: _vm.searchQuery },
+        on: {
+          keyup: function($event) {
+            _vm.fetchPortfolio()
+          },
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchQuery = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
       _c(
         "span",
-        { staticClass: "btn bottom-rounded-0 bg-white ml-auto disabled" },
+        { staticClass: "btn bottom-rounded-0 bg-white ml-2 border-0" },
         [_vm._v(_vm._s(_vm.pagination.total_post) + " portfolios")]
       ),
       _vm._v(" "),
@@ -38611,11 +38620,11 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link bottom-rounded-0",
+                    staticClass: "page-link bottom-rounded-0 border-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        _vm.fetchPortfolio(_vm.pagination.prev_page)
+                        _vm.fetchArticle(_vm.pagination.prev_page)
                       }
                     }
                   },
@@ -38627,7 +38636,7 @@ var render = function() {
             _c("li", { staticClass: "page-item disabled" }, [
               _c(
                 "span",
-                { staticClass: "page-link disabled bottom-rounded-0" },
+                { staticClass: "page-link disabled bottom-rounded-0 border-0" },
                 [
                   _vm._v(
                     "\n\t\t\t\t\t\t" +
@@ -38650,11 +38659,11 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "page-link bottom-rounded-0",
+                    staticClass: "page-link bottom-rounded-0 border-0",
                     attrs: { href: "#" },
                     on: {
                       click: function($event) {
-                        _vm.fetchPortfolio(_vm.pagination.next_page)
+                        _vm.fetchArticle(_vm.pagination.next_page)
                       }
                     }
                   },
@@ -38667,7 +38676,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card right-rounded-0" }, [
+    _c("div", { staticClass: "card top-rounded-0" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("table", { staticClass: "table" }, [
@@ -38748,74 +38757,6 @@ var render = function() {
           ])
         ])
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "d-flex mb-4" }, [
-      _c(
-        "nav",
-        { staticClass: "ml-auto", attrs: { "aria-label": "pagination" } },
-        [
-          _c("ul", { staticClass: "pagination mb-0" }, [
-            _c(
-              "li",
-              {
-                staticClass: "page-item",
-                class: [{ disabled: !_vm.pagination.prev_page }]
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link top-rounded-0",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        _vm.fetchPortfolio(_vm.pagination.prev_page)
-                      }
-                    }
-                  },
-                  [_c("i", { attrs: { "data-feather": "chevron-left" } })]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "page-item disabled" }, [
-              _c("span", { staticClass: "page-link disabled top-rounded-0" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t" +
-                    _vm._s(_vm.pagination.current_page) +
-                    " of " +
-                    _vm._s(_vm.pagination.last_page) +
-                    "\n\t\t\t\t\t"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "li",
-              {
-                staticClass: "page-item",
-                class: [{ disabled: !_vm.pagination.next_page }]
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link top-rounded-0",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        _vm.fetchPortfolio(_vm.pagination.next_page)
-                      }
-                    }
-                  },
-                  [_c("i", { attrs: { "data-feather": "chevron-right" } })]
-                )
-              ]
-            )
-          ])
-        ]
-      )
     ])
   ])
 }
