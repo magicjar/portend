@@ -28,9 +28,13 @@ class ApiController extends Controller
         $this->setting = $setting;
     }
 
-    public function articleIndex()
+    public function articleIndex(Request $request)
     {
-        $articles = $this->article->with('image')->orderBy('created_at', 'desc')->paginate(5);
+        $searchQuery = $request->search;
+
+        $articles = $this->article->where('title', 'LIKE', "%$searchQuery%")->with('image')->orderBy('created_at', 'desc')->paginate(5);
+
+        $articles->appends(['search' => $searchQuery]);
 
         return Resource::collection($articles);
     }

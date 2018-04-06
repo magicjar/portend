@@ -8,8 +8,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-#dashboard {
-	background-color: #e9fff9;
+html {
+	min-height: 100%;
+}
+
+body {
+	background: linear-gradient(45deg, #fecef3 0, #f6d099 100%);
 }
 
 .navbar {
@@ -26,12 +30,33 @@
 	right: inherit;
 	display: none;
 
+	a {
+		color: #c1c1c1;
+	}
+
+	a:hover {
+		color: $light;
+		background-color: rgba(255, 255, 255, 0.4);
+	}
+
+	.active {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+
 	@include media-breakpoint-up(lg) {
 		background-color: transparent;
 		box-shadow: none;
 		display: block;
 		width: 300px;
 		z-index: 99;
+
+		a {
+			color: #545454;
+		}
+
+		a:hover {
+			color: black;
+		}
 	}
 
 	.nav-pills .nav-link.active,
@@ -39,19 +64,6 @@
 		background-color: initial;
 		color: #a58837;
 		border-left: 3px solid #a58837;
-	}
-
-	a {
-		color: #c1c1c1;
-	}
-
-	a:hover {
-		color: $light;
-		background-color: rgba(255, 255, 255, 0.2);
-	}
-
-	.active {
-		background-color: rgba(255, 255, 255, 0.2);
 	}
 
 	.feather-chevron-down {
@@ -120,6 +132,16 @@
 	@include media-breakpoint-up(xl) {
 		margin-right: 304px;
 	}
+}
+
+.card {
+	border: 0;
+	background-color: rgba(255, 255, 255, 0.6);
+	box-shadow: 0 0 7px 0 rgba(255, 127, 53, 0.29);
+}
+
+.card-header {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .actions-meta {
@@ -244,8 +266,7 @@ div.mce-fullscreen {
 	display: none !important;
 }
 
-.add-media-button, .bottom-rounded-0 {
-	border-bottom: 0;
+.bottom-rounded-0 {
 	border-color: #c5c5c5;
 	border-bottom-right-radius: 0rem !important;
 	border-bottom-left-radius: 0rem !important;

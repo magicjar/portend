@@ -1,25 +1,26 @@
 <template>
 	<div>
 		<div class="d-flex mb-0">
-			<span class="btn bottom-rounded-0 bg-white ml-auto disabled">{{ pagination.total_post }} articles</span>
+			<input class="form-control mb-0 bottom-rounded-0 border-0" @keyup="fetchArticle()" type="text" name="search" v-model="searchQuery" placeholder="Search...">
+			<span class="btn bottom-rounded-0 bg-white ml-2 border-0">{{ pagination.total_post }} articles</span>
 			<nav aria-label="pagination" class="ml-2">
 				<ul class="pagination mb-0">
 					<li :class="[{ disabled: !pagination.prev_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.prev_page)" class="page-link bottom-rounded-0" href="#"><i data-feather="chevron-left"></i></a>
+						<a @click="fetchArticle(pagination.prev_page)" class="page-link bottom-rounded-0 border-0" href="#"><i data-feather="chevron-left"></i></a>
 					</li>
 					<li class="page-item disabled">
-						<span class="page-link disabled bottom-rounded-0">
+						<span class="page-link disabled bottom-rounded-0 border-0">
 							{{ pagination.current_page }} of {{ pagination.last_page }}
 						</span>
 					</li>
 					<li :class="[{ disabled: !pagination.next_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.next_page)" class="page-link bottom-rounded-0" href="#"><i data-feather="chevron-right"></i></a>
+						<a @click="fetchArticle(pagination.next_page)" class="page-link bottom-rounded-0 border-0" href="#"><i data-feather="chevron-right"></i></a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 		
-		<div class="card right-rounded-0">
+		<div class="card right-rounded-0 top-rounded-0">
 			<div class="card-body">
 			    <div class="table-responsive">
 					<table class="table">
@@ -53,23 +54,23 @@
 			    </div>
 			</div>
 		</div>
-		<div class="d-flex mb-4">
+		<!-- <div class="d-flex mb-4">
 			<nav aria-label="pagination" class="ml-auto">
 				<ul class="pagination mb-0">
 					<li :class="[{ disabled: !pagination.prev_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.prev_page)" class="page-link top-rounded-0" href="#"><i data-feather="chevron-left"></i></a>
+						<a @click="fetchArticle(pagination.prev_page)" class="page-link top-rounded-0 border-0" href="#"><i data-feather="chevron-left"></i></a>
 					</li>
 					<li class="page-item disabled">
-						<span class="page-link disabled top-rounded-0">
+						<span class="page-link disabled top-rounded-0 border-0">
 							{{ pagination.current_page }} of {{ pagination.last_page }}
 						</span>
 					</li>
 					<li :class="[{ disabled: !pagination.next_page }]" class="page-item">
-						<a @click="fetchArticle(pagination.next_page)" class="page-link top-rounded-0" href="#"><i data-feather="chevron-right"></i></a>
+						<a @click="fetchArticle(pagination.next_page)" class="page-link top-rounded-0 border-0" href="#"><i data-feather="chevron-right"></i></a>
 					</li>
 				</ul>
 			</nav>
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -78,7 +79,8 @@
         data(){
             return {
                 articles: [],
-                pagination: {}
+                pagination: {},
+                searchQuery: '',
             }
         },
 
@@ -88,11 +90,12 @@
 
         methods: {
         	fetchArticle(page_url){
-        		page_url = page_url || this.$baseUrl + '/api/article'
+        		page_url = page_url || `${this.$baseUrl}/api/article?search=${this.searchQuery}`;
         		axios.get(page_url)
                     .then(response => {
                     this.articles = response.data.data;
                     this.createPagination(response.data.meta, response.data.links);
+                    console.log(this.searchQuery)
                 })
                 .catch(error => console.log(error));
         	},
