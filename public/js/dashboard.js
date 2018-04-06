@@ -34639,7 +34639,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-      _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+      _c("div", { staticClass: "card mb-4" }, [
         _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -35157,7 +35157,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "actions-meta" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
-          _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+          _c("div", { staticClass: "card mb-4" }, [
             _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -35694,7 +35694,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "actions-meta" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
-          _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+          _c("div", { staticClass: "card mb-4" }, [
             _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -36235,7 +36235,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "actions-meta" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
-          _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+          _c("div", { staticClass: "card mb-4" }, [
             _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -36705,7 +36705,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "actions-meta" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
-          _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+          _c("div", { staticClass: "card mb-4" }, [
             _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
@@ -37055,7 +37055,7 @@ var render = function() {
               "div",
               {
                 staticClass: "modal-body d-flex p-0",
-                staticStyle: { overflow: "auto" }
+                staticStyle: { overflow: "auto", "z-index": "1" }
               },
               [
                 _c("div", { staticClass: "tab-content w-100" }, [
@@ -37500,7 +37500,7 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "nav-item nav-link active",
+              staticClass: "nav-item nav-link border-bottom-0 active",
               attrs: {
                 id: "dropzone-tab",
                 "data-toggle": "tab",
@@ -37515,7 +37515,7 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "nav-item nav-link",
+              staticClass: "nav-item nav-link border-bottom-0",
               attrs: {
                 id: "library-tab",
                 "data-toggle": "tab",
@@ -39429,7 +39429,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 col-sm-6 col-xl-12" }, [
-      _c("div", { staticClass: "card text-white bg-gray-dark mb-4" }, [
+      _c("div", { staticClass: "card mb-4" }, [
         _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [

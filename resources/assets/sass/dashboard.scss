@@ -12,12 +12,19 @@ html {
 	min-height: 100%;
 }
 
-body {
-	background: linear-gradient(45deg, #fecef3 0, #f6d099 100%);
+#dashboard {
+	background: linear-gradient(45deg, #cefefa 0, #b8b5fd 100%);
+	color: #4c5865;
 }
 
-.navbar {
+.navbar.sticky-top {
 	height: 40px;
+	background: linear-gradient(90deg, #00557d 0, #5e00a9 100%);
+}
+
+.feather.menu-icon {
+	height: 30px;
+    width: 30px;
 }
 
 .sidebar {
@@ -94,6 +101,33 @@ body {
 	@include media-breakpoint-up(xl) {
 		max-width: 1200px;
 	}
+
+	.modal-content {
+		border: 0;
+	}
+
+	.modal-header {
+		min-height: 45px;
+	}
+
+	.modal-header,
+	.nav-tabs {
+		background-color: #dee4ef;
+		border-bottom: 0;
+	}
+
+	.nav-tabs .nav-link {
+		border: 0;
+	}
+
+	.nav-tabs .nav-item {
+		margin-bottom: 0;
+	}
+
+	.nav-tabs .nav-link.active,
+	.nav-tabs .nav-item.show .nav-link {
+	    background-color: $light;
+	}
 }
 
 .modal-backdrop.show {
@@ -137,7 +171,7 @@ body {
 .card {
 	border: 0;
 	background-color: rgba(255, 255, 255, 0.6);
-	box-shadow: 0 0 7px 0 rgba(255, 127, 53, 0.29);
+	box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.3);
 }
 
 .card-header {

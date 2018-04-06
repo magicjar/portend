@@ -9998,12 +9998,20 @@ html {
   min-height: 100%;
 }
 
-body {
-  background: linear-gradient(45deg, #fecef3 0, #f6d099 100%);
+#dashboard {
+  background: linear-gradient(45deg, #cefefa 0, #b8b5fd 100%);
+  color: #4c5865;
 }
 
-.navbar {
+.navbar.sticky-top {
   height: 40px;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #00557d), to(#5e00a9));
+  background: linear-gradient(90deg, #00557d 0, #5e00a9 100%);
+}
+
+.feather.menu-icon {
+  height: 30px;
+  width: 30px;
 }
 
 .sidebar {
@@ -10090,6 +10098,33 @@ body {
   }
 }
 
+.media-modal .modal-content {
+  border: 0;
+}
+
+.media-modal .modal-header {
+  min-height: 45px;
+}
+
+.media-modal .modal-header,
+.media-modal .nav-tabs {
+  background-color: #dee4ef;
+  border-bottom: 0;
+}
+
+.media-modal .nav-tabs .nav-link {
+  border: 0;
+}
+
+.media-modal .nav-tabs .nav-item {
+  margin-bottom: 0;
+}
+
+.media-modal .nav-tabs .nav-link.active,
+.media-modal .nav-tabs .nav-item.show .nav-link {
+  background-color: #f8f9fa;
+}
+
 .modal-backdrop.show {
   opacity: 0.8;
 }
@@ -10142,8 +10177,8 @@ body {
 .card {
   border: 0;
   background-color: rgba(255, 255, 255, 0.6);
-  -webkit-box-shadow: 0 0 7px 0 rgba(255, 127, 53, 0.29);
-          box-shadow: 0 0 7px 0 rgba(255, 127, 53, 0.29);
+  -webkit-box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.3);
 }
 
 .card-header {

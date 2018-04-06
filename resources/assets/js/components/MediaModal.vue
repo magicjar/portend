@@ -10,11 +10,11 @@
 				</div>
 				<nav>
 					<div class="nav nav-tabs px-2" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link active" id="dropzone-tab" data-toggle="tab" href="#dropzone" role="tab" aria-selected="true">Upload File</a>
-						<a class="nav-item nav-link" id="library-tab" data-toggle="tab" href="#library" role="tab" aria-selected="false">Image Library</a>
+						<a class="nav-item nav-link border-bottom-0 active" id="dropzone-tab" data-toggle="tab" href="#dropzone" role="tab" aria-selected="true">Upload File</a>
+						<a class="nav-item nav-link border-bottom-0" id="library-tab" data-toggle="tab" href="#library" role="tab" aria-selected="false">Image Library</a>
 					</div>
 				</nav>
-				<div class="modal-body d-flex p-0" style="overflow: auto;">
+				<div class="modal-body d-flex p-0" style="overflow: auto; z-index: 1;">
 					<div class="tab-content w-100">
 						<div class="container-fluid tab-pane fade show active text-center h-100" id="dropzone" role="tabpanel">
 							<form class="d-flex h-100" id="fileDropzone">

@@ -20,7 +20,7 @@
             <div class="actions-meta">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card text-white bg-gray-dark mb-4">
+                        <div class="card mb-4">
                             <h5 class="card-header">Publish</h5>
                             <div class="card-body">
                                 <button type="submit" class="btn btn-primary ml-auto">Save</button>

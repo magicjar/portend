@@ -83,7 +83,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i data-feather="linkedin"></i></span>
                     </div>
-                    <input class="form-control" type="text" name="linkedin_url" placeholder="Instagram url" value="{{ isset($setting->setting['linkedin_url']) ? $setting->setting['linkedin_url'] : '' }}">
+                    <input class="form-control" type="text" name="linkedin_url" placeholder="Linkedin url" value="{{ isset($setting->setting['linkedin_url']) ? $setting->setting['linkedin_url'] : '' }}">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">

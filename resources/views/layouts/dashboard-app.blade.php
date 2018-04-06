@@ -15,11 +15,11 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 </head>
 <body id="dashboard">
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark flex-nowrap p-0">
-        <a class="navbar-brand ml-4" href="{{ url('/') }}"> {{ config('app.name', 'Blvckgold') }}</a>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top flex-nowrap p-0">
         <button class="navbar-toggler border-0" type="button" data-toggle="offcanvas">
-            <span class="navbar-toggler-icon"></span>
+            <i class="menu-icon" data-feather="menu"></i>
         </button>
+        <a class="navbar-brand ml-4" href="{{ url('/') }}"> {{ config('app.name', 'Blvckgold') }}</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item text-nowrap">
                 @auth
