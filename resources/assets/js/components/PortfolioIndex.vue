@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<div class="d-flex mb-0">
-			<input class="form-control mb-0 bottom-rounded-0 border-0" @keyup="fetchPortfolio()" type="text" name="search" v-model="searchQuery" placeholder="Search...">
+			<div class="input-group">
+				<input class="form-control mb-0 bottom-rounded-0 border-0" @keyup.enter="fetchPortfolio()" type="text" name="search" v-model="searchQuery" placeholder="Search...">
+				<div class="input-group-append">
+					<button @click.prevent="fetchPortfolio()" class="btn btn-secondary border-0 bottom-rounded-0" type="button"><i data-feather="search"></i></button>
+				</div>
+			</div>
+
 			<span class="btn bottom-rounded-0 bg-white ml-2 border-0">{{ pagination.total_post }} portfolios</span>
 			<nav aria-label="pagination" class="ml-2">
 				<ul class="pagination mb-0">
@@ -54,23 +60,6 @@
 			    </div>
 			</div>
 		</div>
-		<!-- <div class="d-flex mb-4">
-			<nav aria-label="pagination" class="ml-auto">
-				<ul class="pagination mb-0">
-					<li :class="[{ disabled: !pagination.prev_page }]" class="page-item">
-						<a @click="fetchPortfolio(pagination.prev_page)" class="page-link top-rounded-0" href="#"><i data-feather="chevron-left"></i></a>
-					</li>
-					<li class="page-item disabled">
-						<span class="page-link disabled top-rounded-0">
-							{{ pagination.current_page }} of {{ pagination.last_page }}
-						</span>
-					</li>
-					<li :class="[{ disabled: !pagination.next_page }]" class="page-item">
-						<a @click="fetchPortfolio(pagination.next_page)" class="page-link top-rounded-0" href="#"><i data-feather="chevron-right"></i></a>
-					</li>
-				</ul>
-			</nav>
-		</div> -->
 	</div>
 </template>
 

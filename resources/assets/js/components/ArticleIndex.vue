@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<div class="d-flex mb-0">
-			<input class="form-control mb-0 bottom-rounded-0 border-0" @keyup="fetchArticle()" type="text" name="search" v-model="searchQuery" placeholder="Search...">
+			<div class="input-group">
+				<input class="form-control mb-0 bottom-rounded-0 border-0" @keyup.enter="fetchArticle()" type="text" name="search" v-model="searchQuery" placeholder="Search...">
+				<div class="input-group-append">
+					<button @click.prevent="fetchArticle()" class="btn btn-secondary border-0 bottom-rounded-0" type="button"><i data-feather="search"></i></button>
+				</div>
+			</div>
+			
 			<span class="btn bottom-rounded-0 bg-white ml-2 border-0">{{ pagination.total_post }} articles</span>
 			<nav aria-label="pagination" class="ml-2">
 				<ul class="pagination mb-0">
@@ -58,6 +64,8 @@
 </template>
 
 <script>
+	import debounce from '../dashboard.js';
+
     export default {
         data(){
             return {

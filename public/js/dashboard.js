@@ -33690,6 +33690,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
 //
 //
 //
@@ -33749,6 +33750,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -33809,30 +33818,55 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "d-flex mb-0" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.searchQuery,
-            expression: "searchQuery"
-          }
-        ],
-        staticClass: "form-control mb-0 bottom-rounded-0 border-0",
-        attrs: { type: "text", name: "search", placeholder: "Search..." },
-        domProps: { value: _vm.searchQuery },
-        on: {
-          keyup: function($event) {
-            _vm.fetchArticle()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "input-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchQuery,
+              expression: "searchQuery"
             }
-            _vm.searchQuery = $event.target.value
+          ],
+          staticClass: "form-control mb-0 bottom-rounded-0 border-0",
+          attrs: { type: "text", name: "search", placeholder: "Search..." },
+          domProps: { value: _vm.searchQuery },
+          on: {
+            keyup: function($event) {
+              if (
+                !("button" in $event) &&
+                _vm._k($event.keyCode, "enter", 13, $event.key)
+              ) {
+                return null
+              }
+              _vm.fetchArticle()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchQuery = $event.target.value
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group-append" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary border-0 bottom-rounded-0",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.fetchArticle()
+                }
+              }
+            },
+            [_c("i", { attrs: { "data-feather": "search" } })]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "span",
@@ -38503,17 +38537,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -38574,30 +38597,55 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "d-flex mb-0" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.searchQuery,
-            expression: "searchQuery"
-          }
-        ],
-        staticClass: "form-control mb-0 bottom-rounded-0 border-0",
-        attrs: { type: "text", name: "search", placeholder: "Search..." },
-        domProps: { value: _vm.searchQuery },
-        on: {
-          keyup: function($event) {
-            _vm.fetchPortfolio()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "input-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchQuery,
+              expression: "searchQuery"
             }
-            _vm.searchQuery = $event.target.value
+          ],
+          staticClass: "form-control mb-0 bottom-rounded-0 border-0",
+          attrs: { type: "text", name: "search", placeholder: "Search..." },
+          domProps: { value: _vm.searchQuery },
+          on: {
+            keyup: function($event) {
+              if (
+                !("button" in $event) &&
+                _vm._k($event.keyCode, "enter", 13, $event.key)
+              ) {
+                return null
+              }
+              _vm.fetchPortfolio()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchQuery = $event.target.value
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group-append" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary border-0 bottom-rounded-0",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.fetchPortfolio()
+                }
+              }
+            },
+            [_c("i", { attrs: { "data-feather": "search" } })]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "span",

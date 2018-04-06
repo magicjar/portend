@@ -93,7 +93,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><i data-feather="play"></i></span>
+                        <span class="input-group-text" id="basic-addon1"><i data-feather="youtube"></i></span>
                     </div>
                     <input class="form-control" type="text" name="youtube_url" placeholder="Youtube url" value="{{ isset($setting->setting['youtube_url']) ? $setting->setting['youtube_url'] : '' }}">
                 </div>
