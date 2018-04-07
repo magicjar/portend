@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 
 use App\Article;
 use App\Portfolio;
@@ -82,9 +81,9 @@ class ApiController extends Controller
         }
     }
 
-    public function categoryIndex()
+    public function categoryIndex(Request $request)
     {
-        $categories = $this->category->where('type', Input::get('type'))->get();
+        $categories = $this->category->where('type', $request->type)->get();
 
         return Resource::collection($categories);
     }
@@ -112,9 +111,9 @@ class ApiController extends Controller
         }
     }
 
-    public function tagIndex()
+    public function tagIndex(Request $request)
     {
-        $tags = $this->tag->where('type', Input::get('type'))->get();
+        $tags = $this->tag->where('type', $request->type)->get();
 
         return Resource::collection($tags);
     }
@@ -142,9 +141,9 @@ class ApiController extends Controller
         }
     }
 
-    public function resumeIndex()
+    public function resumeIndex(Request $request)
     {
-        $resume = $this->resume->where('resume_type', Input::get('type'))->orderBy('created_at', 'desc')->get();
+        $resume = $this->resume->where('resume_type', $request->type)->orderBy('created_at', 'desc')->get();
 
         return Resource::collection($resume);
     }
