@@ -10,8 +10,10 @@
                         <div class="input-group form-group">
                             <input class="form-control" type="text" name="author" id="author" placeholder="Enter author here" v-model="testimonial.author" required>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image" name="image">
-                                <label class="custom-file-label" for="image">Choose avatar</label>
+                                <input type="text" name="image" readonly class="form-control-plaintext px-3" :value="testimonial.image ? testimonial.image : 'No image'" aria-label="Recipient's username">
+                                <div class="input-group-append">
+                                    <button @click.prevent="setAvatar" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="modal" data-target="#imagemodal">{{ testimonial.image ? 'Change image' : 'Add image' }}</button>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,6 +64,8 @@
 </template>
 
 <script>
+    import { bus } from '../dashboard.js';
+
     export default {
         data(){
             return {
@@ -72,6 +76,7 @@
                     content: '',
                     author: '',
                     url: '',
+                    image: ''
                 },
                 testimonial_id: '',
                 edit_state: false,
@@ -80,9 +85,15 @@
 
         created() {
             this.fetchTestimonials();
+            bus.$on('theImage', (data) => {
+                this.testimonial.image = data.image_url
+            });
         },
 
         methods: {
+            setAvatar(){
+                bus.$emit('thumbTrue', this.isThumbnail = true);
+            },
             fetchTestimonials(){
                 axios.get(this.$baseUrl + '/api/testimonial')
                 .then(response => {
@@ -98,6 +109,7 @@
                         this.testimonial.title = '';
                         this.testimonial.content = '';
                         this.testimonial.author = '';
+                        this.testimonial.image = '';
                         this.testimonial.url = '';
                         this.fetchTestimonials();
                     })
@@ -109,6 +121,7 @@
                         this.testimonial.title = '';
                         this.testimonial.content = '';
                         this.testimonial.author = '';
+                        this.testimonial.image = '';
                         this.testimonial.url = '';
                         this.fetchTestimonials();
                     })
@@ -131,6 +144,7 @@
                 this.testimonial.title = testimonial.title;
                 this.testimonial.content = testimonial.content;
                 this.testimonial.author = testimonial.author;
+                this.testimonial.image = testimonial.image;
                 this.testimonial.url = testimonial.url;
             }
         }

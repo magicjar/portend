@@ -33522,7 +33522,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -33582,49 +33581,27 @@ var render = function() {
     _vm._v(" "),
     _c("img", { staticClass: "img-fluid mb-3", attrs: { src: _vm.ava } }),
     _vm._v(" "),
-    _vm.ava.length
-      ? _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-sm",
-            attrs: {
-              href: "#",
-              "data-toggle": "modal",
-              "data-target": "#imagemodal"
-            },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.setAvatar($event)
-              }
-            }
-          },
-          [
-            _c("i", { attrs: { "data-feather": "image" } }),
-            _vm._v(" Change avatar")
-          ]
-        )
-      : _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-sm",
-            attrs: {
-              href: "#",
-              "data-toggle": "modal",
-              "data-target": "#imagemodal"
-            },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.setAvatar($event)
-              }
-            }
-          },
-          [
-            _c("i", { attrs: { "data-feather": "image" } }),
-            _vm._v(" Set avatar")
-          ]
-        )
+    _c(
+      "a",
+      {
+        staticClass: "btn btn-primary btn-sm",
+        attrs: {
+          href: "#",
+          "data-toggle": "modal",
+          "data-target": "#imagemodal"
+        },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            _vm.setAvatar($event)
+          }
+        }
+      },
+      [
+        _c("i", { attrs: { "data-feather": "image" } }),
+        _vm._v(" " + _vm._s(_vm.ava ? "Change avatar" : "Set avatar"))
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -36289,6 +36266,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //
@@ -36352,6 +36330,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -36362,60 +36344,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 title: '',
                 content: '',
                 author: '',
-                url: ''
+                url: '',
+                image: ''
             },
             testimonial_id: '',
             edit_state: false
         };
     },
     created: function created() {
+        var _this = this;
+
         this.fetchTestimonials();
+        __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('theImage', function (data) {
+            _this.testimonial.image = data.image_url;
+        });
     },
 
 
     methods: {
+        setAvatar: function setAvatar() {
+            __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
+        },
         fetchTestimonials: function fetchTestimonials() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get(this.$baseUrl + '/api/testimonial').then(function (response) {
-                _this.testimonials = response.data.data;
+                _this2.testimonials = response.data.data;
             }).catch(function (error) {
                 return console.log(error);
             });
         },
         addTestimonial: function addTestimonial() {
-            var _this2 = this;
+            var _this3 = this;
 
             if (this.edit_state === false) {
                 // Create
                 axios.post(this.$baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
-                    _this2.testimonial.title = '';
-                    _this2.testimonial.content = '';
-                    _this2.testimonial.author = '';
-                    _this2.testimonial.url = '';
-                    _this2.fetchTestimonials();
+                    _this3.testimonial.title = '';
+                    _this3.testimonial.content = '';
+                    _this3.testimonial.author = '';
+                    _this3.testimonial.image = '';
+                    _this3.testimonial.url = '';
+                    _this3.fetchTestimonials();
                 }).catch(function (error) {
                     return console.log(error);
                 });
             } else {
                 // Update
                 axios.put(this.$baseUrl + '/api/testimonial', this.testimonial).then(function (data) {
-                    _this2.testimonial.title = '';
-                    _this2.testimonial.content = '';
-                    _this2.testimonial.author = '';
-                    _this2.testimonial.url = '';
-                    _this2.fetchTestimonials();
+                    _this3.testimonial.title = '';
+                    _this3.testimonial.content = '';
+                    _this3.testimonial.author = '';
+                    _this3.testimonial.image = '';
+                    _this3.testimonial.url = '';
+                    _this3.fetchTestimonials();
                 }).catch(function (error) {
                     return console.log(error);
                 });
             }
         },
         deleteTestimonial: function deleteTestimonial(id) {
-            var _this3 = this;
+            var _this4 = this;
 
             if (confirm('This action cannot be undone!')) {
                 axios.delete(this.$baseUrl + '/api/testimonial/' + id).then(function (data) {
-                    _this3.fetchTestimonials();
+                    _this4.fetchTestimonials();
                 }).catch(function (error) {
                     return console.log(error);
                 });
@@ -36428,6 +36421,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.testimonial.title = testimonial.title;
             this.testimonial.content = testimonial.content;
             this.testimonial.author = testimonial.author;
+            this.testimonial.image = testimonial.image;
             this.testimonial.url = testimonial.url;
         }
     }
@@ -36516,7 +36510,49 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm._m(0)
+                _c("div", { staticClass: "custom-file" }, [
+                  _c("input", {
+                    staticClass: "form-control-plaintext px-3",
+                    attrs: {
+                      type: "text",
+                      name: "image",
+                      readonly: "",
+                      "aria-label": "Recipient's username"
+                    },
+                    domProps: {
+                      value: _vm.testimonial.image
+                        ? _vm.testimonial.image
+                        : "No image"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-append" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-outline-secondary",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#imagemodal"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.setAvatar($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.testimonial.image ? "Change image" : "Add image"
+                          )
+                        )
+                      ]
+                    )
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -36582,7 +36618,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ]
     ),
     _vm._v(" "),
@@ -36654,23 +36690,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "custom-file" }, [
-      _c("input", {
-        staticClass: "custom-file-input",
-        attrs: { type: "file", id: "image", name: "image" }
-      }),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "custom-file-label", attrs: { for: "image" } },
-        [_vm._v("Choose avatar")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

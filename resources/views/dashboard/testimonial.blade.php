@@ -10,4 +10,6 @@
 </div>
 
 <testimonial-component></testimonial-component>
+
+<mediamodal-component></mediamodal-component>
 @endsection

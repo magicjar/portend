@@ -189,6 +189,7 @@ class ApiController extends Controller
         $testimonial->title = $request['title'];
         $testimonial->content = $request['content'];
         $testimonial->author = $request['author'];
+        $testimonial->image = $request['image'];
         $testimonial->url = $request['url'];
 
         if($testimonial->save()){
