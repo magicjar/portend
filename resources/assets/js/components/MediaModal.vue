@@ -36,6 +36,18 @@
 						<div class="tab-pane container-fluid fade h-100" id="library" role="tabpanel">
 							<div class="row h-100">
 								<div class="col-sm-8 p-3" style="overflow: auto;">
+									<nav aria-label="pagination" class="mb-3 d-flex">
+										<span class="my-auto text-muted">{{ pagination.total_post }} images</span>
+										<ul class="pagination ml-auto mb-0">
+											<span class="my-auto text-muted">{{ pagination.current_page }} of {{ pagination.last_page }}</span>
+											<li :class="[{ disabled: !pagination.prev_page }]" class="page-item ml-2">
+												<a @click="fetchMedia(pagination.prev_page)" class="page-link rounded-0 border-0" href="#"><i data-feather="chevron-left"></i></a>
+											</li>
+											<li :class="[{ disabled: !pagination.next_page }]" class="page-item">
+												<a @click="fetchMedia(pagination.next_page)" class="page-link rounded-0 border-0" href="#"><i data-feather="chevron-right"></i></a>
+											</li>
+										</ul>
+									</nav>
 									<ul class="row px-2 list-unstyled" id="dropzonePreview">
 										<li class="col-4 col-lg-3 px-2 mb-3" id="template">
 											<div class="media-checkbox template-image">
@@ -45,7 +57,7 @@
 											</div>
 										</li>
 										<li v-for="image in media" v-bind:key="image.id" class="col-4 col-lg-3 px-2 mb-3">
-											<div @click.prevent="editMedia(image)" class="media-checkbox">
+											<div @click.prevent="editMedia(image)" role="checkbox" :class="[{ selected: image.id == img.id }]" class="media-checkbox">
 												<img class="media-thumbnail img-fluid rounded-0" :title="image.title" :alt="image.alt" :src="image.thumbnail">
 											</div>
 										</li>
@@ -57,10 +69,10 @@
 										<img class="img-fluid mb-2" :src="image.thumbnail">
 										<ul class="list-unstyled mb-0 text-muted">
 											<li class="font-weight-bold">{{image.file}}</li>
-											<li>{{image.created_at}}</li>
-											<li>{{image.filesize}} Byte</li>
-											<li>{{image.resolution}}</li>
-											<li><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
+											<li class="small">{{image.created_at}}</li>
+											<li class="small">{{image.filesize}} Byte</li>
+											<li class="small">{{image.resolution}}</li>
+											<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 										</ul>
 									</div>
 									<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
@@ -124,6 +136,7 @@
 				isPortfolioMedia: false,
 				resourceThumbnail: {},
 				portfolioMedia: [],
+				pagination: {}
 			}
 		},
 
@@ -187,10 +200,12 @@
 					}
 				});
 			},
-			fetchMedia(){
-				axios.get(this.$baseUrl + '/api/media')
+			fetchMedia(page_url){
+				page_url = page_url || this.$baseUrl + '/api/media';
+        		axios.get(page_url)
                 .then(response => {
                     this.media = response.data.data;
+                    this.createPagination(response.data.meta, response.data.links);
                 })
                 .catch(error => console.log(error));
 			},
@@ -225,7 +240,17 @@
                     })
                     .catch(error => console.log(error));
                 }
-			}
+			},
+			createPagination(meta, links){
+        		let pagination = {
+        			total_post: meta.total,
+        			current_page: meta.current_page,
+        			last_page: meta.last_page,
+        			next_page: links.next,
+        			prev_page: links.prev,
+        		}
+        		this.pagination = pagination;
+        	},
 		}
 	}
 </script>

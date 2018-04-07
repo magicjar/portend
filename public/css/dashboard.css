@@ -10114,6 +10114,7 @@ html {
 
 .media-modal .nav-tabs .nav-link {
   border: 0;
+  padding: .3rem 1rem;
 }
 
 .media-modal .nav-tabs .nav-item {
@@ -10123,6 +10124,11 @@ html {
 .media-modal .nav-tabs .nav-link.active,
 .media-modal .nav-tabs .nav-item.show .nav-link {
   background-color: #f8f9fa;
+}
+
+.media-modal .page-link .feather {
+  height: 24px;
+  width: 24px;
 }
 
 .modal-backdrop.show {
@@ -10274,6 +10280,11 @@ html {
   transition: opacity .1s;
 }
 
+.media-checkbox.selected {
+  -webkit-box-shadow: 0 0 0px 5px #007bff;
+          box-shadow: 0 0 0px 5px #007bff;
+}
+
 .media-checkbox:before {
   content: "";
   display: block;
@@ -10325,6 +10336,11 @@ div.mce-fullscreen {
 .right-rounded-0 {
   border-top-right-radius: 0rem !important;
   border-bottom-right-radius: 0rem !important;
+}
+
+.left-rounded-0 {
+  border-top-left-radius: 0rem !important;
+  border-bottom-left-radius: 0rem !important;
 }
 
 .pagination .page-item {

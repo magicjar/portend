@@ -4,11 +4,7 @@
             <div class="col-12 col-sm-6 col-xl-12">
                 <div class="card mb-4">
                     <h5 class="card-header">Publish</h5>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-sm btn-success float-right">View</a>
-                    </div>
                     <div class="card-footer d-flex">
-                        <a href="#" class="btn btn-sm btn-danger mt-auto"><i data-feather="trash"></i> Move to Trash</a>
                         <button type="submit" class="btn btn-primary ml-auto"><i data-feather="save"></i> Save</button>
                     </div>
                 </div>

@@ -118,6 +118,7 @@ html {
 
 	.nav-tabs .nav-link {
 		border: 0;
+		padding: .3rem 1rem;
 	}
 
 	.nav-tabs .nav-item {
@@ -127,6 +128,13 @@ html {
 	.nav-tabs .nav-link.active,
 	.nav-tabs .nav-item.show .nav-link {
 	    background-color: $light;
+	}
+
+	.page-link {
+		.feather {
+			height: 24px;
+			width: 24px;
+		}
 	}
 }
 
@@ -263,6 +271,10 @@ html {
 	}
 }
 
+.media-checkbox.selected {
+	box-shadow: 0 0 0px 5px $blue;
+}
+
 .media-checkbox:before {
 	content: "";
 	display: block;
@@ -316,6 +328,11 @@ div.mce-fullscreen {
 .right-rounded-0 {
 	border-top-right-radius: 0rem !important;
 	border-bottom-right-radius: 0rem !important;
+}
+
+.left-rounded-0 {
+	border-top-left-radius: 0rem !important;
+	border-bottom-left-radius: 0rem !important;
 }
 
 .pagination {

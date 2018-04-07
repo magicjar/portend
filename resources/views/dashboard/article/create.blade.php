@@ -24,7 +24,7 @@
                         @endif
                     </div>
                     <div class="tools text-right">
-                        <button type="button" class="btn btn-outline-secondary mb-0 add-media-button" data-toggle="modal" data-target="#imagemodal"><i data-feather="image"></i> Add Media</button>
+                        <button type="button" class="btn btn-secondary mb-0 bottom-rounded-0 border-bottom-0" data-toggle="modal" data-target="#imagemodal"><i data-feather="image"></i> Add Media</button>
                     </div>
                     <div style="border: 1px solid #c5c5c5">
                         <textarea class="form-control {{ $errors->has('content') ? 'is-invalid' : '' }}" name="content" id="content" placeholder="Enter content here" rows="15">{{ old('content') }}</textarea>

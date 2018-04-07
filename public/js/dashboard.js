@@ -484,33 +484,6 @@ module.exports = {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -582,6 +555,33 @@ $(function () {
 
   feather.replace();
 });
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 /* 4 */
@@ -3027,7 +3027,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 5 */
@@ -17870,7 +17870,7 @@ module.exports = Cancel;
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(2);
 
 
 /***/ }),
@@ -29636,7 +29636,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(40).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(40).setImmediate))
 
 /***/ }),
 /* 40 */
@@ -29703,7 +29703,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 41 */
@@ -29896,7 +29896,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(9)))
 
 /***/ }),
 /* 42 */
@@ -33513,7 +33513,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //
@@ -33690,7 +33690,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //
@@ -34109,11 +34109,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //
@@ -34642,30 +34638,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "card mb-4" }, [
         _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-sm btn-success float-right",
-              attrs: { href: "#" }
-            },
-            [_vm._v("View")]
-          )
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "card-footer d-flex" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-sm btn-danger mt-auto",
-              attrs: { href: "#" }
-            },
-            [
-              _c("i", { attrs: { "data-feather": "trash" } }),
-              _vm._v(" Move to Trash")
-            ]
-          ),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -36786,7 +36759,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36911,7 +36896,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			isThumbnail: false,
 			isPortfolioMedia: false,
 			resourceThumbnail: {},
-			portfolioMedia: []
+			portfolioMedia: [],
+			pagination: {}
 		};
 	},
 	mounted: function mounted() {
@@ -36976,11 +36962,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			});
 		},
-		fetchMedia: function fetchMedia() {
+		fetchMedia: function fetchMedia(page_url) {
 			var _this2 = this;
 
-			axios.get(this.$baseUrl + '/api/media').then(function (response) {
+			page_url = page_url || this.$baseUrl + '/api/media';
+			axios.get(page_url).then(function (response) {
 				_this2.media = response.data.data;
+				_this2.createPagination(response.data.meta, response.data.links);
 			}).catch(function (error) {
 				return console.log(error);
 			});
@@ -37020,6 +37008,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					return console.log(error);
 				});
 			}
+		},
+		createPagination: function createPagination(meta, links) {
+			var pagination = {
+				total_post: meta.total,
+				current_page: meta.current_page,
+				last_page: meta.last_page,
+				next_page: links.next,
+				prev_page: links.prev
+			};
+			this.pagination = pagination;
 		}
 	}
 });
@@ -37077,6 +37075,116 @@ var render = function() {
                           },
                           [
                             _c(
+                              "nav",
+                              {
+                                staticClass: "mb-3 d-flex",
+                                attrs: { "aria-label": "pagination" }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  { staticClass: "my-auto text-muted" },
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.pagination.total_post) +
+                                        " images"
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  { staticClass: "pagination ml-auto mb-0" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "my-auto text-muted" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.pagination.current_page) +
+                                            " of " +
+                                            _vm._s(_vm.pagination.last_page)
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        staticClass: "page-item ml-2",
+                                        class: [
+                                          {
+                                            disabled: !_vm.pagination.prev_page
+                                          }
+                                        ]
+                                      },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "page-link rounded-0 border-0",
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.fetchMedia(
+                                                  _vm.pagination.prev_page
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              attrs: {
+                                                "data-feather": "chevron-left"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        staticClass: "page-item",
+                                        class: [
+                                          {
+                                            disabled: !_vm.pagination.next_page
+                                          }
+                                        ]
+                                      },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass:
+                                              "page-link rounded-0 border-0",
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                _vm.fetchMedia(
+                                                  _vm.pagination.next_page
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              attrs: {
+                                                "data-feather": "chevron-right"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
                               "ul",
                               {
                                 staticClass: "row px-2 list-unstyled",
@@ -37097,6 +37205,10 @@ var render = function() {
                                         "div",
                                         {
                                           staticClass: "media-checkbox",
+                                          class: [
+                                            { selected: image.id == _vm.img.id }
+                                          ],
+                                          attrs: { role: "checkbox" },
                                           on: {
                                             click: function($event) {
                                               $event.preventDefault()
@@ -37165,21 +37277,21 @@ var render = function() {
                                       [_vm._v(_vm._s(_vm.image.file))]
                                     ),
                                     _vm._v(" "),
-                                    _c("li", [
+                                    _c("li", { staticClass: "small" }, [
                                       _vm._v(_vm._s(_vm.image.created_at))
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", [
+                                    _c("li", { staticClass: "small" }, [
                                       _vm._v(
                                         _vm._s(_vm.image.filesize) + " Byte"
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", [
+                                    _c("li", { staticClass: "small" }, [
                                       _vm._v(_vm._s(_vm.image.resolution))
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", [
+                                    _c("li", { staticClass: "small" }, [
                                       _c(
                                         "a",
                                         {
@@ -38888,11 +39000,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //
@@ -39432,30 +39540,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "card mb-4" }, [
         _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-sm btn-success float-right",
-              attrs: { href: "#" }
-            },
-            [_vm._v("View")]
-          )
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "card-footer d-flex" }, [
-          _c(
-            "a",
-            {
-              staticClass: "btn btn-sm btn-danger mt-auto",
-              attrs: { href: "#" }
-            },
-            [
-              _c("i", { attrs: { "data-feather": "trash" } }),
-              _vm._v(" Move to Trash")
-            ]
-          ),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -39603,7 +39688,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
 //
 //
 //

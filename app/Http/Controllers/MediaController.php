@@ -79,7 +79,7 @@ class MediaController extends Controller
 
     public function mediaIndex()
     {
-        $images = $this->media->orderBy('created_at', 'desc')->get();
+        $images = $this->media->orderBy('created_at', 'desc')->paginate(12);
  
         return Resource::collection($images);
     }
