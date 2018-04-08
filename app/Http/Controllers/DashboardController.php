@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-use DB, App;
+use DB, App, View;
 use App\Resume;
 use App\Article;
 use App\Portfolio;
@@ -14,6 +14,9 @@ use App\Http\Resources\Resource;
 
 class DashboardController extends Controller
 {
+
+    protected $setting;
+
     /**
      * Create a new controller instance.
      *
@@ -25,6 +28,8 @@ class DashboardController extends Controller
         $this->portfolio = $portfolio;
         $this->resume = $resume;
         $this->article = $article;
+        $setting = App::make('setting');
+        View::share('setting', $setting);
     }
 
     public function index()
@@ -34,7 +39,7 @@ class DashboardController extends Controller
 
     public function about()
     {
-        return view('dashboard.about')->withSetting(App::make('setting'));;
+        return view('dashboard.about');
     }
 
     public function skill()
@@ -79,7 +84,7 @@ class DashboardController extends Controller
 
     public function setting()
     {
-        return view('dashboard.setting')->withSetting(App::make('setting'));
+        return view('dashboard.setting');
     }
 
     public function settingUpdate(Request $request)

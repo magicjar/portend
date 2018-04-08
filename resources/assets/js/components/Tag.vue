@@ -14,8 +14,9 @@
                             <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="tag.description"></textarea>
                         </div>
                     </div>
-
-                    <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -37,7 +38,7 @@
                                 <td>{{ tag.description }}</td>
                                 <td>{{ tag.slug }}</td>
                                 <td class="d-flex">
-                                    <button @click="editTag(tag)" class="btn btn-info btn-sm">Edit</button>
+                                    <button @click="editTag(tag)" class="btn btn-primary btn-sm">Edit</button>
                                     <button @click="deleteTag(tag.id)" class="btn btn-danger btn-sm">Del</button>
                                 </td>
                             </tr>

@@ -19,19 +19,28 @@ Auth::routes();
 
 // Api Route
 Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
-	Route::get('article', 'ApiController@articleIndex')->name('article.index');
-	Route::get('article/{article}', 'ApiController@articleEdit')->name('article.edit');
-	Route::delete('article/{article}', 'ApiController@articleDestroy')->name('article.destroy');
 
+	$setting = App::make('setting');
+
+	// Article
+	if ($setting->setting['showArticle']) {
+		Route::get('article', 'ApiController@articleIndex')->name('article.index');
+		Route::get('article/{article}', 'ApiController@articleEdit')->name('article.edit');
+		Route::delete('article/{article}', 'ApiController@articleDestroy')->name('article.destroy');
+	}
+	
+	// Portfolio
 	Route::get('portfolio', 'ApiController@portfolioIndex')->name('portfolio.index');
 	Route::get('portfolio/{portfolio}', 'ApiController@portfolioEdit')->name('portfolio.edit');
 	Route::delete('portfolio/{portfolio}', 'ApiController@portfolioDestroy')->name('portfolio.destroy');
 
 	// Testimonial
-	Route::get('testimonial', 'ApiController@testimonialIndex')->name('testimonial.index');
-	Route::post('testimonial', 'ApiController@testimonialStore')->name('testimonial.store');
-	Route::put('testimonial', 'ApiController@testimonialStore')->name('testimonial.update');
-	Route::delete('testimonial/{id}', 'ApiController@testimonialDestroy')->name('testimonial.destroy');
+	if ($setting->setting['showTestimonial']) {
+		Route::get('testimonial', 'ApiController@testimonialIndex')->name('testimonial.index');
+		Route::post('testimonial', 'ApiController@testimonialStore')->name('testimonial.store');
+		Route::put('testimonial', 'ApiController@testimonialStore')->name('testimonial.update');
+		Route::delete('testimonial/{id}', 'ApiController@testimonialDestroy')->name('testimonial.destroy');
+	}
 
 	// Media
 	Route::post('media/upload', 'MediaController@upload')->name('media.upload');
@@ -55,30 +64,44 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 	Route::delete('tag/{tag}', 'ApiController@tagDestroy')->name('tag.destroy');
 
 	// Resume (Skill, Experience, Education)
-	Route::get('resume', 'ApiController@resumeIndex')->name('resume.index');
-	Route::post('resume', 'ApiController@resumeStore')->name('resume.store');
-	Route::put('resume', 'ApiController@resumeStore')->name('resume.update');
-	Route::delete('resume/{id}', 'ApiController@resumeDestroy')->name('resume.destroy');
+	if ($setting->setting['showExperience'] || $setting->setting['showSkill'] || $setting->setting['showEducation']) {
+		Route::get('resume', 'ApiController@resumeIndex')->name('resume.index');
+		Route::post('resume', 'ApiController@resumeStore')->name('resume.store');
+		Route::put('resume', 'ApiController@resumeStore')->name('resume.update');
+		Route::delete('resume/{id}', 'ApiController@resumeDestroy')->name('resume.destroy');
+	}
 });
 
 // Controller Route
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 
+	$setting = App::make('setting');
+
 	Route::get('/', 'DashboardController@index')->name('index');
 
 	Route::get('about', 'DashboardController@about')->name('about');
 
-	Route::get('resume/skill', 'DashboardController@skill')->name('skill');
+	if ($setting->setting['showSkill']) {
+		Route::get('resume/skill', 'DashboardController@skill')->name('skill');
+	}
 
-	Route::get('resume/education', 'DashboardController@education')->name('education');
+	if ($setting->setting['showEducation']) {
+		Route::get('resume/education', 'DashboardController@education')->name('education');
+	}
 
-	Route::get('resume/experience', 'DashboardController@experience')->name('experience');
+	if ($setting->setting['showExperience']) {
+		Route::get('resume/experience', 'DashboardController@experience')->name('experience');
+	}
 
-	Route::get('testimonial', 'DashboardController@testimonial')->name('testimonial');
+	if ($setting->setting['showTestimonial']) {
+		Route::get('testimonial', 'DashboardController@testimonial')->name('testimonial');
+	}
 
-	Route::get('article/category', 'DashboardController@articleCategory')->name('article.category');
-	Route::get('article/tag', 'DashboardController@articleTag')->name('article.tag');
-	Route::resource('article', 'ArticleController');
+	if ($setting->setting['showArticle']) {
+		Route::get('article/category', 'DashboardController@articleCategory')->name('article.category');
+		Route::get('article/tag', 'DashboardController@articleTag')->name('article.tag');
+		Route::resource('article', 'ArticleController');
+	}
 
 	Route::get('portfolio/category', 'DashboardController@portfolioCategory')->name('portfolio.category');
 	Route::get('portfolio/tag', 'DashboardController@portfolioTag')->name('portfolio.tag');

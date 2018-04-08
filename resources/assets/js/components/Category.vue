@@ -14,8 +14,9 @@
                             <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="category.description"></textarea>
                         </div>
                     </div>
-
-                    <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block" type="submit">Save</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -37,7 +38,7 @@
                                 <td>{{ category.description }}</td>
                                 <td>{{ category.slug }}</td>
                                 <td class="d-flex">
-                                    <button @click="editCategory(category)" class="btn btn-info btn-sm">Edit</button>
+                                    <button @click="editCategory(category)" class="btn btn-primary btn-sm">Edit</button>
                                     <button @click="deleteCategory(category.id)" class="btn btn-danger btn-sm">Del</button>
                                 </td>
                             </tr>
@@ -104,8 +105,8 @@
                         this.category.description = '';
                         this.fetchCategories();
                     })
+                    .catch(error => console.log(error));
                 }
-                
             },
             deleteCategory(id){
                 if(confirm('This action cannot be undone!')){

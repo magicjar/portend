@@ -41,7 +41,7 @@
         <div class="card">
             <div class="card-body pb-1">
                 <div class="row">
-                    <div v-for="testimonial in testimonials" v-bind:key="testimonial.id" class="col-sm-6 col-xl-4 pb-3">
+                    <div v-for="testimonial in testimonials" v-bind:key="testimonial.id" class="col-12 col-xl-6 pb-3">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="h5 card-text text-muted">{{ testimonial.author }}</h3>

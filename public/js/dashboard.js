@@ -34254,6 +34254,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get(this.$baseUrl + '/api/category?type=article').then(function (response) {
                 _this3.categories = response.data.data;
+            }).catch(function (success) {
+                return console.log(success);
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -36630,7 +36632,7 @@ var render = function() {
           _vm._l(_vm.testimonials, function(testimonial) {
             return _c(
               "div",
-              { key: testimonial.id, staticClass: "col-sm-6 col-xl-4 pb-3" },
+              { key: testimonial.id, staticClass: "col-12 col-xl-6 pb-3" },
               [
                 _c("div", { staticClass: "card" }, [
                   _c("div", { staticClass: "card-body" }, [
@@ -37868,6 +37870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -37925,6 +37928,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.category.slug = '';
                     _this2.category.description = '';
                     _this2.fetchCategories();
+                }).catch(function (error) {
+                    return console.log(error);
                 });
             }
         },
@@ -38063,14 +38068,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-block",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Save")]
-            )
+            _vm._m(0)
           ])
         ])
       ]
@@ -38080,7 +38078,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body table-responsive pb-1" }, [
           _c("table", { staticClass: "table" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -38096,7 +38094,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-info btn-sm",
+                        staticClass: "btn btn-primary btn-sm",
                         on: {
                           click: function($event) {
                             _vm.editCategory(category)
@@ -38129,6 +38127,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
+        [_vm._v("Save")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -38208,6 +38218,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -38458,14 +38469,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-block",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Save")]
-            )
+            _vm._m(0)
           ])
         ])
       ]
@@ -38475,7 +38479,7 @@ var render = function() {
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body table-responsive pb-1" }, [
           _c("table", { staticClass: "table" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "tbody",
@@ -38491,7 +38495,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-info btn-sm",
+                        staticClass: "btn btn-primary btn-sm",
                         on: {
                           click: function($event) {
                             _vm.editTag(tag)
@@ -38524,6 +38528,18 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
+        [_vm._v("Save")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
