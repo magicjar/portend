@@ -81,19 +81,19 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'first_name',
-                'value' => 'Karen',
+                'value' => 'Fajar',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'last_name',
-                'value' => 'Iwata',
+                'value' => 'Setya',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'avatar',
-                'value' => '1',
+                'value' => null,
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'title',
-                'value' => 'PhD',
+                'value' => 'S.Kom',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'occupation',
@@ -105,23 +105,23 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'birthplace',
-                'value' => 'Sendai',
+                'value' => 'Sleman',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'email',
-                'value' => 'kareniwata@mail.jp',
+                'value' => 'contact@dawntale.id',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'phone',
-                'value' => '083214323562',
+                'value' => '089600000000',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'address',
-                'value' => 'Tokyo, Japan',
+                'value' => 'D.I.Yogyakarta, Indonesia',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'about_me',
-                'value' => '',
+                'value' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 'created_at' => Carbon::now()
             ],[
                 'name' => 'facebook_url',

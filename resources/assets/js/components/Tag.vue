@@ -24,23 +24,23 @@
             <div class="card">
                 <div class="card-body table-responsive pb-1">
                     <table class="table">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Slug</th>
-                                <th>Action</th>
+                                <th class="py-1">Name</th>
+                                <th class="py-1">Description</th>
+                                <th class="py-1">Slug</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="tag in tags" v-bind:key="tag.id">
-                                <td>{{ tag.name }}</td>
+                                <td>{{ tag.name }}
+                                    <div class="btn-group mt-2 d-flex" role="group">
+                                        <button @click="editTag(tag)" type="button" class="btn btn-sm btn-primary">Edit</button>
+                                        <button @click="editTag(tag.id)" type="button" class="btn btn-sm btn-danger">Del</button>
+                                    </div>
+                                </td>
                                 <td>{{ tag.description }}</td>
                                 <td>{{ tag.slug }}</td>
-                                <td class="d-flex">
-                                    <button @click="editTag(tag)" class="btn btn-primary btn-sm">Edit</button>
-                                    <button @click="deleteTag(tag.id)" class="btn btn-danger btn-sm">Del</button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>

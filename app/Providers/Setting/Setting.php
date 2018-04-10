@@ -3,6 +3,8 @@
 namespace App\Providers\Setting;
 
 use App;
+use Carbon\Carbon;
+
 
 class Setting
 {
@@ -97,8 +99,46 @@ class Setting
         {
             return $this->setting['facebook_url'];
         }
+    }
 
-        return null;
+    public function getTwitterUrl()
+    {
+        if ( isset($this->setting['twitter_url']) && $this->setting['twitter_url'])
+        {
+            return $this->setting['twitter_url'];
+        }
+    }
+
+    public function getInstagramUrl()
+    {
+        if ( isset($this->setting['instagram_url']) && $this->setting['instagram_url'])
+        {
+            return $this->setting['instagram_url'];
+        }
+    }
+
+    public function getLinkedinUrl()
+    {
+        if ( isset($this->setting['linkedin_url']) && $this->setting['linkedin_url'])
+        {
+            return $this->setting['linkedin_url'];
+        }
+    }
+
+    public function getGithubUrl()
+    {
+        if ( isset($this->setting['github_url']) && $this->setting['github_url'])
+        {
+            return $this->setting['github_url'];
+        }
+    }
+
+    public function getYoutubeUrl()
+    {
+        if ( isset($this->setting['youtube_url']) && $this->setting['youtube_url'])
+        {
+            return $this->setting['youtube_url'];
+        }
     }
 
     /**
@@ -114,5 +154,92 @@ class Setting
         }
 
         return null;
+    }
+
+    /**
+     * Returns google analytics script.
+     * 
+     * @return mixed
+     */
+    public function getGoogleAnalytics()
+    {
+        if ( isset($this->setting['google_analytics']))
+        {
+            return $this->setting['google_analytics'];
+        }
+    }
+
+    /**
+     * Returns full name.
+     * 
+     * @return mixed
+     */
+    public function getName()
+    {
+        if ( isset($this->setting['first_name']) && isset($this->setting['last_name']  ))
+        {
+            return $this->setting['first_name'] . ' ' . $this->setting['last_name'];
+        }
+    }
+
+    public function getOccupation()
+    {
+        if ( isset($this->setting['occupation']))
+        {
+            return $this->setting['occupation'];
+        }
+    }
+
+    /**
+     * Returns about me content.
+     * 
+     * @return mixed
+     */
+    public function getAboutMe()
+    {
+        if ( isset($this->setting['about_me']))
+        {
+            return $this->setting['about_me'];
+        }
+    }
+
+    public function getBirthplace()
+    {
+        if ( isset($this->setting['birthplace']))
+        {
+            return $this->setting['birthplace'];
+        }
+    }
+
+    public function getBirthdate()
+    {
+        if ( isset($this->setting['birthdate']))
+        {
+            return Carbon::parse($this->setting['birthdate'])->toFormattedDateString();
+        }
+    }
+
+    public function getAddress()
+    {
+        if ( isset($this->setting['address']))
+        {
+            return $this->setting['address'];
+        }
+    }
+
+    public function getEmail()
+    {
+        if ( isset($this->setting['email']))
+        {
+            return $this->setting['email'];
+        }
+    }
+
+    public function getPhone()
+    {
+        if ( isset($this->setting['phone']))
+        {
+            return $this->setting['phone'];
+        }
     }
 }

@@ -19,6 +19,16 @@ class Article extends Model
 
     protected $appends = ['category_id', 'url'];
 
+    public function thumb()
+    {
+        return $this->belongsTo('App\Image', 'image');
+    }
+
+    public function image()
+    {
+        return $this->belongsTo('App\Image', 'image');
+    }
+
     public function category()
     {
     	return $this->belongsToMany('App\Category', 'resources_categories', 'resource_id')->withTimestamps();
@@ -27,11 +37,6 @@ class Article extends Model
     public function tag()
     {
         return $this->belongsToMany('App\Tag', 'resources_tags', 'resource_id')->withTimestamps();
-    }
-
-    public function image()
-    {
-        return $this->belongsTo('App\Image', 'image');
     }
 
     public function getCategoryIdAttribute()

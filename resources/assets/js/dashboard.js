@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./dashboard-bootstrap');
 
 window.Vue = require('vue');
 window.Dropzone = require('dropzone');
@@ -59,8 +59,9 @@ $(function () {
 	    $('.active').removeClass('collapsed');
 	};
 
-	$('[data-toggle="offcanvas"]').on('click', function () {
+	$('[data-toggle="offcanvas"], .overlay').on('click', function () {
 		$('.sidebar').toggleClass('collapse show');
+		$('.overlay').toggleClass('fade show d-block');
 	})
 
 	feather.replace();

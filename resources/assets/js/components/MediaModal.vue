@@ -168,7 +168,9 @@
 			},
 			insertImage() {
 				let image_alt = this.image.alt !== null ? this.image.alt : this.image.title
-				let html = '<img class="img-fluid mb-2" src="' + this.img.image_url + '" alt="' + image_alt + '">'
+
+				let html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>'
+
 				tinymce.activeEditor.insertContent(html)
 			},
 			mediaUploads() {

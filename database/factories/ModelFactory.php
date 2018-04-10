@@ -29,7 +29,7 @@ $factory->define(App\Resume::class, function (Faker $faker) {
         'institution' => $faker->sentence(5, 8),
         'date_start' => '2017',
         'date_end' => '2018',
-        'resume_type' => $faker->randomElement(['Education', 'Experience'])
+        'resume_type' => $faker->randomElement(['education', 'experience'])
     ];
 });
 

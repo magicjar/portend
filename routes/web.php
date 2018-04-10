@@ -15,6 +15,11 @@ Route::get('/', 'HomeController@index')->name('homepage');
 
 Route::post('contact', 'HomeController@contact')->name('contact');
 
+Route::get('article/{article}', 'HomeController@articleShow')->name('article.show');
+Route::get('article', 'HomeController@articleIndex')->name('article.index');
+
+Route::get('portfolio/{portfolio}', 'HomeController@portfolioShow')->name('portfolio.show');
+
 Auth::routes();
 
 // Api Route
@@ -100,12 +105,13 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 	if ($setting->setting['showArticle']) {
 		Route::get('article/category', 'DashboardController@articleCategory')->name('article.category');
 		Route::get('article/tag', 'DashboardController@articleTag')->name('article.tag');
-		Route::resource('article', 'ArticleController');
+		Route::resource('article', 'ArticleController', 
+            ['except' => ['show', 'destroy']]);
 	}
 
 	Route::get('portfolio/category', 'DashboardController@portfolioCategory')->name('portfolio.category');
 	Route::get('portfolio/tag', 'DashboardController@portfolioTag')->name('portfolio.tag');
-	Route::resource('portfolio', 'PortfolioController');
+	Route::resource('portfolio', 'PortfolioController', ['except' => ['show', 'destroy']]);
 
 	Route::get('setting', 'DashboardController@setting')->name('setting');
 });

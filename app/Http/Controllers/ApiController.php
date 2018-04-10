@@ -93,7 +93,7 @@ class ApiController extends Controller
         $category = $request->isMethod('put') ? $this->category->findOrFail($request->category_id) : new $this->category;
 
         $category->name = $request['name'];
-        $category->slug = $request['slug'];
+        $category->slug = $request['slug'] ? $request['slug'] : str_slug($request['name'], '-')  ;
         $category->description = $request['description'];
         $category->type = $request['type'];
 
@@ -123,7 +123,7 @@ class ApiController extends Controller
         $tag = $request->isMethod('put') ? $this->tag->findOrFail($request->tag_id) : new $this->tag;
 
         $tag->name = $request['name'];
-        $tag->slug = $request['slug'];
+        $tag->slug = $request['slug'] ? $request['slug'] : str_slug($request['name'], '-')  ;
         $tag->description = $request['description'];
         $tag->type = $request['type'];
 

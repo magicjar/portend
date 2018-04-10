@@ -5,13 +5,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="name" class="font-weight-bold">Skill name</label>
                             <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your skill here" v-model="skill.name" required>
                         </div>
                         <div class="form-group">
+                            <label for="institution" class="font-weight-bold">Knowledge level</label>
                             <input class="form-control" type="number" name="institution" id="institution" placeholder="Enter level of knowledge here"  v-model="skill.institution" required>
                             <small id="institution" class="form-text text-muted">* ex: 95 for Excelent knowledge</small>
                         </div>
                         <div>
+                            <label for="name" class="font-weight-bold">Description</label>
                             <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="skill.description" required></textarea>
                         </div>
                     </div>

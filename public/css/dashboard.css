@@ -10018,12 +10018,13 @@ html {
   width: 300px;
   z-index: 1010;
   background-color: #673AB7;
-  -webkit-box-shadow: 7px 0px 20px 0px #343a40;
-          box-shadow: 7px 0px 20px 0px #343a40;
   height: 100%;
   left: inherit;
   right: inherit;
-  display: none;
+  display: block;
+  margin-left: -300px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
 }
 
 .sidebar a {
@@ -10047,6 +10048,7 @@ html {
     display: block;
     width: 300px;
     z-index: 99;
+    margin-left: 0px;
   }
 
   .sidebar a {
@@ -10073,6 +10075,22 @@ html {
 .sidebar .collapsed .feather-chevron-down {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
+}
+
+.sidebar.collapse.show {
+  margin-left: 0px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  opacity: 0;
+  z-index: 10;
 }
 
 .content-wrapper {
@@ -10351,5 +10369,9 @@ div.mce-fullscreen {
 
 .index-thumbnail {
   max-width: 100px;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 

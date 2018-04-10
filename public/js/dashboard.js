@@ -495,7 +495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(19);
+__webpack_require__(89);
 
 window.Vue = __webpack_require__(39);
 window.Dropzone = __webpack_require__(42);
@@ -549,8 +549,9 @@ $(function () {
     $('.active').removeClass('collapsed');
   };
 
-  $('[data-toggle="offcanvas"]').on('click', function () {
+  $('[data-toggle="offcanvas"], .overlay').on('click', function () {
     $('.sidebar').toggleClass('collapse show');
+    $('.overlay').toggleClass('fade show d-block');
   });
 
   feather.replace();
@@ -17874,66 +17875,7 @@ module.exports = __webpack_require__(2);
 
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// window._ = require('lodash');
-window.Popper = __webpack_require__(4).default;
-
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-
-try {
-  window.$ = window.jQuery = __webpack_require__(5);
-
-  __webpack_require__(6);
-} catch (e) {}
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-window.axios = __webpack_require__(20);
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo'
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
-
-/***/ }),
+/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33522,6 +33464,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -33563,23 +33508,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "avatar mb-3 text-center" }, [
-    _c("input", {
-      directives: [
-        { name: "model", rawName: "v-model", value: _vm.ava, expression: "ava" }
-      ],
-      attrs: { type: "hidden", name: "avatar" },
-      domProps: { value: _vm.ava },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+    _c("div", [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.ava,
+            expression: "ava"
           }
-          _vm.ava = $event.target.value
+        ],
+        attrs: { type: "hidden", name: "avatar" },
+        domProps: { value: _vm.ava },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.ava = $event.target.value
+          }
         }
-      }
-    }),
-    _vm._v(" "),
-    _c("img", { staticClass: "img-fluid mb-3", attrs: { src: _vm.ava } }),
+      }),
+      _vm._v(" "),
+      _c("img", { staticClass: "img-fluid mb-3", attrs: { src: _vm.ava } })
+    ]),
     _vm._v(" "),
     _c(
       "a",
@@ -33952,7 +33904,10 @@ var render = function() {
                         "a",
                         {
                           staticClass: "view btn btn-sm btn-info",
-                          attrs: { href: article.url }
+                          attrs: {
+                            href: _vm.$baseUrl + "/article/" + article.id,
+                            target: "_blank"
+                          }
                         },
                         [_vm._v("View")]
                       ),
@@ -34254,8 +34209,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get(this.$baseUrl + '/api/category?type=article').then(function (response) {
                 _this3.categories = response.data.data;
-            }).catch(function (success) {
-                return console.log(success);
             }).catch(function (error) {
                 return console.log(error);
             });
@@ -34824,6 +34777,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -34927,6 +34883,12 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-body" }, [
               _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "font-weight-bold", attrs: { for: "name" } },
+                  [_vm._v("Skill name")]
+                ),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -34957,6 +34919,15 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "font-weight-bold",
+                    attrs: { for: "institution" }
+                  },
+                  [_vm._v("Knowledge level")]
+                ),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -34996,6 +34967,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", [
+                _c(
+                  "label",
+                  { staticClass: "font-weight-bold", attrs: { for: "name" } },
+                  [_vm._v("Description")]
+                ),
+                _vm._v(" "),
                 _c("textarea", {
                   directives: [
                     {
@@ -36951,7 +36928,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		insertImage: function insertImage() {
 			var image_alt = this.image.alt !== null ? this.image.alt : this.image.title;
-			var html = '<img class="img-fluid mb-2" src="' + this.img.image_url + '" alt="' + image_alt + '">';
+
+			var html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>';
+
 			tinymce.activeEditor.insertContent(html);
 		},
 		mediaUploads: function mediaUploads() {
@@ -38084,39 +38063,52 @@ var render = function() {
               "tbody",
               _vm._l(_vm.categories, function(category) {
                 return _c("tr", { key: category.id }, [
-                  _c("td", [_vm._v(_vm._s(category.name))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(category.name) +
+                        "\n                                "
+                    ),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mt-2 d-flex",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.editCategory(category)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.deleteCategory(category.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Del")]
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(category.description))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.slug))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "d-flex" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary btn-sm",
-                        on: {
-                          click: function($event) {
-                            _vm.editCategory(category)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function($event) {
-                            _vm.deleteCategory(category.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Del")]
-                    )
-                  ])
+                  _c("td", [_vm._v(_vm._s(category.slug))])
                 ])
               })
             )
@@ -38143,15 +38135,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", { staticClass: "py-1" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
+        _c("th", { staticClass: "py-1" }, [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Slug")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", { staticClass: "py-1" }, [_vm._v("Slug")])
       ])
     ])
   }
@@ -38485,39 +38475,51 @@ var render = function() {
               "tbody",
               _vm._l(_vm.tags, function(tag) {
                 return _c("tr", { key: tag.id }, [
-                  _c("td", [_vm._v(_vm._s(tag.name))]),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(tag.name) + "\n                                "
+                    ),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mt-2 d-flex",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.editTag(tag)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.editTag(tag.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Del")]
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(tag.description))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(tag.slug))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "d-flex" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary btn-sm",
-                        on: {
-                          click: function($event) {
-                            _vm.editTag(tag)
-                          }
-                        }
-                      },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function($event) {
-                            _vm.deleteTag(tag.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Del")]
-                    )
-                  ])
+                  _c("td", [_vm._v(_vm._s(tag.slug))])
                 ])
               })
             )
@@ -38544,15 +38546,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", { staticClass: "py-1" }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Description")]),
+        _c("th", { staticClass: "py-1" }, [_vm._v("Description")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Slug")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", { staticClass: "py-1" }, [_vm._v("Slug")])
       ])
     ])
   }
@@ -39841,6 +39841,72 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
   }
 }
+
+/***/ }),
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// window._ = require('lodash');
+window.Popper = __webpack_require__(4).default;
+
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+try {
+  window.$ = window.jQuery = __webpack_require__(5);
+
+  __webpack_require__(6);
+} catch (e) {}
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+window.axios = __webpack_require__(20);
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+
+// import Echo from 'laravel-echo'
+
+// window.Pusher = require('pusher-js');
+
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: true
+// });
 
 /***/ })
 /******/ ]);

@@ -1,7 +1,10 @@
 <template>
 	<div class="avatar mb-3 text-center">
-		<input type="hidden" name="avatar" v-model="ava">
-	    <img class="img-fluid mb-3" :src="ava">
+		<div>
+            <input type="hidden" name="avatar" v-model="ava">
+            <img class="img-fluid mb-3" :src="ava">
+        </div>
+        
 	    <a class="btn btn-primary btn-sm" href="#" @click.prevent="setAvatar" data-toggle="modal" data-target="#imagemodal"><i data-feather="image"></i> {{ ava ? 'Change avatar' : 'Set avatar' }}</a>
 	</div>
 </template>

@@ -44,7 +44,7 @@
 									{{ article.title }}
 									<div class="d-block">
 										<a class="edit btn btn-sm btn-primary" :href="article.url + '/edit'">Edit</a>
-										<a class="view btn btn-sm btn-info" :href="article.url">View</a>
+										<a class="view btn btn-sm btn-info" :href="$baseUrl + '/article/' + article.id" target="_blank">View</a>
 										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deleteArticle(article.id)">Trash</button>
 									</div>
 								</td>

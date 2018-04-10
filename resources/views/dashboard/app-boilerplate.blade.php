@@ -16,10 +16,17 @@
 </head>
 <body id="dashboard">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top flex-nowrap p-0">
-        <button class="navbar-toggler border-0" type="button" data-toggle="offcanvas">
+        @if(Request::is('*dashboard*'))
+        <button class="navbar-toggler border-0" type="button" data-toggle="offcanvas" title="Menu">
             <i class="menu-icon" data-feather="menu"></i>
         </button>
-        <a class="navbar-brand ml-4" href="{{ url('/') }}"> {{ config('app.name', 'Blvckgold') }}</a>
+        <a class="navbar-brand ml-4" href="{{ url('/') }}" title="Homepage"> {{ config('app.name', 'Blvckgold') }}</a>
+        @else
+        <a class="navbar-toggler border-0" href="{{ route('dashboard.index') }}" title="Dashboard">
+            <i class="menu-icon" data-feather="home"></i>
+        </a>
+        <a class="navbar-brand ml-4" href="{{ route('dashboard.index') }}" title="Dashboard"> {{ config('app.name', 'Blvckgold') }}</a>
+        @endif
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item text-nowrap">
                 @auth
@@ -50,6 +57,8 @@
             </main>
         </div>
     </div>
+
+    <div class="overlay"></div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/dashboard.js') }}"></script>

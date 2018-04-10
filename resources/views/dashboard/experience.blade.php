@@ -1,7 +1,7 @@
-@extends('layouts.dashboard-app')
+@extends('dashboard.app-boilerplate')
 
 @section('dashboard.sidebar')
-	@include('layouts.dashboard-sidebar')
+	@include('dashboard.app-sidebar')
 @endsection
 
 @section('content')

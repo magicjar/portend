@@ -24,23 +24,23 @@
             <div class="card">
                 <div class="card-body table-responsive pb-1">
                     <table class="table">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Slug</th>
-                                <th>Action</th>
+                                <th class="py-1">Name</th>
+                                <th class="py-1">Description</th>
+                                <th class="py-1">Slug</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="category in categories" v-bind:key="category.id">
-                                <td>{{ category.name }}</td>
+                                <td>{{ category.name }}
+                                    <div class="btn-group mt-2 d-flex" role="group">
+                                        <button @click="editCategory(category)" type="button" class="btn btn-sm btn-primary">Edit</button>
+                                        <button @click="deleteCategory(category.id)" type="button" class="btn btn-sm btn-danger">Del</button>
+                                    </div>
+                                </td>
                                 <td>{{ category.description }}</td>
                                 <td>{{ category.slug }}</td>
-                                <td class="d-flex">
-                                    <button @click="editCategory(category)" class="btn btn-primary btn-sm">Edit</button>
-                                    <button @click="deleteCategory(category.id)" class="btn btn-danger btn-sm">Del</button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>

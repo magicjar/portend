@@ -1,8 +1,4 @@
-require('popper.js');
-
-require('jquery');
-
-require('bootstrap');
+require('./app-bootstrap');
 
 
 /**
@@ -14,6 +10,8 @@ require('bootstrap');
 // Collapse sidebar and active state
 $(function () {
 	'use strict'
+
+	feather.replace();
 
 	if($('.sidebar .nav-link').hasClass('active')){
 	    $('.active').siblings('.collapse').addClass('show');
