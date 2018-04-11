@@ -63,61 +63,11 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 14:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(15);
-__webpack_require__(16);
-module.exports = __webpack_require__(17);
-
-
-/***/ }),
-
-/***/ 15:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(88);
-
-/**
- * Custom Javascript
- *
- *
- */
-
-// Collapse sidebar and active state
-$(function () {
-	'use strict';
-
-	feather.replace();
-
-	if ($('.sidebar .nav-link').hasClass('active')) {
-		$('.active').siblings('.collapse').addClass('show');
-	};
-
-	$('[data-toggle="offcanvas"]').on('click', function () {
-		$('.sidebar').toggleClass('collapse show');
-	});
-});
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 17:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 3:
+/******/ ([
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -144,8 +94,7 @@ module.exports = g;
 
 
 /***/ }),
-
-/***/ 4:
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2591,8 +2540,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-
-/***/ 5:
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12963,8 +12911,7 @@ return jQuery;
 
 
 /***/ }),
-
-/***/ 6:
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -16864,8 +16811,50 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 
 /***/ }),
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 88:
+__webpack_require__(15);
+__webpack_require__(17);
+module.exports = __webpack_require__(18);
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(16);
+
+/**
+ * Custom Javascript
+ *
+ *
+ */
+
+// Collapse sidebar and active state
+$(function () {
+	'use strict';
+
+	feather.replace();
+
+	if ($('.sidebar .nav-link').hasClass('active')) {
+		$('.active').siblings('.collapse').addClass('show');
+	};
+
+	$('[data-toggle="offcanvas"]').on('click', function () {
+		$('.sidebar').toggleClass('collapse show');
+	});
+});
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 window.Popper = __webpack_require__(4).default;
@@ -16882,6 +16871,17 @@ try {
     __webpack_require__(6);
 } catch (e) {}
 
-/***/ })
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
 
-/******/ });
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+/******/ ]);

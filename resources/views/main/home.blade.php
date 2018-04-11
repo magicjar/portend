@@ -126,8 +126,8 @@
             <div class="card my-3">
                 <img class="card-img-top" src="{{ $article->thumb->thumbnail }}" alt="{{ $article->title }}">
                 <div class="card-body">
-                    <h2 class="card-title h4"><a href="{{ route('article.show', $article->id) }}">{{ $article->title }}</a></h5>
-                    <p class="card-text">{{ $article->content }}</p>
+                    <h2 class="card-title h4"><a href="{{ route('article.show', $article->id) }}">{{ str_limit($article->title, 60) }}</a></h5>
+                    <p class="card-text">{{ str_limit(strip_tags($article->content), 220) }}</p>
                     <p class="card-text"><small class="text-muted">{{Carbon\Carbon::parse($article->created_at)->toFormattedDateString()}}</small></p>
                 </div>
             </div>

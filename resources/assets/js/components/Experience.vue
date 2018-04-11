@@ -5,24 +5,25 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="name" class="font-weight-bold">Job position</label>
                             <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your position here"  v-model="experience.name" required>
-                            <small id="name" class="form-text text-muted">* ex: Web Developer or Graphic Designer</small>
                         </div>
                         <div class="form-group">
+                            <label for="institution" class="font-weight-bold">Company</label>
                             <input class="form-control" type="text" name="institution" id="institution" placeholder="Enter company name here"  v-model="experience.institution" required>
-                            <small id="institution" class="form-text text-muted">* Company</small>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="date_start" class="font-weight-bold">Start</label>
                                 <input type="date" class="form-control" name="date_start" id="date_start"  v-model="experience.date_start">
-                                <small id="date_start" class="form-text text-muted">* Start working</small>
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="date_end" class="font-weight-bold">End</label>
                                 <input type="date" class="form-control" name="date_end" id="date_end" v-model="experience.date_end">
-                                <small id="date_end" class="form-text text-muted">* Finish working</small>
                             </div>
                         </div>
                         <div>
+                            <label for="description" class="font-weight-bold">Description</label>
                             <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="experience.description" required></textarea>
                         </div>
                     </div>

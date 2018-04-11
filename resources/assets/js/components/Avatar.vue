@@ -2,7 +2,7 @@
 	<div class="avatar mb-3 text-center">
 		<div>
             <input type="hidden" name="avatar" v-model="ava">
-            <img class="img-fluid mb-3" :src="ava">
+            <img class="img-fluid w-100 mb-3" :src="ava ? ava : $baseUrl+'/image/user.svg'" >
         </div>
         
 	    <a class="btn btn-primary btn-sm" href="#" @click.prevent="setAvatar" data-toggle="modal" data-target="#imagemodal"><i data-feather="image"></i> {{ ava ? 'Change avatar' : 'Set avatar' }}</a>

@@ -30,93 +30,51 @@
 				<div class="row">
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Article</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showArticle" id="showArticleTrue" value="1" {{ $setting->setting['showArticle'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showArticleTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showArticle" id="showArticleFalse" value="0" {{ $setting->setting['showArticle'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showArticleFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showArticle" value="0">
+				            <input type="checkbox" name="showArticle" class="switch-control-input" id="showArticle" value="1" {{ $setting->setting['showArticle'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showArticle"></label>
+				        </div>
 					</fieldset>
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Testimonial</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showTestimonial" id="showTestimonialTrue" value="1" {{ $setting->setting['showTestimonial'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showTestimonialTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showTestimonial" id="showTestimonialFalse" value="0" {{ $setting->setting['showTestimonial'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showTestimonialFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showTestimonial" value="0">
+				            <input type="checkbox" name="showTestimonial" class="switch-control-input" id="showTestimonial" value="1" {{ $setting->setting['showTestimonial'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showTestimonial"></label>
+				        </div>
 					</fieldset>
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Contact</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showContact" id="showContactTrue" value="1" {{ $setting->setting['showContact'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showContactTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showContact" id="showContactFalse" value="0" {{ $setting->setting['showContact'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showContactFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showContact" value="0">
+				            <input type="checkbox" name="showContact" class="switch-control-input" id="showContact" value="1" {{ $setting->setting['showContact'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showContact"></label>
+				        </div>
 					</fieldset>
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Skill</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showSkill" id="showSkillTrue" value="1" {{ $setting->setting['showSkill'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showSkillTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showSkill" id="showSkillFalse" value="0" {{ $setting->setting['showSkill'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showSkillFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showSkill" value="0">
+				            <input type="checkbox" name="showSkill" class="switch-control-input" id="showSkill" value="1" {{ $setting->setting['showSkill'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showSkill"></label>
+				        </div>
 					</fieldset>
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Experience</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showExperience" id="showExperienceTrue" value="1" {{ $setting->setting['showExperience'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showExperienceTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showExperience" id="showExperienceFalse" value="0" {{ $setting->setting['showExperience'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showExperienceFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showExperience" value="0">
+				            <input type="checkbox" name="showExperience" class="switch-control-input" id="showExperience" value="1" {{ $setting->setting['showExperience'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showExperience"></label>
+				        </div>
 					</fieldset>
 					<fieldset class="form-group col-6">
 						<legend class="col-form-label py-0 font-weight-bold">Education</legend>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showEducation" id="showEducationTrue" value="1" {{ $setting->setting['showEducation'] == 1 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showEducationTrue">
-							Enable
-							</label>
-						</div>
-						<div class="custom-control custom-radio ml-3">
-							<input class="custom-control-input" type="radio" name="showEducation" id="showEducationFalse" value="0" {{ $setting->setting['showEducation'] == 0 ? 'checked' : '' }}>
-							<label class="custom-control-label" for="showEducationFalse">
-							Disable
-							</label>
-						</div>
+						<div class="switch-control switch-checkbox">
+							<input type="hidden" name="showEducation" value="0">
+				            <input type="checkbox" name="showEducation" class="switch-control-input" id="showEducation" value="1" {{ $setting->setting['showEducation'] == 1 ? 'checked' : '' }}>
+				            <label class="switch-control-label" for="showEducation"></label>
+				        </div>
 					</fieldset>
 				</div>
 				<div class="form-group">

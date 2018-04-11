@@ -1,9 +1,9 @@
 @extends('dashboard.app-boilerplate')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="container auth">
+    <div class="row">
+        <div class="col-md-8 col-xl-7 ml-auto">
             <div class="card mb-4">
                 <h1 class="h2 mb-0 font-weight-bold card-body text-center">Login</h1>
             </div>

@@ -5,24 +5,25 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="name" class="font-weight-bold">Degree</label>
                             <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your degree here"  v-model="education.name" required>
-                            <small id="name" class="form-text text-muted">* ex: Bachelor of Multimedia or Senior High School</small>
                         </div>
                         <div class="form-group">
+                            <label for="institution" class="font-weight-bold">Institution</label>
                             <input class="form-control" type="text" name="institution" id="institution" placeholder="Enter the institution here"  v-model="education.institution" required>
-                            <small id="institution" class="form-text text-muted">* Institution</small>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="date_start" class="font-weight-bold">Start</label>
                                 <input type="date" class="form-control" name="date_start" id="date_start"  v-model="education.date_start">
-                                <small id="date_start" class="form-text text-muted">* Education start</small>
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="date_end" class="font-weight-bold">End</label>
                                 <input type="date" class="form-control" name="date_end" id="date_end" v-model="education.date_end">
-                                <small id="date_end" class="form-text text-muted">* Education end</small>
                             </div>
                         </div>
                         <div>
+                            <label for="description" class="font-weight-bold">Description</label>
                             <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="education.description" required></textarea>
                         </div>
                     </div>
