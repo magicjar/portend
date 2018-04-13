@@ -41,14 +41,14 @@
 						<tbody>
 							<tr v-for="article in articles" :key="article.id">
 								<td>
-									{{ article.title }}
-									<div class="d-block">
+									<p class="mb-2">{{ article.title }}</p>
+									<div role="group" class="btn-group">
 										<a class="edit btn btn-sm btn-primary" :href="article.url + '/edit'">Edit</a>
 										<a class="view btn btn-sm btn-info" :href="$baseUrl + '/article/' + article.id" target="_blank">View</a>
 										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deleteArticle(article.id)">Trash</button>
 									</div>
 								</td>
-								<td>{{ article.content.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</td>
+								<td><p class="mb-0">{{ article.content.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</p></td>
 								<td>
 									<img v-if="article.image !== null"  :src="article.image.thumbnail" class="index-thumbnail img-fluid">
 									<span v-else class="index-thumbnail">None</span>

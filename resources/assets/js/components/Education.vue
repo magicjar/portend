@@ -54,7 +54,7 @@
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">{{ education.date_start }} - {{ education.date_end }}</small>
-                                <div class="float-right">
+                                <div role="group" class="btn-group float-right">
                                     <button @click="editEducation(education)" class="btn btn-sm btn-primary">Edit</button>
                                     <button @click="deleteEducation(education.id)" class="btn btn-sm btn-danger">Delete</button>
                                 </div>

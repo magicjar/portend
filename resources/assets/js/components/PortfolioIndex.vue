@@ -41,14 +41,14 @@
 						<tbody>
 							<tr v-for="portfolio in portfolios" :key="portfolio.id">
 								<td>
-									{{ portfolio.title }}
-									<div class="d-block">
+									<p class="mb-2">{{ portfolio.title }}</p>
+									<div role="group" class="btn-group">
 										<a class="edit btn btn-sm btn-primary" :href="portfolio.url + '/edit'">Edit</a>
 										<a class="view btn btn-sm btn-info" :href="portfolio.url">View</a>
 										<button type="button" class="trash btn btn-sm btn-danger" @click.prevent="deletePortfolio(portfolio.id)">Trash</button>
 									</div>
 								</td>
-								<td>{{ portfolio.description.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</td>
+								<td><p class="mb-0">{{ portfolio.description.replace(/(<([^>]+)>)/ig, '') | truncate(100) }}</p></td>
 								<td>
 									<img v-if="portfolio.image !== null"  :src="portfolio.image.thumbnail" class="index-thumbnail img-fluid">
 									<span v-else class="index-thumbnail">None</span>

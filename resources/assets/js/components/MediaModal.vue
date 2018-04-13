@@ -99,8 +99,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					Set Thumbnail: {{ isThumbnail }}, Set Porto Meda: {{ isPortfolioMedia }}
-					<button v-if="isThumbnail" @click.prevent="setThumbnail" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Set Thumbnail</button>
+					<button v-if="isThumbnail" @click.prevent="setThumbnail" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Set Image</button>
 					<button v-else-if="isPortfolioMedia" @click.prevent="addPortfolioMedia" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add Image</button>
 					<button v-else @click.prevent="insertImage" data-dismiss="modal" type="button" class="btn btn-primary btn-sm">Add Media</button>
 				</div>

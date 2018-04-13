@@ -33948,59 +33948,64 @@ var render = function() {
               _vm._l(_vm.articles, function(article) {
                 return _c("tr", { key: article.id }, [
                   _c("td", [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t\t" +
-                        _vm._s(article.title) +
-                        "\n\t\t\t\t\t\t\t\t"
-                    ),
-                    _c("div", { staticClass: "d-block" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "edit btn btn-sm btn-primary",
-                          attrs: { href: article.url + "/edit" }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "view btn btn-sm btn-info",
-                          attrs: {
-                            href: _vm.$baseUrl + "/article/" + article.id,
-                            target: "_blank"
-                          }
-                        },
-                        [_vm._v("View")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "trash btn btn-sm btn-danger",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.deleteArticle(article.id)
+                    _c("p", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(article.title))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "btn-group", attrs: { role: "group" } },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "edit btn btn-sm btn-primary",
+                            attrs: { href: article.url + "/edit" }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "view btn btn-sm btn-info",
+                            attrs: {
+                              href: _vm.$baseUrl + "/article/" + article.id,
+                              target: "_blank"
                             }
-                          }
-                        },
-                        [_vm._v("Trash")]
-                      )
-                    ])
+                          },
+                          [_vm._v("View")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "trash btn btn-sm btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.deleteArticle(article.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Trash")]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(
-                      _vm._s(
-                        _vm._f("truncate")(
-                          article.content.replace(/(<([^>]+)>)/gi, ""),
-                          100
+                    _c("p", { staticClass: "mb-0" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm._f("truncate")(
+                            article.content.replace(/(<([^>]+)>)/gi, ""),
+                            100
+                          )
                         )
                       )
-                    )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("td", [
@@ -35099,33 +35104,40 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-footer" }, [
-                        _c("div", { staticClass: "float-right" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              on: {
-                                click: function($event) {
-                                  _vm.editSkill(skill)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group float-right",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                on: {
+                                  click: function($event) {
+                                    _vm.editSkill(skill)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Edit")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-danger",
-                              on: {
-                                click: function($event) {
-                                  _vm.deleteSkill(skill.id)
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    _vm.deleteSkill(skill.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Delete")]
-                          )
-                        ])
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ]
+                        )
                       ])
                     ])
                   ]
@@ -35648,33 +35660,40 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "float-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-primary",
-                          on: {
-                            click: function($event) {
-                              _vm.editEducation(education)
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group float-right",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            on: {
+                              click: function($event) {
+                                _vm.editEducation(education)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              _vm.deleteEducation(education.id)
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.deleteEducation(education.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ])
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    )
                   ])
                 ])
               ]
@@ -36196,33 +36215,40 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "float-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-primary",
-                          on: {
-                            click: function($event) {
-                              _vm.editExperience(experience)
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group float-right",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            on: {
+                              click: function($event) {
+                                _vm.editExperience(experience)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              _vm.deleteExperience(experience.id)
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.deleteExperience(experience.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ])
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    )
                   ])
                 ])
               ]
@@ -36708,33 +36734,40 @@ var render = function() {
                       _vm._v(_vm._s(testimonial.url))
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "float-right" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-primary",
-                          on: {
-                            click: function($event) {
-                              _vm.editTestimonial(testimonial)
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group float-right",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            on: {
+                              click: function($event) {
+                                _vm.editTestimonial(testimonial)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-sm btn-danger",
-                          on: {
-                            click: function($event) {
-                              _vm.deleteTestimonial(testimonial.id)
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.deleteTestimonial(testimonial.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      )
-                    ])
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    )
                   ])
                 ])
               ]
@@ -36835,7 +36868,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
-//
 //
 //
 //
@@ -37586,13 +37618,6 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "modal-footer" }, [
-              _vm._v(
-                "\n\t\t\t\tSet Thumbnail: " +
-                  _vm._s(_vm.isThumbnail) +
-                  ", Set Porto Meda: " +
-                  _vm._s(_vm.isPortfolioMedia) +
-                  "\n\t\t\t\t"
-              ),
               _vm.isThumbnail
                 ? _c(
                     "button",
@@ -37606,7 +37631,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Set Thumbnail")]
+                    [_vm._v("Set Image")]
                   )
                 : _vm.isPortfolioMedia
                   ? _c(
@@ -38959,56 +38984,61 @@ var render = function() {
               _vm._l(_vm.portfolios, function(portfolio) {
                 return _c("tr", { key: portfolio.id }, [
                   _c("td", [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t\t" +
-                        _vm._s(portfolio.title) +
-                        "\n\t\t\t\t\t\t\t\t"
-                    ),
-                    _c("div", { staticClass: "d-block" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "edit btn btn-sm btn-primary",
-                          attrs: { href: portfolio.url + "/edit" }
-                        },
-                        [_vm._v("Edit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "view btn btn-sm btn-info",
-                          attrs: { href: portfolio.url }
-                        },
-                        [_vm._v("View")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "trash btn btn-sm btn-danger",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.deletePortfolio(portfolio.id)
+                    _c("p", { staticClass: "mb-2" }, [
+                      _vm._v(_vm._s(portfolio.title))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "btn-group", attrs: { role: "group" } },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "edit btn btn-sm btn-primary",
+                            attrs: { href: portfolio.url + "/edit" }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "view btn btn-sm btn-info",
+                            attrs: { href: portfolio.url }
+                          },
+                          [_vm._v("View")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "trash btn btn-sm btn-danger",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.deletePortfolio(portfolio.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v("Trash")]
-                      )
-                    ])
+                          },
+                          [_vm._v("Trash")]
+                        )
+                      ]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._v(
-                      _vm._s(
-                        _vm._f("truncate")(
-                          portfolio.description.replace(/(<([^>]+)>)/gi, ""),
-                          100
+                    _c("p", { staticClass: "mb-0" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm._f("truncate")(
+                            portfolio.description.replace(/(<([^>]+)>)/gi, ""),
+                            100
+                          )
                         )
                       )
-                    )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("td", [

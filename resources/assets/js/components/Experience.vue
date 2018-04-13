@@ -54,7 +54,7 @@
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">{{ experience.date_start }} - {{ experience.date_end }}</small>
-                                <div class="float-right">
+                                <div role="group" class="btn-group float-right">
                                     <button @click="editExperience(experience)" class="btn btn-sm btn-primary">Edit</button>
                                     <button @click="deleteExperience(experience.id)" class="btn btn-sm btn-danger">Delete</button>
                                 </div>

@@ -50,7 +50,7 @@
                             </div>
                             <div class="card-footer">
                                 <small class="text-muted">{{ testimonial.url }}</small>
-                                <div class="float-right">
+                                <div role="group" class="btn-group float-right">
                                     <button @click="editTestimonial(testimonial)" class="btn btn-sm btn-primary">Edit</button>
                                     <button @click="deleteTestimonial(testimonial.id)" class="btn btn-sm btn-danger">Delete</button>
                                 </div>

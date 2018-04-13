@@ -44,7 +44,7 @@
                                 <p class="card-text">{{ skill.description }}</p>
                             </div>
                             <div class="card-footer">
-                                <div class="float-right">
+                                <div role="group" class="btn-group float-right">
                                     <button @click="editSkill(skill)" class="btn btn-sm btn-primary">Edit</button>
                                     <button @click="deleteSkill(skill.id)" class="btn btn-sm btn-danger">Delete</button>
                                 </div>

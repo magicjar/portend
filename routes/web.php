@@ -114,4 +114,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 	Route::resource('portfolio', 'PortfolioController', ['except' => ['show', 'destroy']]);
 
 	Route::get('setting', 'DashboardController@setting')->name('setting');
+
+	Route::get('update', 'UpdateController@update')->name('update');
+	Route::post('update-schema', 'UpdateController@updateSchema')->name('update.schema');
 });
