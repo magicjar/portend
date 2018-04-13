@@ -42,6 +42,11 @@ class DashboardController extends Controller
         return view('dashboard.about');
     }
 
+    public function media()
+    {
+        return view('dashboard.media');
+    }
+
     public function skill()
     {
         return view('dashboard.skill');

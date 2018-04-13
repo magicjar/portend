@@ -86,6 +86,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 
 	Route::get('about', 'DashboardController@about')->name('about');
 
+	Route::get('media', 'DashboardController@media')->name('media');
+
 	if ($setting->setting['showSkill']) {
 		Route::get('resume/skill', 'DashboardController@skill')->name('skill');
 	}

@@ -8,7 +8,11 @@
 
             <!-- About Me -->
             <li class="nav-item">
-                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*about') ? 'active' : '' }}" href="{{ route('dashboard.about') }}"><span class="mr-2" data-feather="user"></span>About Me</a>
+                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*about') ? 'active' : '' }}" href="{{ route('dashboard.about') }}"><span class="mr-2" data-feather="user"></span>About</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*media') ? 'active' : '' }}" href="{{ route('dashboard.media') }}"><span class="mr-2" data-feather="image"></span>Media</a>
             </li>
 
             <!-- Resume -->

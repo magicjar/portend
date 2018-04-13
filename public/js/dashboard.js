@@ -509,6 +509,7 @@ window.Dropzone = __webpack_require__(43);
 Vue.component('avatar-component', __webpack_require__(45));
 Vue.component('articleindex-component', __webpack_require__(48));
 Vue.component('articlecreate-component', __webpack_require__(51));
+Vue.component('media-component', __webpack_require__(89));
 Vue.component('skill-component', __webpack_require__(54));
 Vue.component('education-component', __webpack_require__(57));
 Vue.component('experience-component', __webpack_require__(60));
@@ -39946,6 +39947,813 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
+  }
+}
+
+/***/ }),
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(90)
+/* template */
+var __vue_template__ = __webpack_require__(91)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Media.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-30127e06", Component.options)
+  } else {
+    hotAPI.reload("data-v-30127e06", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			show: false,
+			media: [],
+			image: {
+				id: '',
+				file: '',
+				title: '',
+				caption: '',
+				alt: '',
+				description: '',
+				image_url: '',
+				thumbnail: '',
+				resolution: '',
+				filesize: '',
+				created_at: ''
+			},
+			img: {},
+			pagination: {}
+		};
+	},
+	mounted: function mounted() {
+		this.mediaUploads();
+	},
+	created: function created() {
+		this.fetchMedia();
+	},
+
+
+	methods: {
+		mediaUploads: function mediaUploads() {
+			var previewNode = document.querySelector("#template");
+			var previewTemplate = previewNode.parentNode.innerHTML;
+			previewNode.parentNode.removeChild(previewNode);
+			var vm = this;
+
+			new Dropzone("#fileDropzone", {
+				url: this.$baseUrl + '/api/media/upload',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"').attr('content')
+				},
+				parallelUploads: 10,
+				uploadMultiple: true,
+				forceFallback: false,
+				timeout: 600000, // 10 mins in millisecond
+				previewsContainer: '#dropzonePreview',
+				previewTemplate: previewTemplate,
+				clickable: ".select-uploader", // Clickable form
+				//autoQueue: false, // Prevent auto upload on select
+
+				addedfiles: function addedfiles() {
+					$('#library, #library-tab').addClass('show active');
+					$('#dropzone, #dropzone-tab').removeClass('show active');
+				},
+				successmultiple: function successmultiple() {
+					vm.fetchMedia();
+				}
+			});
+		},
+		fetchMedia: function fetchMedia(page_url) {
+			var _this = this;
+
+			page_url = page_url || this.$baseUrl + '/api/media';
+			axios.get(page_url).then(function (response) {
+				_this.media = response.data.data;
+				_this.createPagination(response.data.meta, response.data.links);
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		},
+		editMedia: function editMedia(image) {
+			this.image.id = image.id;
+			this.image.file = image.file;
+			this.image.title = image.title;
+			this.image.caption = image.caption;
+			this.image.alt = image.alt;
+			this.image.description = image.description;
+			this.image.image_url = image.image_url;
+			this.image.thumbnail = image.thumbnail;
+			this.image.resolution = image.resolution;
+			this.image.filesize = image.filesize;
+			this.image.created_at = image.created_at;
+			this.img = image;
+			this.show = true;
+		},
+		saveMedia: function saveMedia() {
+			var _this2 = this;
+
+			axios.put(this.$baseUrl + '/api/media', this.image).then(function (data) {
+				_this2.fetchMedia();
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		},
+		deleteMedia: function deleteMedia(id) {
+			var _this3 = this;
+
+			if (confirm('This action cannot be undone!')) {
+				axios.delete(this.$baseUrl + '/api/media/' + id).then(function (data) {
+					_this3.show = false;
+					_this3.fetchMedia();
+				}).catch(function (error) {
+					return console.log(error);
+				});
+			}
+		},
+		createPagination: function createPagination(meta, links) {
+			var pagination = {
+				total_post: meta.total,
+				current_page: meta.current_page,
+				last_page: meta.last_page,
+				next_page: links.next,
+				prev_page: links.prev
+			};
+			this.pagination = pagination;
+		}
+	}
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "actions-body mb-4" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body", attrs: { id: "media" } }, [
+          _c(
+            "div",
+            { staticClass: "container-fluid h-100", attrs: { id: "library" } },
+            [
+              _c("div", { staticClass: "row h-100" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-sm-8 p-3",
+                    staticStyle: { overflow: "auto" }
+                  },
+                  [
+                    _c(
+                      "nav",
+                      {
+                        staticClass: "mb-3 d-flex",
+                        attrs: { "aria-label": "pagination" }
+                      },
+                      [
+                        _c("span", { staticClass: "my-auto text-muted" }, [
+                          _vm._v(_vm._s(_vm.pagination.total_post) + " images")
+                        ]),
+                        _vm._v(" "),
+                        _c("ul", { staticClass: "pagination ml-auto mb-0" }, [
+                          _c("span", { staticClass: "my-auto text-muted" }, [
+                            _vm._v(
+                              _vm._s(_vm.pagination.current_page) +
+                                " of " +
+                                _vm._s(_vm.pagination.last_page)
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "page-item ml-2",
+                              class: [{ disabled: !_vm.pagination.prev_page }]
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link rounded-0 border-0",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.fetchMedia(_vm.pagination.prev_page)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    attrs: { "data-feather": "chevron-left" }
+                                  })
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            {
+                              staticClass: "page-item",
+                              class: [{ disabled: !_vm.pagination.next_page }]
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link rounded-0 border-0",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.fetchMedia(_vm.pagination.next_page)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    attrs: { "data-feather": "chevron-right" }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "row px-2 list-unstyled",
+                        attrs: { id: "dropzonePreview" }
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _vm._l(_vm.media, function(image) {
+                          return _c(
+                            "li",
+                            {
+                              key: image.id,
+                              staticClass: "col-6 col-lg-4 col-xl-3 px-2 mb-3"
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "media-checkbox",
+                                  class: [{ selected: image.id == _vm.img.id }],
+                                  attrs: { role: "checkbox" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.editMedia(image)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    staticClass:
+                                      "media-thumbnail img-fluid rounded-0",
+                                    attrs: {
+                                      title: image.title,
+                                      alt: image.alt,
+                                      src: image.thumbnail
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "col-sm-4 h-100 border-left p-0",
+                    staticStyle: { overflow: "auto" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.show,
+                            expression: "show"
+                          }
+                        ],
+                        staticClass: "detail p-3 border-bottom"
+                      },
+                      [
+                        _c("h5", [_vm._v("Media details")]),
+                        _vm._v(" "),
+                        _c("img", {
+                          staticClass: "img-fluid mb-2",
+                          attrs: { src: _vm.image.thumbnail }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          { staticClass: "list-unstyled mb-0 text-muted" },
+                          [
+                            _c("li", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.image.file))
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "small" }, [
+                              _vm._v(_vm._s(_vm.image.created_at))
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "small" }, [
+                              _vm._v(_vm._s(_vm.image.filesize) + " Byte")
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "small" }, [
+                              _vm._v(_vm._s(_vm.image.resolution))
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "small" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "text-danger",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.deleteMedia(_vm.image.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete permanently")]
+                              )
+                            ])
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.show
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "form-field p-3",
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.saveMedia($event)
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.image_url,
+                                    expression: "image.image_url"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "file",
+                                  readonly: ""
+                                },
+                                domProps: { value: _vm.image.image_url },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "image_url",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.title,
+                                    expression: "image.title"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "title",
+                                  placeholder: "Title"
+                                },
+                                domProps: { value: _vm.image.title },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "title",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.caption,
+                                    expression: "image.caption"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "caption",
+                                  placeholder: "Caption"
+                                },
+                                domProps: { value: _vm.image.caption },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "caption",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.alt,
+                                    expression: "image.alt"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "alt",
+                                  placeholder: "Alt text"
+                                },
+                                domProps: { value: _vm.image.alt },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "alt",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.description,
+                                    expression: "image.description"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "description",
+                                  placeholder: "Description"
+                                },
+                                domProps: { value: _vm.image.description },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "description",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Save")]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "actions-body mb-4" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              staticClass: "container-fluid text-center h-100",
+              attrs: { id: "dropzone" }
+            },
+            [
+              _c(
+                "form",
+                { staticClass: "d-flex h-100", attrs: { id: "fileDropzone" } },
+                [
+                  _c("div", { staticClass: "uploader my-5 mx-auto w-50" }, [
+                    _c("div", { staticClass: "drop-uploader h4 mb-0" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\tDrop files to upload\n\t\t\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-inline-block border border-secondary rounded-circle my-3 p-2",
+                        staticStyle: { "line-height": ".9" }
+                      },
+                      [_vm._v("or")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "select-uploader text-left" }, [
+                      _c("div", { staticClass: "custom-file" }, [
+                        _c("input", {
+                          staticClass: "custom-file-input",
+                          attrs: { id: "media" }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "custom-file-label",
+                            attrs: { for: "media" }
+                          },
+                          [_vm._v("Browse")]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("strong", {
+                      staticClass: "error text-danger",
+                      attrs: { "data-dz-errormessage": "" }
+                    })
+                  ])
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "li",
+      {
+        staticClass: "col-6 col-lg-4 col-xl-3 px-2 mb-3",
+        attrs: { id: "template" }
+      },
+      [
+        _c("div", { staticClass: "media-checkbox template-image" }, [
+          _c(
+            "div",
+            {
+              staticClass: "media-thumbnail progress progress-striped active",
+              attrs: {
+                role: "progressbar",
+                "aria-valuemin": "0",
+                "aria-valuemax": "100",
+                "aria-valuenow": "0"
+              }
+            },
+            [
+              _c("div", {
+                staticClass: "progress-bar progress-bar-success",
+                staticStyle: { width: "0%" },
+                attrs: { "data-dz-uploadprogress": "" }
+              })
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-30127e06", module.exports)
   }
 }
 

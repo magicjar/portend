@@ -18,6 +18,7 @@ window.Dropzone = require('dropzone');
 Vue.component('avatar-component', require('./components/Avatar.vue'));
 Vue.component('articleindex-component', require('./components/ArticleIndex.vue'));
 Vue.component('articlecreate-component', require('./components/ArticleCreate.vue'));
+Vue.component('media-component', require('./components/Media.vue'));
 Vue.component('skill-component', require('./components/Skill.vue'));
 Vue.component('education-component', require('./components/Education.vue'));
 Vue.component('experience-component', require('./components/Experience.vue'));
