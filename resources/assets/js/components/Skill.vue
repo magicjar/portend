@@ -9,13 +9,12 @@
                             <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your skill here" v-model="skill.name" required>
                         </div>
                         <div class="form-group">
-                            <label for="institution" class="font-weight-bold">Knowledge level</label>
-                            <input class="form-control" type="number" name="institution" id="institution" placeholder="Enter level of knowledge here"  v-model="skill.institution" required>
-                            <small id="institution" class="form-text text-muted">* ex: 95 for Excelent knowledge</small>
+                            <label for="institution" class="font-weight-bold">Knowledge level ( {{ skill.institution }} )</label>
+                            <input class="custom-range-slider" type="range" min="1" max="100" name="institution" id="institution" v-model="skill.institution" required>
                         </div>
                         <div>
                             <label for="name" class="font-weight-bold">Description</label>
-                            <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="skill.description" required></textarea>
+                            <textarea class="form-control" name="description" id="description" placeholder="Enter description here" rows="5" v-model="skill.description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                 skill: {
                     id: '',
                     name: '',
-                    institution: '',
+                    institution: 1,
                     description: '',
                     resume_type: 'skill',
                 },
@@ -95,7 +94,7 @@
                     axios.post(this.$baseUrl + '/api/resume', this.skill )
                     .then(data => {
                         this.skill.name = '';
-                        this.skill.institution = '';
+                        this.skill.institution = 1;
                         this.skill.description = '';
                         this.fetchSkills();
                     })
@@ -104,9 +103,11 @@
                     // Update
                     axios.put(this.$baseUrl + '/api/resume', this.skill )
                     .then(data => {
+                        this.skill.resume_id = null;
                         this.skill.name = '';
-                        this.skill.institution = '';
+                        this.skill.institution = 1;
                         this.skill.description = '';
+                        this.edit_state = false;
                         this.fetchSkills();
                     })
                     .catch(error => console.log(error));

@@ -419,3 +419,33 @@ tbody {
     background-color: #007bff;
     left: 1.1rem;
 }
+
+.custom-range-slider {
+	appearance: none;
+    width: 100%;
+    height: .8rem;
+    border-radius: 1rem;
+    box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+    background: #8dc4ff;
+    outline: none;
+}
+
+.custom-range-slider::-webkit-slider-thumb {
+	appearance: none;
+	width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 1.2rem;
+    background-color: #007bff;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+}
+
+.custom-range-slider::-mox-ramge-thumb {
+	appearance: none;
+	width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 1.2rem;
+    background-color: #007bff;
+    box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+}
