@@ -40,6 +40,7 @@ class MediaController extends Controller
 
         for ($i = 0; $i < count($photos); $i++) {
             $thumbnail = 250;
+            $random_numb = str_random(5);
 
             $photo = $photos[$i];
 
@@ -50,7 +51,7 @@ class MediaController extends Controller
             $original_name = str_slug($slice_name, '-');
 
             // Create save name from original slug, 6 random string and added original extension
-            $save_name = $original_name . '.' . $photo->getClientOriginalExtension();
+            $save_name = $original_name . '-' . $random_numb . '.' . $photo->getClientOriginalExtension();
 
             $thumbnail_name = asset('storage/thumbnail/' . $save_name);
 

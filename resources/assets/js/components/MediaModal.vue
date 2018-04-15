@@ -14,11 +14,11 @@
 						<a class="nav-item nav-link border-bottom-0" id="library-tab" data-toggle="tab" href="#library" role="tab" aria-selected="false">Image Library</a>
 					</div>
 				</nav>
-				<div class="modal-body d-flex p-0" style="overflow: auto; z-index: 1;">
+				<div class="modal-body p-0" style="overflow: auto; z-index: 1;">
 					<div class="tab-content w-100">
-						<div class="container-fluid tab-pane fade show active text-center h-100" id="dropzone" role="tabpanel">
-							<form class="d-flex h-100" id="fileDropzone">
-								<div class="uploader my-auto mx-auto w-50">
+						<div class="container-fluid tab-pane fade show active text-center h-100 p-3" id="dropzone" role="tabpanel">
+							<form class="uploader d-flex h-100" id="fileDropzone">
+								<div class="my-auto mx-auto w-50">
 									<div class="drop-uploader h4 mb-0">
 										Drop files to upload
 									</div>
@@ -32,6 +32,20 @@
 									<strong class="error text-danger" data-dz-errormessage></strong>
 								</div>
 							</form>
+							<hr>
+							<div class="link-uploader my-5 mx-auto w-50">
+								<div class="h4 text-center mb-3">
+									Import file from url
+								</div>
+								<form class="input-group mb-0">
+									<input v-model="imports.import_file" type="text" class="form-control pr-4" placeholder="http://">
+									<div class="input-group-append">
+										<i id="spinner" data-feather="sun"></i>
+										<button id="btn-import" @click.prevent="importFromUrl()" class="btn btn-secondary" type="button">Import</button>
+									</div>
+								</form>
+								<small class="form-text text-muted">Supported host: Youtube, Vimeo, SoundCloud</small>
+							</div>
 						</div>
 						<div class="tab-pane container-fluid fade h-100" id="library" role="tabpanel">
 							<div class="row h-100">
@@ -56,8 +70,9 @@
 												</div>
 											</div>
 										</li>
-										<li v-for="image in media" v-bind:key="image.id" class="col-4 col-lg-3 px-2 mb-3">
+										<li v-for="image in media" v-bind:key="image.id" class="col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3">
 											<div @click.prevent="editMedia(image)" role="checkbox" :class="[{ selected: image.id == img.id }]" class="media-checkbox">
+												<div class="media-overlay" v-if="image.media_type !== 'image'"></div>
 												<img class="media-thumbnail img-fluid rounded-0" :title="image.title" :alt="image.alt" :src="image.thumbnail">
 											</div>
 										</li>
@@ -65,34 +80,35 @@
 								</div>
 								<div class="col-sm-4 h-100 border-left p-0" style="overflow: auto;">
 									<div v-show="show" class="detail p-3 border-bottom">
-										<h5>Media details</h5>
-										<img class="img-fluid mb-2" :src="image.thumbnail">
-										<ul class="list-unstyled mb-0 text-muted">
-											<li class="font-weight-bold">{{image.file}}</li>
-											<li class="small">{{image.created_at}}</li>
-											<li class="small">{{image.filesize}} Byte</li>
-											<li class="small">{{image.resolution}}</li>
-											<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
-										</ul>
+									<h5>Media details</h5>
+									<img v-if="image.thumbnail" class="img-fluid mb-2" :src="image.thumbnail">
+									<ul class="list-unstyled mb-0 text-muted">
+										<li class="font-weight-bold">{{image.file}}</li>
+										<li class="small">{{image.created_at}}</li>
+										<li class="small text-capitalize">{{image.media_type}}</li>
+										<li class="small" v-if="image.filesize">{{image.filesize}} Byte</li>
+										<li class="small">{{image.resolution}}</li>
+										<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
+									</ul>
+								</div>
+								<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
+									<div class="form-group">
+										<input class="form-control" type="text" name="file" v-model="image.image_url" readonly>
 									</div>
-									<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
-										<div class="form-group">
-											<input class="form-control" type="text" name="file" v-model="image.image_url" readonly>
-										</div>
-										<div class="form-group">
-											<input class="form-control" type="text" name="title" v-model="image.title" placeholder="Title">
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" type="text" name="caption" v-model="image.caption" placeholder="Caption"></textarea>
-										</div>
-										<div class="form-group">
-											<input class="form-control" type="text" name="alt" v-model="image.alt" placeholder="Alt text">
-										</div>
-										<div class="form-group">
-											<textarea class="form-control" type="text" name="description" v-model="image.description" placeholder="Description"></textarea>
-										</div>
-										<button type="submit" class="btn btn-primary btn-sm">Save</button>
-									</form>
+									<div class="form-group">
+										<input class="form-control" type="text" name="title" v-model="image.title" placeholder="Title">
+									</div>
+									<div v-if="image.media_type === 'image'" class="form-group">
+										<textarea class="form-control" type="text" name="caption" v-model="image.caption" placeholder="Caption"></textarea>
+									</div>
+									<div v-if="image.media_type === 'image'" class="form-group">
+										<input class="form-control" type="text" name="alt" v-model="image.alt" placeholder="Alt text">
+									</div>
+									<div v-if="image.media_type === 'image'" class="form-group">
+										<textarea class="form-control" type="text" name="description" v-model="image.description" placeholder="Description"></textarea>
+									</div>
+									<button type="submit" class="btn btn-primary btn-sm">Save</button>
+								</form>
 								</div>
 							</div>
 						</div>
@@ -120,6 +136,7 @@
 				image: {
 					id: '',
 					file: '',
+					media_type: '',
 					title: '',
 					caption: '',
 					alt: '',
@@ -135,7 +152,14 @@
 				isPortfolioMedia: false,
 				resourceThumbnail: {},
 				portfolioMedia: [],
-				pagination: {}
+				pagination: {},
+				imports: {
+					import_file: '',
+					import_type: '',
+					import_title: '',
+					import_thumbnail: ''
+				},
+				oembed_data: {}
 			}
 		},
 
@@ -167,10 +191,63 @@
 			},
 			insertImage() {
 				let image_alt = this.image.alt !== null ? this.image.alt : this.image.title
+				let html = null;
 
-				let html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>'
+				if(this.image.media_type === 'image') {
+					html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>'
+				} else {
+					html = this.image.file
+				}
 
 				tinymce.activeEditor.insertContent(html)
+			},
+			importFromUrl(){
+				var spinner = $('#spinner');
+				var button = $('#btn-import');
+				var url = this.imports.import_file;
+				var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0]
+				var vm = this
+
+				if (domain === 'youtube.com' || domain === 'youtu.be') {
+					this.imports.import_type = 'video'
+				} else if (domain === 'vimeo.com') {
+					this.imports.import_type = 'video'
+				} else if (domain === 'soundcloud.com') {
+					this.imports.import_type = 'audio'
+				} else {
+					return alert('Host not supported!')
+				}
+
+				// Fetch noembed and get the data
+				fetch('https://noembed.com/embed?url=' + url)
+				.then(response => response.json())
+				.then(response => {
+                    this.oembed_data = response;
+                    this.imports.import_thumbnail = response.thumbnail_url;
+                    this.imports.import_title = response.title;
+                })
+                .catch(error => console.log(error));
+
+                // Show spinner / disabled button
+				spinner.show();
+				button.attr("disabled", true)
+
+                // Wait 2seconds until noembed get response to prevent error
+                setTimeout(function(){
+                	axios.post(vm.$baseUrl + '/api/media/import', vm.imports)
+					.then(data => {
+						vm.imports.import_file = '';
+						vm.imports.import_type = '';
+						vm.imports.import_title = '';
+						vm.imports.import_thumbnail = '';
+					    vm.fetchMedia();
+					})
+					.catch(error => console.log(error));
+
+					// Hide spinner / enabled button
+					spinner.hide();
+					button.attr("disabled", false)
+            	}, 3000);
 			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
@@ -213,6 +290,7 @@
 			editMedia(image){
 				this.image.id = image.id;
                 this.image.file = image.file;
+                this.image.media_type = image.media_type;
                 this.image.title = image.title;
                 this.image.caption = image.caption;
                 this.image.alt = image.alt;

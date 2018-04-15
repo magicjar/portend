@@ -33548,7 +33548,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('theImage', function (data) {
-            _this.ava = data.image_url;
+            _this.ava = data.thumbnail;
         });
     },
 
@@ -34899,6 +34899,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -35144,6 +35146,10 @@ var render = function() {
                   [_vm._v("Import")]
                 )
               ])
+            ]),
+            _vm._v(" "),
+            _c("small", { staticClass: "form-text text-muted" }, [
+              _vm._v("Supported host: Youtube, Vimeo, SoundCloud")
             ])
           ])
         ])
@@ -35256,7 +35262,8 @@ var render = function() {
                             "li",
                             {
                               key: image.id,
-                              staticClass: "col-6 col-lg-4 col-xl-3 px-2 mb-3"
+                              staticClass:
+                                "col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3"
                             },
                             [
                               _c(
@@ -35273,6 +35280,12 @@ var render = function() {
                                   }
                                 },
                                 [
+                                  image.media_type !== "image"
+                                    ? _c("div", {
+                                        staticClass: "media-overlay"
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
                                   _c("img", {
                                     staticClass:
                                       "media-thumbnail img-fluid rounded-0",
@@ -35583,11 +35596,16 @@ var staticRenderFns = [
       [
         _c(
           "form",
-          { staticClass: "d-flex h-100 row", attrs: { id: "fileDropzone" } },
+          {
+            staticClass: "uploader d-flex h-100 row",
+            attrs: { id: "fileDropzone" }
+          },
           [
-            _c("div", { staticClass: "uploader my-5 mx-auto w-50" }, [
+            _c("div", { staticClass: "my-5 mx-auto w-50" }, [
               _c("div", { staticClass: "drop-uploader h4 mb-0" }, [
-                _vm._v("\n\t\t\t\t\t\t\t\tDrop files to upload\n\t\t\t\t\t\t\t")
+                _vm._v(
+                  "\n\t\t\t\t\t\t\t\tDrop images to upload\n\t\t\t\t\t\t\t"
+                )
               ]),
               _vm._v(" "),
               _c(
@@ -37919,6 +37937,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -37930,6 +37964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			image: {
 				id: '',
 				file: '',
+				media_type: '',
 				title: '',
 				caption: '',
 				alt: '',
@@ -37945,7 +37980,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			isPortfolioMedia: false,
 			resourceThumbnail: {},
 			portfolioMedia: [],
-			pagination: {}
+			pagination: {},
+			imports: {
+				import_file: '',
+				import_type: '',
+				import_title: '',
+				import_thumbnail: ''
+			},
+			oembed_data: {}
 		};
 	},
 	mounted: function mounted() {
@@ -37978,10 +38020,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		insertImage: function insertImage() {
 			var image_alt = this.image.alt !== null ? this.image.alt : this.image.title;
+			var html = null;
 
-			var html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>';
+			if (this.image.media_type === 'image') {
+				html = '<figure class="figure"><img class="figure-img img-fluid rounded" src="' + this.img.image_url + '" alt="' + image_alt + '"></figure>';
+			} else {
+				html = this.image.file;
+			}
 
 			tinymce.activeEditor.insertContent(html);
+		},
+		importFromUrl: function importFromUrl() {
+			var _this2 = this;
+
+			var spinner = $('#spinner');
+			var button = $('#btn-import');
+			var url = this.imports.import_file;
+			var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+			var vm = this;
+
+			if (domain === 'youtube.com' || domain === 'youtu.be') {
+				this.imports.import_type = 'video';
+			} else if (domain === 'vimeo.com') {
+				this.imports.import_type = 'video';
+			} else if (domain === 'soundcloud.com') {
+				this.imports.import_type = 'audio';
+			} else {
+				return alert('Host not supported!');
+			}
+
+			// Fetch noembed and get the data
+			fetch('https://noembed.com/embed?url=' + url).then(function (response) {
+				return response.json();
+			}).then(function (response) {
+				_this2.oembed_data = response;
+				_this2.imports.import_thumbnail = response.thumbnail_url;
+				_this2.imports.import_title = response.title;
+			}).catch(function (error) {
+				return console.log(error);
+			});
+
+			// Show spinner / disabled button
+			spinner.show();
+			button.attr("disabled", true);
+
+			// Wait 2seconds until noembed get response to prevent error
+			setTimeout(function () {
+				axios.post(vm.$baseUrl + '/api/media/import', vm.imports).then(function (data) {
+					vm.imports.import_file = '';
+					vm.imports.import_type = '';
+					vm.imports.import_title = '';
+					vm.imports.import_thumbnail = '';
+					vm.fetchMedia();
+				}).catch(function (error) {
+					return console.log(error);
+				});
+
+				// Hide spinner / enabled button
+				spinner.hide();
+				button.attr("disabled", false);
+			}, 3000);
 		},
 		mediaUploads: function mediaUploads() {
 			var previewNode = document.querySelector("#template");
@@ -38013,12 +38111,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		fetchMedia: function fetchMedia(page_url) {
-			var _this2 = this;
+			var _this3 = this;
 
 			page_url = page_url || this.$baseUrl + '/api/media';
 			axios.get(page_url).then(function (response) {
-				_this2.media = response.data.data;
-				_this2.createPagination(response.data.meta, response.data.links);
+				_this3.media = response.data.data;
+				_this3.createPagination(response.data.meta, response.data.links);
 			}).catch(function (error) {
 				return console.log(error);
 			});
@@ -38026,6 +38124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		editMedia: function editMedia(image) {
 			this.image.id = image.id;
 			this.image.file = image.file;
+			this.image.media_type = image.media_type;
 			this.image.title = image.title;
 			this.image.caption = image.caption;
 			this.image.alt = image.alt;
@@ -38039,21 +38138,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.show = true;
 		},
 		saveMedia: function saveMedia() {
-			var _this3 = this;
+			var _this4 = this;
 
 			axios.put(this.$baseUrl + '/api/media', this.image).then(function (data) {
-				_this3.fetchMedia();
+				_this4.fetchMedia();
 			}).catch(function (error) {
 				return console.log(error);
 			});
 		},
 		deleteMedia: function deleteMedia(id) {
-			var _this4 = this;
+			var _this5 = this;
 
 			if (confirm('This action cannot be undone!')) {
 				axios.delete(this.$baseUrl + '/api/media/' + id).then(function (data) {
-					_this4.show = false;
-					_this4.fetchMedia();
+					_this5.show = false;
+					_this5.fetchMedia();
 				}).catch(function (error) {
 					return console.log(error);
 				});
@@ -38102,12 +38201,89 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "modal-body d-flex p-0",
+                staticClass: "modal-body p-0",
                 staticStyle: { overflow: "auto", "z-index": "1" }
               },
               [
                 _c("div", { staticClass: "tab-content w-100" }, [
-                  _vm._m(2),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "container-fluid tab-pane fade show active text-center h-100 p-3",
+                      attrs: { id: "dropzone", role: "tabpanel" }
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "link-uploader my-5 mx-auto w-50" },
+                        [
+                          _c("div", { staticClass: "h4 text-center mb-3" }, [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\tImport file from url\n\t\t\t\t\t\t\t"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("form", { staticClass: "input-group mb-0" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.imports.import_file,
+                                  expression: "imports.import_file"
+                                }
+                              ],
+                              staticClass: "form-control pr-4",
+                              attrs: { type: "text", placeholder: "http://" },
+                              domProps: { value: _vm.imports.import_file },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.imports,
+                                    "import_file",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "input-group-append" }, [
+                              _c("i", {
+                                attrs: { id: "spinner", "data-feather": "sun" }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary",
+                                  attrs: { id: "btn-import", type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.importFromUrl()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Import")]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("small", { staticClass: "form-text text-muted" }, [
+                            _vm._v("Supported host: Youtube, Vimeo, SoundCloud")
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -38248,7 +38424,8 @@ var render = function() {
                                     "li",
                                     {
                                       key: image.id,
-                                      staticClass: "col-4 col-lg-3 px-2 mb-3"
+                                      staticClass:
+                                        "col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3"
                                     },
                                     [
                                       _c(
@@ -38267,6 +38444,12 @@ var render = function() {
                                           }
                                         },
                                         [
+                                          image.media_type !== "image"
+                                            ? _c("div", {
+                                                staticClass: "media-overlay"
+                                              })
+                                            : _vm._e(),
+                                          _vm._v(" "),
                                           _c("img", {
                                             staticClass:
                                               "media-thumbnail img-fluid rounded-0",
@@ -38310,10 +38493,12 @@ var render = function() {
                               [
                                 _c("h5", [_vm._v("Media details")]),
                                 _vm._v(" "),
-                                _c("img", {
-                                  staticClass: "img-fluid mb-2",
-                                  attrs: { src: _vm.image.thumbnail }
-                                }),
+                                _vm.image.thumbnail
+                                  ? _c("img", {
+                                      staticClass: "img-fluid mb-2",
+                                      attrs: { src: _vm.image.thumbnail }
+                                    })
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c(
                                   "ul",
@@ -38331,11 +38516,19 @@ var render = function() {
                                       _vm._v(_vm._s(_vm.image.created_at))
                                     ]),
                                     _vm._v(" "),
-                                    _c("li", { staticClass: "small" }, [
-                                      _vm._v(
-                                        _vm._s(_vm.image.filesize) + " Byte"
-                                      )
-                                    ]),
+                                    _c(
+                                      "li",
+                                      { staticClass: "small text-capitalize" },
+                                      [_vm._v(_vm._s(_vm.image.media_type))]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.image.filesize
+                                      ? _c("li", { staticClass: "small" }, [
+                                          _vm._v(
+                                            _vm._s(_vm.image.filesize) + " Byte"
+                                          )
+                                        ])
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c("li", { staticClass: "small" }, [
                                       _vm._v(_vm._s(_vm.image.resolution))
@@ -38440,103 +38633,126 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
-                                    _c("div", { staticClass: "form-group" }, [
-                                      _c("textarea", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.image.caption,
-                                            expression: "image.caption"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "caption",
-                                          placeholder: "Caption"
-                                        },
-                                        domProps: { value: _vm.image.caption },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.image,
-                                              "caption",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
+                                    _vm.image.media_type === "image"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("textarea", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.image.caption,
+                                                  expression: "image.caption"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "text",
+                                                name: "caption",
+                                                placeholder: "Caption"
+                                              },
+                                              domProps: {
+                                                value: _vm.image.caption
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.image,
+                                                    "caption",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
                                     _vm._v(" "),
-                                    _c("div", { staticClass: "form-group" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.image.alt,
-                                            expression: "image.alt"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "alt",
-                                          placeholder: "Alt text"
-                                        },
-                                        domProps: { value: _vm.image.alt },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.image,
-                                              "alt",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
+                                    _vm.image.media_type === "image"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.image.alt,
+                                                  expression: "image.alt"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "text",
+                                                name: "alt",
+                                                placeholder: "Alt text"
+                                              },
+                                              domProps: {
+                                                value: _vm.image.alt
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.image,
+                                                    "alt",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
                                     _vm._v(" "),
-                                    _c("div", { staticClass: "form-group" }, [
-                                      _c("textarea", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.image.description,
-                                            expression: "image.description"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "description",
-                                          placeholder: "Description"
-                                        },
-                                        domProps: {
-                                          value: _vm.image.description
-                                        },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.image,
-                                              "description",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
+                                    _vm.image.media_type === "image"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("textarea", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.image.description,
+                                                  expression:
+                                                    "image.description"
+                                                }
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "text",
+                                                name: "description",
+                                                placeholder: "Description"
+                                              },
+                                              domProps: {
+                                                value: _vm.image.description
+                                              },
+                                              on: {
+                                                input: function($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.image,
+                                                    "description",
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c(
                                       "button",
@@ -38690,59 +38906,44 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      {
-        staticClass:
-          "container-fluid tab-pane fade show active text-center h-100",
-        attrs: { id: "dropzone", role: "tabpanel" }
-      },
+      "form",
+      { staticClass: "uploader d-flex h-100", attrs: { id: "fileDropzone" } },
       [
-        _c(
-          "form",
-          { staticClass: "d-flex h-100", attrs: { id: "fileDropzone" } },
-          [
-            _c("div", { staticClass: "uploader my-auto mx-auto w-50" }, [
-              _c("div", { staticClass: "drop-uploader h4 mb-0" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t\t\t\tDrop files to upload\n\t\t\t\t\t\t\t\t"
-                )
-              ]),
+        _c("div", { staticClass: "my-auto mx-auto w-50" }, [
+          _c("div", { staticClass: "drop-uploader h4 mb-0" }, [
+            _vm._v("\n\t\t\t\t\t\t\t\t\tDrop files to upload\n\t\t\t\t\t\t\t\t")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-inline-block border border-secondary rounded-circle my-3 p-2",
+              staticStyle: { "line-height": ".9" }
+            },
+            [_vm._v("or")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "select-uploader text-left" }, [
+            _c("div", { staticClass: "custom-file" }, [
+              _c("input", {
+                staticClass: "custom-file-input",
+                attrs: { id: "media" }
+              }),
               _vm._v(" "),
               _c(
-                "div",
-                {
-                  staticClass:
-                    "d-inline-block border border-secondary rounded-circle my-3 p-2",
-                  staticStyle: { "line-height": ".9" }
-                },
-                [_vm._v("or")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "select-uploader text-left" }, [
-                _c("div", { staticClass: "custom-file" }, [
-                  _c("input", {
-                    staticClass: "custom-file-input",
-                    attrs: { id: "media" }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "custom-file-label",
-                      attrs: { for: "media" }
-                    },
-                    [_vm._v("Browse")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("strong", {
-                staticClass: "error text-danger",
-                attrs: { "data-dz-errormessage": "" }
-              })
+                "label",
+                { staticClass: "custom-file-label", attrs: { for: "media" } },
+                [_vm._v("Browse")]
+              )
             ])
-          ]
-        )
+          ]),
+          _vm._v(" "),
+          _c("strong", {
+            staticClass: "error text-danger",
+            attrs: { "data-dz-errormessage": "" }
+          })
+        ])
       ]
     )
   },

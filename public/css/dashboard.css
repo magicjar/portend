@@ -9995,23 +9995,27 @@ a.text-dark:focus {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #dee2e6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #6c757d;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #495057;
 }
 
 html {
   min-height: 100%;
+}
+
+hr {
+  margin: 1.25rem 0;
 }
 
 #dashboard {
@@ -10287,6 +10291,17 @@ html {
   margin-top: 1px;
 }
 
+.uploader {
+  border: 3px dashed #007bff;
+  border-radius: 0.5rem;
+  padding: 6rem;
+}
+
+.dz-drag-hover {
+  border-style: solid;
+  background-color: #f8f9fa;
+}
+
 .media-checkbox {
   position: relative;
   background-color: #dee2e6;
@@ -10307,7 +10322,6 @@ html {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
-  height: 100%;
   width: 100%;
   top: 0;
   right: 0;
@@ -10317,6 +10331,22 @@ html {
   opacity: 1;
   -webkit-transition: opacity .1s;
   transition: opacity .1s;
+}
+
+.media-checkbox .media-overlay {
+  position: absolute;
+  margin: auto;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  width: 0;
+  height: 0;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.7);
+  border-style: solid;
+  border-width: 18px 0 18px 30px;
 }
 
 .media-checkbox.selected {

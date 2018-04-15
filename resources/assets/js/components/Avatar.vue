@@ -27,7 +27,7 @@
 
         created() {
             bus.$on('theImage', (data) => {
-                this.ava = data.image_url
+                this.ava = data.thumbnail
             });
         },
 

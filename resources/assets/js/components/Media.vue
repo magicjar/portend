@@ -4,10 +4,10 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="container-fluid text-center h-100" id="dropzone">
-						<form class="d-flex h-100 row" id="fileDropzone">
-							<div class="uploader my-5 mx-auto w-50">
+						<form class="uploader d-flex h-100 row" id="fileDropzone">
+							<div class="my-5 mx-auto w-50">
 								<div class="drop-uploader h4 mb-0">
-									Drop files to upload
+									Drop images to upload
 								</div>
 								<div class="d-inline-block border border-secondary rounded-circle my-3 p-2" style="line-height: .9">or</div>
 								<div class="select-uploader text-left">
@@ -32,6 +32,7 @@
 								<button id="btn-import" @click.prevent="importFromUrl()" class="btn btn-secondary" type="button">Import</button>
 							</div>
 						</form>
+						<small class="form-text text-muted">Supported host: Youtube, Vimeo, SoundCloud</small>
 					</div>
 				</div>
 			</div>
@@ -62,8 +63,9 @@
 											</div>
 										</div>
 									</li>
-									<li v-for="image in media" v-bind:key="image.id" class="col-6 col-lg-4 col-xl-3 px-2 mb-3">
+									<li v-for="image in media" v-bind:key="image.id" class="col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3">
 										<div @click.prevent="editMedia(image)" role="checkbox" :class="[{ selected: image.id == img.id }]" class="media-checkbox">
+											<div class="media-overlay" v-if="image.media_type !== 'image'"></div>
 											<img class="media-thumbnail img-fluid rounded-0" :title="image.title" :alt="image.alt" :src="image.thumbnail">
 										</div>
 									</li>
