@@ -15,9 +15,15 @@
 	<div class="actions-body mb-4">
         <div class="card">
             <div class="card-body">
-                <div class="form-group">
-                	<label for="site_name" class="font-weight-bold">Site title</label>
-					<input class="form-control" type="text" name="site_name" value="{{ isset($setting->setting['site_name']) ? $setting->setting['site_name'] : '' }}" placeholder="Enter your site title">
+				<div class="form-row">
+					<div class="col-sm-6 form-group">
+						<label for="site_name" class="font-weight-bold">Site title</label>
+						<input class="form-control" type="text" name="site_name" value="{{ isset($setting->setting['site_name']) ? $setting->setting['site_name'] : '' }}" placeholder="Enter your site title">
+					</div>
+					<div class="col-sm-6 form-group">
+						<label for="favicon" class="font-weight-bold">Favicon (Icon)</label>
+						<input class="form-control" type="text" name="favicon" value="{{ isset($setting->setting['favicon']) ? $setting->setting['favicon'] : '' }}" placeholder="Enter your favicon">
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="site_description" class="font-weight-bold">Site description</label>

@@ -3,7 +3,7 @@
         <ul class="nav flex-column" id="menus">
             <!-- Dashboard -->
             <li class="nav-item">
-                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard.index') }}"><span class="mr-2" data-feather="home"></span>Dashboard</a>
+                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard.index') }}"><span class="mr-2" data-feather="compass"></span>Dashboard</a>
             </li>
 
             <!-- About Me -->

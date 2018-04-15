@@ -9,8 +9,11 @@
                             <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your skill here" v-model="skill.name" required>
                         </div>
                         <div class="form-group">
-                            <label for="institution" class="font-weight-bold">Knowledge level ( {{ skill.institution }} )</label>
-                            <input class="custom-range-slider" type="range" min="1" max="100" name="institution" id="institution" v-model="skill.institution" required>
+                            <label for="institution" class="font-weight-bold">Knowledge level</label>
+                            <div class="custom-range">
+                                <div class="custom-range-text" >{{ skill.institution }}</div>
+                                <input class="custom-range-slider" type="range" min="1" max="100" name="institution" id="institution" v-model="skill.institution" required>
+                            </div>
                         </div>
                         <div>
                             <label for="name" class="font-weight-bold">Description</label>
@@ -25,7 +28,7 @@
                         <div class="card mb-4">
                             <h5 class="card-header">Publish</h5>
                             <div class="card-body">
-                                <button type="submit" class="btn btn-primary ml-auto">Save</button>
+                                <button type="submit" class="btn btn-primary ml-auto"><i data-feather="save"></i> Save</button>
                             </div>
                         </div>
                     </div>

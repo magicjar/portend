@@ -44,6 +44,19 @@ class Setting
     }
 
     /**
+     * Returns site favicon.
+     * 
+     * @return mixed
+     */
+    public function getFavicon()
+    {
+        if ( isset($this->setting['favicon']) && $this->setting['favicon'])
+        {
+            return $this->setting['favicon'];
+        }
+    }
+
+    /**
      * Returns show article.
      * 
      * @return mixed
