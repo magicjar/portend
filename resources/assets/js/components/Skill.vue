@@ -10,9 +10,13 @@
                         </div>
                         <div class="form-group">
                             <label for="institution" class="font-weight-bold">Knowledge level</label>
-                            <div class="custom-range">
+                            <!-- <div class="custom-range">
                                 <div class="custom-range-text" >{{ skill.institution }}</div>
                                 <input class="custom-range-slider" type="range" min="1" max="100" name="institution" id="institution" v-model="skill.institution" required>
+                            </div> -->
+                            <div class="d-flex">
+                                <div class="custom-range-text" >{{ skill.institution }}</div>
+                                <input class="custom-range" type="range" min="1" max="100" name="institution" id="institution" v-model="skill.institution" required>
                             </div>
                         </div>
                         <div>
