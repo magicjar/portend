@@ -34899,13 +34899,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -34930,10 +34923,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			img: {},
 			pagination: {},
-			url_import: {
-				url_to_import: '',
-				url_to_import_type: ''
-			}
+			imports: {
+				import_file: '',
+				import_type: '',
+				import_title: '',
+				import_thumbnail: ''
+			},
+			oembed_data: {}
 		};
 	},
 	mounted: function mounted() {
@@ -34948,11 +34944,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		importFromUrl: function importFromUrl() {
 			var _this = this;
 
-			axios.post(this.$baseUrl + '/api/media/import', this.url_import).then(function (data) {
-				_this.fetchMedia();
+			var spinner = $('#spinner');
+			var button = $('#btn-import');
+			var url = this.imports.import_file;
+			var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+			var vm = this;
+
+			if (domain === 'youtube.com' || domain === 'youtu.be') {
+				this.imports.import_type = 'video';
+			} else if (domain === 'vimeo.com') {
+				this.imports.import_type = 'video';
+			} else if (domain === 'soundcloud.com') {
+				this.imports.import_type = 'audio';
+			} else {
+				return alert('Host not supported!');
+			}
+
+			// Fetch noembed and get the data
+			fetch('https://noembed.com/embed?url=' + url).then(function (response) {
+				return response.json();
+			}).then(function (response) {
+				_this.oembed_data = response;
+				_this.imports.import_thumbnail = response.thumbnail_url;
+				_this.imports.import_title = response.title;
 			}).catch(function (error) {
 				return console.log(error);
 			});
+
+			// Show spinner / disabled button
+			spinner.show();
+			button.attr("disabled", true);
+
+			// Wait 2seconds until noembed get response to prevent error
+			setTimeout(function () {
+				axios.post(vm.$baseUrl + '/api/media/import', vm.imports).then(function (data) {
+					vm.imports.import_file = '';
+					vm.imports.import_type = '';
+					vm.imports.import_title = '';
+					vm.imports.import_thumbnail = '';
+					vm.fetchMedia();
+				}).catch(function (error) {
+					return console.log(error);
+				});
+
+				// Hide spinner / enabled button
+				spinner.hide();
+				button.attr("disabled", false);
+			}, 3000);
 		},
 		mediaUploads: function mediaUploads() {
 			var previewNode = document.querySelector("#template");
@@ -35071,82 +35109,31 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.url_import.url_to_import,
-                    expression: "url_import.url_to_import"
+                    value: _vm.imports.import_file,
+                    expression: "imports.import_file"
                   }
                 ],
-                staticClass: "form-control",
+                staticClass: "form-control pr-4",
                 attrs: { type: "text", placeholder: "http://" },
-                domProps: { value: _vm.url_import.url_to_import },
+                domProps: { value: _vm.imports.import_file },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(
-                      _vm.url_import,
-                      "url_to_import",
-                      $event.target.value
-                    )
+                    _vm.$set(_vm.imports, "import_file", $event.target.value)
                   }
                 }
               }),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.url_import.url_to_import_type,
-                      expression: "url_import.url_to_import_type"
-                    }
-                  ],
-                  staticClass: "custom-select",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.url_import,
-                        "url_to_import_type",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "", selected: "" } }, [
-                    _vm._v("Type")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "image" } }, [
-                    _vm._v("Image")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "video" } }, [
-                    _vm._v("Video")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "audio" } }, [_vm._v("Audio")])
-                ]
-              ),
-              _vm._v(" "),
               _c("div", { staticClass: "input-group-append" }, [
+                _c("i", { attrs: { id: "spinner", "data-feather": "sun" } }),
+                _vm._v(" "),
                 _c(
                   "button",
                   {
                     staticClass: "btn btn-secondary",
-                    attrs: { type: "button" },
+                    attrs: { id: "btn-import", type: "button" },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -35329,12 +35316,12 @@ var render = function() {
                       [
                         _c("h5", [_vm._v("Media details")]),
                         _vm._v(" "),
-                        _vm.image.media_type === "image"
+                        _vm.image.thumbnail
                           ? _c("img", {
                               staticClass: "img-fluid mb-2",
                               attrs: { src: _vm.image.thumbnail }
                             })
-                          : _c("div", [_vm._v("Audio/Video")]),
+                          : _vm._e(),
                         _vm._v(" "),
                         _c(
                           "ul",
@@ -35800,6 +35787,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -35947,40 +35937,40 @@ var render = function() {
                     staticClass: "font-weight-bold",
                     attrs: { for: "institution" }
                   },
-                  [
-                    _vm._v(
-                      "Knowledge level ( " +
-                        _vm._s(_vm.skill.institution) +
-                        " )"
-                    )
-                  ]
+                  [_vm._v("Knowledge level")]
                 ),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.skill.institution,
-                      expression: "skill.institution"
+                _c("div", { staticClass: "custom-range" }, [
+                  _c("div", { staticClass: "custom-range-text" }, [
+                    _vm._v(_vm._s(_vm.skill.institution))
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.skill.institution,
+                        expression: "skill.institution"
+                      }
+                    ],
+                    staticClass: "custom-range-slider",
+                    attrs: {
+                      type: "range",
+                      min: "1",
+                      max: "100",
+                      name: "institution",
+                      id: "institution",
+                      required: ""
+                    },
+                    domProps: { value: _vm.skill.institution },
+                    on: {
+                      __r: function($event) {
+                        _vm.$set(_vm.skill, "institution", $event.target.value)
+                      }
                     }
-                  ],
-                  staticClass: "custom-range-slider",
-                  attrs: {
-                    type: "range",
-                    min: "1",
-                    max: "100",
-                    name: "institution",
-                    id: "institution",
-                    required: ""
-                  },
-                  domProps: { value: _vm.skill.institution },
-                  on: {
-                    __r: function($event) {
-                      _vm.$set(_vm.skill, "institution", $event.target.value)
-                    }
-                  }
-                })
+                  })
+                ])
               ]),
               _vm._v(" "),
               _c("div", [
@@ -36119,7 +36109,10 @@ var staticRenderFns = [
                   staticClass: "btn btn-primary ml-auto",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Save")]
+                [
+                  _c("i", { attrs: { "data-feather": "save" } }),
+                  _vm._v(" Save")
+                ]
               )
             ])
           ])

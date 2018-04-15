@@ -17,8 +17,8 @@ class MediaController extends Controller
     public function __construct(Image $media)
     {
     	$this->middleware('auth');
-    	$this->photos_path = public_path('/storage');
-        $this->thumbnail_path = public_path('/storage/thumbnail');
+    	$this->photos_path = public_path('storage');
+        $this->thumbnail_path = public_path('storage/thumbnail');
     	$this->media = $media;
     }
 
@@ -52,6 +52,8 @@ class MediaController extends Controller
             // Create save name from original slug, 6 random string and added original extension
             $save_name = $original_name . '.' . $photo->getClientOriginalExtension();
 
+            $thumbnail_name = asset('storage/thumbnail/' . $save_name);
+
             $image = Intervention::make($photo);
 
             $resolution = $image->width() . ' x ' .$image->height();
@@ -70,6 +72,8 @@ class MediaController extends Controller
 
             $upload = new $this->media;
             $upload->file = $save_name;
+            $upload->media_type = 'image';
+            $upload->thumbnail = $thumbnail_name;
             $upload->title = $original_name;
             $upload->resolution = $resolution;
             $upload->filesize = $filesize;
@@ -115,5 +119,19 @@ class MediaController extends Controller
         }
 
         $image->delete();
+    }
+
+    public function mediaImport(Request $request)
+    {
+        $media = new $this->media;
+
+        $media->file = $request['import_file'];
+        $media->media_type = $request['import_type'];
+        $media->title = $request['import_title'];
+        $media->thumbnail = $request['import_thumbnail'];
+
+        if($media->save()){
+            return new Resource($media);
+        }
     }
 }

@@ -49,6 +49,7 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 
 	// Media
 	Route::post('media/upload', 'MediaController@upload')->name('media.upload');
+	Route::post('media/import', 'MediaController@mediaImport')->name('media.import');
 	Route::get('media', 'MediaController@mediaIndex')->name('media.index');
 	Route::put('media', 'MediaController@mediaPut')->name('media.update');
 	Route::delete('media/{id}', 'MediaController@mediaDelete')->name('media.destroy');

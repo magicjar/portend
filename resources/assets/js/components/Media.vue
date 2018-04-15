@@ -4,7 +4,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="container-fluid text-center h-100" id="dropzone">
-						<form class="d-flex h-100" id="fileDropzone">
+						<form class="d-flex h-100 row" id="fileDropzone">
 							<div class="uploader my-5 mx-auto w-50">
 								<div class="drop-uploader h4 mb-0">
 									Drop files to upload
@@ -17,6 +17,19 @@
 									</div>
 								</div>
 								<strong class="error text-danger" data-dz-errormessage></strong>
+							</div>
+						</form>
+					</div>
+					<hr>
+					<div class="link-uploader my-5 mx-auto w-50">
+						<div class="h4 text-center mb-3">
+							Import file from url
+						</div>
+						<form class="input-group mb-0">
+							<input v-model="imports.import_file" type="text" class="form-control pr-4" placeholder="http://">
+							<div class="input-group-append">
+								<i id="spinner" data-feather="sun"></i>
+								<button id="btn-import" @click.prevent="importFromUrl()" class="btn btn-secondary" type="button">Import</button>
 							</div>
 						</form>
 					</div>
@@ -59,11 +72,12 @@
 							<div class="col-sm-4 h-100 border-left p-0" style="overflow: auto;">
 								<div v-show="show" class="detail p-3 border-bottom">
 									<h5>Media details</h5>
-									<img class="img-fluid mb-2" :src="image.thumbnail">
+									<img v-if="image.thumbnail" class="img-fluid mb-2" :src="image.thumbnail">
 									<ul class="list-unstyled mb-0 text-muted">
 										<li class="font-weight-bold">{{image.file}}</li>
 										<li class="small">{{image.created_at}}</li>
-										<li class="small">{{image.filesize}} Byte</li>
+										<li class="small text-capitalize">{{image.media_type}}</li>
+										<li class="small" v-if="image.filesize">{{image.filesize}} Byte</li>
 										<li class="small">{{image.resolution}}</li>
 										<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 									</ul>
@@ -75,13 +89,13 @@
 									<div class="form-group">
 										<input class="form-control" type="text" name="title" v-model="image.title" placeholder="Title">
 									</div>
-									<div class="form-group">
+									<div v-if="image.media_type === 'image'" class="form-group">
 										<textarea class="form-control" type="text" name="caption" v-model="image.caption" placeholder="Caption"></textarea>
 									</div>
-									<div class="form-group">
+									<div v-if="image.media_type === 'image'" class="form-group">
 										<input class="form-control" type="text" name="alt" v-model="image.alt" placeholder="Alt text">
 									</div>
-									<div class="form-group">
+									<div v-if="image.media_type === 'image'" class="form-group">
 										<textarea class="form-control" type="text" name="description" v-model="image.description" placeholder="Description"></textarea>
 									</div>
 									<button type="submit" class="btn btn-primary btn-sm">Save</button>
@@ -107,6 +121,7 @@
 				image: {
 					id: '',
 					file: '',
+					media_type: '',
 					title: '',
 					caption: '',
 					alt: '',
@@ -118,7 +133,14 @@
 					created_at: ''
 				},
 				img: {},
-				pagination: {}
+				pagination: {},
+				imports: {
+					import_file: '',
+					import_type: '',
+					import_title: '',
+					import_thumbnail: ''
+				},
+				oembed_data: {}
 			}
 		},
 
@@ -131,6 +153,54 @@
         },
 
 		methods: {
+			importFromUrl(){
+				var spinner = $('#spinner');
+				var button = $('#btn-import');
+				var url = this.imports.import_file;
+				var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0]
+				var vm = this
+
+				if (domain === 'youtube.com' || domain === 'youtu.be') {
+					this.imports.import_type = 'video'
+				} else if (domain === 'vimeo.com') {
+					this.imports.import_type = 'video'
+				} else if (domain === 'soundcloud.com') {
+					this.imports.import_type = 'audio'
+				} else {
+					return alert('Host not supported!')
+				}
+
+				// Fetch noembed and get the data
+				fetch('https://noembed.com/embed?url=' + url)
+				.then(response => response.json())
+				.then(response => {
+                    this.oembed_data = response;
+                    this.imports.import_thumbnail = response.thumbnail_url;
+                    this.imports.import_title = response.title;
+                })
+                .catch(error => console.log(error));
+
+                // Show spinner / disabled button
+				spinner.show();
+				button.attr("disabled", true)
+
+                // Wait 2seconds until noembed get response to prevent error
+                setTimeout(function(){
+                	axios.post(vm.$baseUrl + '/api/media/import', vm.imports)
+					.then(data => {
+						vm.imports.import_file = '';
+						vm.imports.import_type = '';
+						vm.imports.import_title = '';
+						vm.imports.import_thumbnail = '';
+					    vm.fetchMedia();
+					})
+					.catch(error => console.log(error));
+
+					// Hide spinner / enabled button
+					spinner.hide();
+					button.attr("disabled", false)
+            	}, 3000);
+			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
 				var previewTemplate = previewNode.parentNode.innerHTML;
@@ -172,6 +242,7 @@
 			editMedia(image){
 				this.image.id = image.id;
                 this.image.file = image.file;
+                this.image.media_type = image.media_type;
                 this.image.title = image.title;
                 this.image.caption = image.caption;
                 this.image.alt = image.alt;

@@ -12,18 +12,17 @@ class Image extends Model
     protected $table = 'images';
 
     protected $fillable = [
-    	'file', 'title', 'caption', 'alt', 'description'
+    	'file', 'media_type', 'title', 'caption', 'alt', 'description'
     ];
 
-    protected $appends = ['image_url', 'thumbnail'];
+    protected $appends = ['image_url'];
 
     public function getImageUrlAttribute()
     {
-    	return asset('storage/' . $this->file);
-    }
-
-    public function getThumbnailAttribute()
-    {
-    	return asset('storage/thumbnail/' . $this->file);
+        if ($this->media_type === 'image'){
+            return asset('storage/' . $this->file);
+        } else {
+            return $this->file;
+        }
     }
 }
