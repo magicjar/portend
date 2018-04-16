@@ -82,6 +82,11 @@ class DashboardController extends Controller
         return view('dashboard.portfolio.tag');
     }
 
+    public function team()
+    {
+        return view('dashboard.team');
+    }
+
     public function testimonial()
     {
         return view('dashboard.testimonial');

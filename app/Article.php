@@ -19,7 +19,7 @@ class Article extends Model
 
     protected $appends = ['category_id', 'url'];
 
-    public function thumb()
+    public function thumbnail()
     {
         return $this->belongsTo('App\Image', 'image');
     }

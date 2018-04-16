@@ -79,6 +79,10 @@
             </li>
             @endif
 
+            <li class="nav-item">
+                <a class="nav-link mb-2 border-pill collapsed {{ Request::is('*team*') ? 'active' : '' }}" href="{{ route('dashboard.team') }}"><span class="mr-2" data-feather="users"></span>Team</a>
+            </li>
+
             <!-- Testimonial -->
             @if($setting->setting['showTestimonial'])
             <li class="nav-item">

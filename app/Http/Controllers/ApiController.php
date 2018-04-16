@@ -10,12 +10,13 @@ use App\Resume;
 use App\Category;
 use App\Tag;
 use App\Testimonial;
+use App\Team;
 use App\Setting;
 use App\Http\Resources\Resource;
 
 class ApiController extends Controller
 {
-    public function __construct(Article $article, Portfolio $portfolio, Resume $resume, Category $category, Tag $tag, Testimonial $testimonial, Setting $setting)
+    public function __construct(Article $article, Portfolio $portfolio, Resume $resume, Category $category, Tag $tag, Team $team, Testimonial $testimonial, Setting $setting)
     {
         $this->middleware('auth');
         $this->article = $article;
@@ -24,6 +25,7 @@ class ApiController extends Controller
         $this->category = $category;
         $this->tag = $tag;
         $this->testimonial = $testimonial;
+        $this->team = $team;
         $this->setting = $setting;
     }
 
@@ -203,6 +205,37 @@ class ApiController extends Controller
 
         if($testimonial->delete()){
             return new Resource($testimonial);
+        }
+    }
+
+    public function teamIndex()
+    {
+        $teams = $this->team->all();
+
+        return Resource::collection($teams);
+    }
+
+    public function teamStore(Request $request)
+    {
+        $team = $request->isMethod('put') ? $this->team->findOrFail($request->team_id) : new $this->team;
+
+        $team->id = $request['team_id'];
+        $team->name = $request['name'];
+        $team->job_position = $request['job_position'];
+        $team->description = $request['description'];
+        $team->avatar = $request['avatar'];
+        
+        if($team->save()){
+            return new Resource($team);
+        }
+    }
+
+    public function teamDestroy($id)
+    {
+        $team = $this->team->findOrFail($id);
+
+        if($team->delete()){
+            return new Resource($team);
         }
     }
 }

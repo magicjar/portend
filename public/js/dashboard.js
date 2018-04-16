@@ -520,6 +520,7 @@ Vue.component('tag-component', __webpack_require__(75));
 Vue.component('portfolioindex-component', __webpack_require__(78));
 Vue.component('portfoliocreate-component', __webpack_require__(81));
 Vue.component('portfoliomedia-component', __webpack_require__(84));
+Vue.component('team-component', __webpack_require__(87));
 
 var baseUrl = document.head.querySelector('meta[name="base-url"]');
 
@@ -35221,15 +35222,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
 			var vm = this;
 
-			if (domain === 'youtube.com' || domain === 'youtu.be') {
-				this.imports.import_type = 'video';
-			} else if (domain === 'vimeo.com') {
+			if (domain === 'youtube.com' || domain === 'youtu.be' || domain === 'vimeo.com') {
 				this.imports.import_type = 'video';
 			} else if (domain === 'soundcloud.com') {
 				this.imports.import_type = 'audio';
 			} else {
 				return alert('Host not supported!');
 			}
+
+			// Array.prototype.includes
+			/*var video_host = ['youtube.com', 'youtu.be', 'vimeo.com']
+           	var audio_host = ['soundcloud.com']
+   	if (video_host.includes(domain)) {
+   	this.imports.import_type = 'video'
+   } else if (audio_host.includes(domain)) {
+   	this.imports.import_type = 'audio'
+   } else {
+   	return alert('Host not supported!')
+   }*/
 
 			// Fetch noembed and get the data
 			fetch('https://noembed.com/embed?url=' + url).then(function (response) {
@@ -41365,6 +41375,428 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-07baecb3", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(88)
+/* template */
+var __vue_template__ = __webpack_require__(89)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Team.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-768eb9d4", Component.options)
+  } else {
+    hotAPI.reload("data-v-768eb9d4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dashboard_js__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            teams: [],
+            team: {
+                id: '',
+                name: '',
+                job_position: '',
+                description: '',
+                avatar: ''
+            },
+            edit_state: false
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        this.fetchTeams();
+        __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$on('theImage', function (data) {
+            _this.team.avatar = data.image_url;
+        });
+    },
+
+
+    methods: {
+        setAvatar: function setAvatar() {
+            __WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('thumbTrue', this.isThumbnail = true);
+        },
+        fetchTeams: function fetchTeams() {
+            var _this2 = this;
+
+            axios.get(this.$baseUrl + '/api/team').then(function (response) {
+                _this2.teams = response.data.data;
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        },
+        addTeam: function addTeam() {
+            var _this3 = this;
+
+            if (this.edit_state === false) {
+                // Create
+                axios.post(this.$baseUrl + '/api/team', this.team).then(function (data) {
+                    _this3.team.name = '';
+                    _this3.team.job_position = '';
+                    _this3.team.description = '';
+                    _this3.team.avatar = '';
+                    _this3.fetchTeams();
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            } else {
+                // Update
+                axios.put(this.$baseUrl + '/api/team', this.team).then(function (data) {
+                    _this3.team.name = '';
+                    _this3.team.job_position = '';
+                    _this3.team.description = '';
+                    _this3.team.avatar = '';
+                    _this3.fetchTeams();
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        staticClass: "actions-wrapper row no-gutters",
+        attrs: { id: "team" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addTeam($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "actions-body mb-4" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.team.name,
+                      expression: "team.name"
+                    }
+                  ],
+                  staticClass: "form-control form-control-lg",
+                  attrs: {
+                    type: "text",
+                    name: "name",
+                    id: "name",
+                    placeholder: "Enter team name"
+                  },
+                  domProps: { value: _vm.team.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.team, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.team.job_position,
+                      expression: "team.job_position"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "job_position",
+                    id: "job_position",
+                    placeholder: "Enter job position"
+                  },
+                  domProps: { value: _vm.team.job_position },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.team, "job_position", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "custom-file" }, [
+                  _c("input", {
+                    staticClass: "form-control-plaintext px-3",
+                    attrs: { type: "text", name: "image", readonly: "" },
+                    domProps: {
+                      value: _vm.team.avatar ? _vm.team.avatar : "http://"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group-append" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-outline-secondary",
+                        attrs: {
+                          type: "button",
+                          "data-toggle": "modal",
+                          "data-target": "#imagemodal"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.setAvatar($event)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.team.avatar ? "Change image" : "Add image")
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.team.description,
+                      expression: "team.description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "description",
+                    id: "description",
+                    placeholder: "Enter team description",
+                    rows: "5"
+                  },
+                  domProps: { value: _vm.team.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.team, "description", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body pb-1" }, [
+        _c(
+          "div",
+          { staticClass: "row" },
+          _vm._l(_vm.teams, function(team) {
+            return _c(
+              "div",
+              { key: team.id, staticClass: "col-12 col-xl-6 pb-3" },
+              [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "d-sm-flex" }, [
+                      _c("img", {
+                        staticClass: "d-none d-sm-block rounded-circle",
+                        attrs: {
+                          src: team.avatar
+                            ? team.avatar
+                            : _vm.$baseUrl + "/image/user.svg",
+                          width: "130",
+                          height: "130"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "ml-sm-4" }, [
+                        _c("h3", { staticClass: "h4 card-text" }, [
+                          _vm._v(_vm._s(team.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "font-weight-bold" }, [
+                          _vm._v(_vm._s(team.job_position))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(team.description))
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          })
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "actions-meta" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card mb-4" }, [
+            _c("h5", { staticClass: "card-header" }, [_vm._v("Publish")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary ml-auto",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Save")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-768eb9d4", module.exports)
   }
 }
 

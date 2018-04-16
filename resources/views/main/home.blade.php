@@ -124,7 +124,9 @@
         @foreach($articles as $article)
         <div class="col-sm-6">
             <div class="card my-3">
-                <img class="card-img-top" src="{{ $article->thumb->thumbnail }}" alt="{{ $article->title }}">
+                @if($article->thumbnail)
+                <img class="card-img-top" src="{{ $article->thumbnail->thumbnail }}" alt="{{ $article->title }}">
+                @endif
                 <div class="card-body">
                     <h2 class="card-title h4"><a href="{{ route('article.show', $article->id) }}">{{ str_limit($article->title, 60) }}</a></h5>
                     <p class="card-text">{{ str_limit(strip_tags($article->content), 220) }}</p>
@@ -138,24 +140,28 @@
 </section>
 <section id="contact" class="p-5 bg-danger">
     <h2>Contact</h2>
-    <form method="POST" action="{{ route('contact') }}">
+    <form method="POST" action="{{ route('contact') }}" class="row">
         @csrf
-        <div class="form-row form-group">
-            <div class="col">
+        <div class="col-sm-6 mb-3">
+            <div class="form-group">
                 <input class="form-control" type="text" name="name" placeholder="Your name" required>
             </div>
-            <div class="col">
+            <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="Your email" required>
             </div>
+            <div class="form-group mb-0">
+                <input class="form-control" type="text" name="subject" placeholder="Subject" required>
+            </div>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="subject" placeholder="Subject" required>
+        <div class="col-sm-6 mb-3">
+            <div class="form-group mb-0 h-100">
+                <textarea class="form-control h-100" rows="3" name="message" placeholder="Message"></textarea>
+            </div>
         </div>
-        <div class="form-group">
-            <textarea class="form-control" name="message" placeholder="Message"></textarea>
-        </div>
-        <div class="card p-2">
-            <button type="submit" class="btn btn-primary">Send</button>
+        <div class="col">
+            <div class="card p-2">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
         </div>
     </form>
 </section>

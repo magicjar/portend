@@ -17,7 +17,6 @@ $factory->define(App\Article::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(7, 11),
         'content' => $faker->paragraphs(rand(12, 16), true),
-        'image' => '1',
         'slug' => $faker->slug()
     ];
 });

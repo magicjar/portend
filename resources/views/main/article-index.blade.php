@@ -7,7 +7,9 @@
         @foreach($articles as $article)
         <div class="col-sm-6">
             <div class="card my-3">
-                <img class="card-img-top" src="{{ $article->thumb->thumbnail }}" alt="{{ $article->title }}">
+                @if($article->thumbnail)
+                <img class="card-img-top" src="{{ $article->thumbnail->thumbnail }}" alt="{{ $article->title }}">
+                @endif
                 <div class="card-body">
                     <h2 class="card-title h4"><a href="{{ route('article.show', $article->id) }}" title="{{ $article->title }}">{{ str_limit($article->title, 60) }}</a></h5>
                     <p class="card-text">{{ str_limit($article->content, 220) }}</p>

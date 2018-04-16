@@ -29,6 +29,7 @@ Vue.component('tag-component', require('./components/Tag.vue'));
 Vue.component('portfolioindex-component', require('./components/PortfolioIndex.vue'));
 Vue.component('portfoliocreate-component', require('./components/PortfolioCreate.vue'));
 Vue.component('portfoliomedia-component', require('./components/PortfolioMedia.vue'));
+Vue.component('team-component', require('./components/Team.vue'));
 
 let baseUrl = document.head.querySelector('meta[name="base-url"]');
 

@@ -76,6 +76,11 @@ Route::group(['prefix' => 'api', 'as' => 'api.'], function(){
 		Route::put('resume', 'ApiController@resumeStore')->name('resume.update');
 		Route::delete('resume/{id}', 'ApiController@resumeDestroy')->name('resume.destroy');
 	}
+
+	Route::get('team', 'ApiController@teamIndex')->name('team.index');
+	Route::post('team', 'ApiController@teamStore')->name('team.store');
+	Route::put('team', 'ApiController@teamStore')->name('team.update');
+	Route::delete('team/{id}', 'ApiController@teamDestroy')->name('team.destroy');
 });
 
 // Controller Route
@@ -115,6 +120,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function(){
 	Route::get('portfolio/category', 'DashboardController@portfolioCategory')->name('portfolio.category');
 	Route::get('portfolio/tag', 'DashboardController@portfolioTag')->name('portfolio.tag');
 	Route::resource('portfolio', 'PortfolioController', ['except' => ['show', 'destroy']]);
+
+	Route::get('team', 'DashboardController@team')->name('team');
 
 	Route::get('setting', 'DashboardController@setting')->name('setting');
 
