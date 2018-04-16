@@ -50,6 +50,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <div role="group" class="btn-group float-right">
+                                    <button @click="editTeam(team)" class="btn btn-sm btn-primary">Edit</button>
+                                    <button @click="deleteTeam(team.id)" class="btn btn-sm btn-danger">Delete</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,6 +120,24 @@
                         this.team.job_position = '';
                         this.team.description = '';
                         this.team.avatar = '';
+                        this.fetchTeams();
+                    })
+                    .catch(error => console.log(error));
+                }
+            },
+            editTeam(team){
+                this.edit_state = true;
+                this.team.id = team.id;
+                this.team.team_id = team.id;
+                this.team.name = team.name;
+                this.team.job_position = team.job_position;
+                this.team.description = team.description;
+                this.team.avatar = team.avatar;
+            },
+            deleteTeam(id){
+                if(confirm('This action cannot be undone!')){
+                    axios.delete(this.$baseUrl + '/api/team/' + id )
+                    .then(data => {
                         this.fetchTeams();
                     })
                     .catch(error => console.log(error));

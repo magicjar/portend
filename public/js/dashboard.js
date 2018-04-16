@@ -41492,6 +41492,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -41554,6 +41560,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this3.team.description = '';
                     _this3.team.avatar = '';
                     _this3.fetchTeams();
+                }).catch(function (error) {
+                    return console.log(error);
+                });
+            }
+        },
+        editTeam: function editTeam(team) {
+            this.edit_state = true;
+            this.team.id = team.id;
+            this.team.team_id = team.id;
+            this.team.name = team.name;
+            this.team.job_position = team.job_position;
+            this.team.description = team.description;
+            this.team.avatar = team.avatar;
+        },
+        deleteTeam: function deleteTeam(id) {
+            var _this4 = this;
+
+            if (confirm('This action cannot be undone!')) {
+                axios.delete(this.$baseUrl + '/api/team/' + id).then(function (data) {
+                    _this4.fetchTeams();
                 }).catch(function (error) {
                     return console.log(error);
                 });
@@ -41754,6 +41780,43 @@ var render = function() {
                         ])
                       ])
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group float-right",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-primary",
+                            on: {
+                              click: function($event) {
+                                _vm.editTeam(team)
+                              }
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                _vm.deleteTeam(team.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
+                      ]
+                    )
                   ])
                 ])
               ]
