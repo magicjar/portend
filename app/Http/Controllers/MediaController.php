@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
+use App\Media;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Resources\Resource;
@@ -14,7 +14,7 @@ class MediaController extends Controller
 	private $photos_path;
     private $thumbnail_path;
 
-    public function __construct(Image $media)
+    public function __construct(Media $media)
     {
     	$this->middleware('auth');
     	$this->photos_path = public_path('storage');

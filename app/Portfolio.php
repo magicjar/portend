@@ -31,16 +31,16 @@ class Portfolio extends Model
 
     public function thumb()
     {
-        return $this->belongsTo('App\Image', 'image');
+        return $this->belongsTo('App\Media', 'image');
     }
 
     public function image()
     {
-        return $this->belongsTo('App\Image', 'image');
+        return $this->belongsTo('App\Media', 'image');
     }
 
     public function media(){
-    	return $this->belongsToMany('App\Image', 'portfolio_image')->withTimestamps();
+    	return $this->belongsToMany('App\Media', 'portfolio_image')->withTimestamps();
     }
 
     public function getCategoryIdAttribute()

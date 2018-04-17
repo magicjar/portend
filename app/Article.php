@@ -21,12 +21,12 @@ class Article extends Model
 
     public function thumbnail()
     {
-        return $this->belongsTo('App\Image', 'image');
+        return $this->belongsTo('App\Media', 'image');
     }
 
     public function image()
     {
-        return $this->belongsTo('App\Image', 'image');
+        return $this->belongsTo('App\Media', 'image');
     }
 
     public function category()

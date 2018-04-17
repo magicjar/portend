@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as Intervention;
 
-class Image extends Model
+class Media extends Model
 {
-    protected $table = 'images';
+    protected $table = 'medias';
 
     protected $fillable = [
     	'file', 'media_type', 'title', 'caption', 'alt', 'description'
