@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .js('resources/assets/js/dashboard.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('resources/assets/sass/dashboard.scss', 'public/css');
+mix.js('themes/demo/assets/js/app.js', 'public/js')
+   .js('themes/demo/assets/js/dashboard.js', 'public/js')
+   .sass('themes/demo/assets/sass/app.scss', 'public/css')
+   .sass('themes/demo/assets/sass/dashboard.scss', 'public/css');

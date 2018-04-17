@@ -29,6 +29,38 @@ class Setting
     }
 
     /**
+     * Return currently active theme.
+     *
+     * @return string
+     */
+    public function getTheme()
+    {
+        return isset($this->setting['theme']) ? $this->setting['theme'] : 'demo';
+    }
+
+    /**
+     * Return view paths array for laravel view loader.
+     *
+     * @return array
+     */
+    public function getThemePaths()
+    {
+        $theme = $this->getTheme();
+
+        if ($theme === 'demo') {
+            return [base_path('themes/demo/views')];
+        }
+
+        return [
+            // Current theme
+            base_path('themes/' . $theme . '/views'),
+
+            // Fallback theme
+            base_path('themes/demo/views')
+        ];
+    }
+
+    /**
      * Returns site name.
      * 
      * @return mixed

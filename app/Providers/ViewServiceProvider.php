@@ -13,9 +13,7 @@ class ViewServiceProvider extends BaseViewServiceProvider
 
             return new FileViewFinder(
                 // Dynamic View Path / Change view path here
-                $app['files'], [base_path('resources\views')]
-
-                // $app['files'], [base_path('resources\views' . $theme)]
+                $app['files'], $app->make('setting')->getThemePaths()
             );
 
         });

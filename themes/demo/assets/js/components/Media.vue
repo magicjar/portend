@@ -162,15 +162,25 @@
 				var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0]
 				var vm = this
 
-				if (domain === 'youtube.com' || domain === 'youtu.be') {
-					this.imports.import_type = 'video'
-				} else if (domain === 'vimeo.com') {
+				if (domain === 'youtube.com' || domain === 'youtu.be' || domain === 'vimeo.com') {
 					this.imports.import_type = 'video'
 				} else if (domain === 'soundcloud.com') {
 					this.imports.import_type = 'audio'
 				} else {
 					return alert('Host not supported!')
 				}
+
+				// Array.prototype.includes
+				/*var video_host = ['youtube.com', 'youtu.be', 'vimeo.com']
+            	var audio_host = ['soundcloud.com']
+
+				if (video_host.includes(domain)) {
+					this.imports.import_type = 'video'
+				} else if (audio_host.includes(domain)) {
+					this.imports.import_type = 'audio'
+				} else {
+					return alert('Host not supported!')
+				}*/
 
 				// Fetch noembed and get the data
 				fetch('https://noembed.com/embed?url=' + url)
