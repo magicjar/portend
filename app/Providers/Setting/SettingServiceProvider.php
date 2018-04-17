@@ -3,20 +3,10 @@
 namespace App\Providers\Setting;
 
 use Illuminate\Support\ServiceProvider;
-use DB, App;
+use DB, Exception, App;
 
 class SettingServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
     /**
      * Register services.
      *
@@ -33,7 +23,7 @@ class SettingServiceProvider extends ServiceProvider
             $setting = false;
         }
 
-        App::singleton('setting', function() use($setting)
+        App::singleton('setting', function() use ($setting)
         {            
             return new Setting($setting);
         });
