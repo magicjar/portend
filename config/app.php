@@ -160,7 +160,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\Setting\SettingServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
 
     ],

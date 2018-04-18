@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Providers\Setting;
+namespace App\Providers;
 
+use DB, App, Exception;
+use App\Providers\Setting\Setting;
 use Illuminate\Support\ServiceProvider;
-use DB, Exception, App;
 
 class SettingServiceProvider extends ServiceProvider
 {
