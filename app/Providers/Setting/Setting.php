@@ -48,7 +48,13 @@ class Setting
         $theme = $this->getTheme();
 
         if ($theme === 'demo') {
-            return [base_path('themes/demo/views')];
+            return [
+                // Default theme
+                base_path('themes/demo/views'),
+
+                // Dashboard theme
+                base_path('app/views'),
+            ];
         }
 
         return [
@@ -56,7 +62,10 @@ class Setting
             base_path('themes/' . $theme . '/views'),
 
             // Fallback theme
-            base_path('themes/demo/views')
+            base_path('themes/demo/views'),
+
+            // Dashboard theme
+            base_path('app/views'),
         ];
     }
 

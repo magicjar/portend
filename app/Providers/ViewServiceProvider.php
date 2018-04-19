@@ -12,7 +12,7 @@ class ViewServiceProvider extends BaseViewServiceProvider
         $this->app->bind('view.finder', function($app){
 
             return new FileViewFinder(
-                // Dynamic View Path / Change view path here
+                // Dynamic View Path
                 $app['files'], $app->make('setting')->getThemePaths()
             );
 
