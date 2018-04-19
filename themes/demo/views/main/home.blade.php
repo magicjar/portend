@@ -96,7 +96,9 @@
         @forelse($portfolios as $portfolio)
         <div class="col-sm-6 my-3">
             <a href="{{ route('portfolio.show', $portfolio->id) }}">
+                @if($portfolio->thumb)
                 <img class="d-block w-100" src="{{ $portfolio->thumb->thumbnail }}" title="{{ $portfolio->title }}" alt="{{ $portfolio->title }}">
+                @endif
             </a>
         </div>
         @empty

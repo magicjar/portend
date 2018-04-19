@@ -35171,6 +35171,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -35214,6 +35217,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 	methods: {
+		myFunction: function myFunction() {
+			var copyText = document.getElementById("file");
+			copyText.select();
+			document.execCommand("Copy");
+		},
 		importFromUrl: function importFromUrl() {
 			var _this = this;
 
@@ -35648,196 +35656,213 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm.show
-                      ? _c(
-                          "form",
+                    _c(
+                      "form",
+                      {
+                        directives: [
                           {
-                            staticClass: "form-field p-3",
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.show,
+                            expression: "show"
+                          }
+                        ],
+                        staticClass: "form-field p-3",
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.saveMedia($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "input-group mb-3" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.image.image_url,
+                                expression: "image.image_url"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "file",
+                              type: "text",
+                              name: "file",
+                              readonly: ""
+                            },
+                            domProps: { value: _vm.image.image_url },
                             on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                                return _vm.saveMedia($event)
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.image,
+                                  "image_url",
+                                  $event.target.value
+                                )
                               }
                             }
-                          },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.image.image_url,
-                                    expression: "image.image_url"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "file",
-                                  readonly: ""
-                                },
-                                domProps: { value: _vm.image.image_url },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.image,
-                                      "image_url",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.image.title,
-                                    expression: "image.title"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "title",
-                                  placeholder: "Title"
-                                },
-                                domProps: { value: _vm.image.title },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.image,
-                                      "title",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _vm.image.media_type === "image"
-                              ? _c("div", { staticClass: "form-group" }, [
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.image.caption,
-                                        expression: "image.caption"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "caption",
-                                      placeholder: "Caption"
-                                    },
-                                    domProps: { value: _vm.image.caption },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.image,
-                                          "caption",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.image.media_type === "image"
-                              ? _c("div", { staticClass: "form-group" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.image.alt,
-                                        expression: "image.alt"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "alt",
-                                      placeholder: "Alt text"
-                                    },
-                                    domProps: { value: _vm.image.alt },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.image,
-                                          "alt",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.image.media_type === "image"
-                              ? _c("div", { staticClass: "form-group" }, [
-                                  _c("textarea", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.image.description,
-                                        expression: "image.description"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "description",
-                                      placeholder: "Description"
-                                    },
-                                    domProps: { value: _vm.image.description },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.image,
-                                          "description",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group-append" }, [
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-primary btn-sm",
-                                attrs: { type: "submit" }
+                                staticClass: "btn btn-info",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.myFunction()
+                                  }
+                                }
                               },
-                              [_vm._v("Save")]
+                              [_c("i", { attrs: { "data-feather": "copy" } })]
                             )
-                          ]
-                        )
-                      : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.image.title,
+                                expression: "image.title"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "title",
+                              placeholder: "Title"
+                            },
+                            domProps: { value: _vm.image.title },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.image,
+                                  "title",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _vm.image.media_type === "image"
+                          ? _c("div", { staticClass: "form-group" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.caption,
+                                    expression: "image.caption"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "caption",
+                                  placeholder: "Caption"
+                                },
+                                domProps: { value: _vm.image.caption },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "caption",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.image.media_type === "image"
+                          ? _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.alt,
+                                    expression: "image.alt"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "alt",
+                                  placeholder: "Alt text"
+                                },
+                                domProps: { value: _vm.image.alt },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "alt",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.image.media_type === "image"
+                          ? _c("div", { staticClass: "form-group" }, [
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.image.description,
+                                    expression: "image.description"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "description",
+                                  placeholder: "Description"
+                                },
+                                domProps: { value: _vm.image.description },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.image,
+                                      "description",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ]
+                    )
                   ]
                 )
               ])
@@ -35919,7 +35944,7 @@ var staticRenderFns = [
     return _c(
       "li",
       {
-        staticClass: "col-6 col-lg-4 col-xl-3 px-2 mb-3",
+        staticClass: "col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3",
         attrs: { id: "template" }
       },
       [
@@ -35945,6 +35970,16 @@ var staticRenderFns = [
           )
         ])
       ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+      [_c("i", { attrs: { "data-feather": "save" } }), _vm._v(" Save")]
     )
   }
 ]
@@ -38223,6 +38258,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -38278,6 +38316,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 	methods: {
+		myFunction: function myFunction() {
+			var copyText = document.getElementById("file");
+			copyText.select();
+			document.execCommand("Copy");
+		},
 		setThumbnail: function setThumbnail() {
 			// Add thumbnail image
 			__WEBPACK_IMPORTED_MODULE_0__dashboard_js__["bus"].$emit('theImage', this.resourceThumbnail = this.img);
@@ -38309,15 +38352,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
 			var vm = this;
 
-			if (domain === 'youtube.com' || domain === 'youtu.be') {
+			var video_host = ['youtube.com', 'youtu.be', 'vimeo.com'];
+			var audio_host = ['soundcloud.com'];
+
+			// Array.prototype.includes
+			if (video_host.includes(domain)) {
 				this.imports.import_type = 'video';
-			} else if (domain === 'vimeo.com') {
-				this.imports.import_type = 'video';
-			} else if (domain === 'soundcloud.com') {
+			} else if (audio_host.includes(domain)) {
 				this.imports.import_type = 'audio';
 			} else {
 				return alert('Host not supported!');
 			}
+
+			spinner.show();
 
 			// Fetch noembed and get the data
 			fetch('https://noembed.com/embed?url=' + url).then(function (response) {
@@ -38326,30 +38373,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this2.oembed_data = response;
 				_this2.imports.import_thumbnail = response.thumbnail_url;
 				_this2.imports.import_title = response.title;
-			}).catch(function (error) {
-				return console.log(error);
-			});
-
-			// Show spinner / disabled button
-			spinner.show();
-			button.attr("disabled", true);
-
-			// Wait 2seconds until noembed get response to prevent error
-			setTimeout(function () {
+				_this2.imports.import_embed = response.html;
+			}).then(function (response) {
 				axios.post(vm.$baseUrl + '/api/media/import', vm.imports).then(function (data) {
 					vm.imports.import_file = '';
 					vm.imports.import_type = '';
 					vm.imports.import_title = '';
 					vm.imports.import_thumbnail = '';
+					vm.imports.import_embed = '';
 					vm.fetchMedia();
-				}).catch(function (error) {
-					return console.log(error);
+					spinner.hide();
 				});
-
-				// Hide spinner / enabled button
-				spinner.hide();
-				button.attr("disabled", false);
-			}, 3000);
+			}).catch(function (error) {
+				return console.log(error);
+			});
 		},
 		mediaUploads: function mediaUploads() {
 			var previewNode = document.querySelector("#template");
@@ -38824,37 +38861,203 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm.show
-                              ? _c(
-                                  "form",
+                            _c(
+                              "form",
+                              {
+                                directives: [
                                   {
-                                    staticClass: "form-field p-3",
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.show,
+                                    expression: "show"
+                                  }
+                                ],
+                                staticClass: "form-field p-3",
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.saveMedia($event)
+                                  }
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "input-group mb-3" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.image.image_url,
+                                        expression: "image.image_url"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "file",
+                                      type: "text",
+                                      name: "file",
+                                      readonly: ""
+                                    },
+                                    domProps: { value: _vm.image.image_url },
                                     on: {
-                                      submit: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.saveMedia($event)
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.image,
+                                          "image_url",
+                                          $event.target.value
+                                        )
                                       }
                                     }
-                                  },
-                                  [
-                                    _c("div", { staticClass: "form-group" }, [
-                                      _c("input", {
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "input-group-append" },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-info",
+                                          attrs: { type: "button" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.myFunction()
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            attrs: { "data-feather": "copy" }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.image.title,
+                                        expression: "image.title"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      name: "title",
+                                      placeholder: "Title"
+                                    },
+                                    domProps: { value: _vm.image.title },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.image,
+                                          "title",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _vm.image.media_type === "image"
+                                  ? _c("div", { staticClass: "form-group" }, [
+                                      _c("textarea", {
                                         directives: [
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.image.image_url,
-                                            expression: "image.image_url"
+                                            value: _vm.image.caption,
+                                            expression: "image.caption"
                                           }
                                         ],
                                         staticClass: "form-control",
                                         attrs: {
                                           type: "text",
-                                          name: "file",
-                                          readonly: ""
+                                          name: "caption",
+                                          placeholder: "Caption"
+                                        },
+                                        domProps: { value: _vm.image.caption },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.image,
+                                              "caption",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.image.media_type === "image"
+                                  ? _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.image.alt,
+                                            expression: "image.alt"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          name: "alt",
+                                          placeholder: "Alt text"
+                                        },
+                                        domProps: { value: _vm.image.alt },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.image,
+                                              "alt",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.image.media_type === "image"
+                                  ? _c("div", { staticClass: "form-group" }, [
+                                      _c("textarea", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.image.description,
+                                            expression: "image.description"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          name: "description",
+                                          placeholder: "Description"
                                         },
                                         domProps: {
-                                          value: _vm.image.image_url
+                                          value: _vm.image.description
                                         },
                                         on: {
                                           input: function($event) {
@@ -38863,178 +39066,18 @@ var render = function() {
                                             }
                                             _vm.$set(
                                               _vm.image,
-                                              "image_url",
+                                              "description",
                                               $event.target.value
                                             )
                                           }
                                         }
                                       })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "form-group" }, [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.image.title,
-                                            expression: "image.title"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: {
-                                          type: "text",
-                                          name: "title",
-                                          placeholder: "Title"
-                                        },
-                                        domProps: { value: _vm.image.title },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
-                                            }
-                                            _vm.$set(
-                                              _vm.image,
-                                              "title",
-                                              $event.target.value
-                                            )
-                                          }
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.image.media_type === "image"
-                                      ? _c(
-                                          "div",
-                                          { staticClass: "form-group" },
-                                          [
-                                            _c("textarea", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.image.caption,
-                                                  expression: "image.caption"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "text",
-                                                name: "caption",
-                                                placeholder: "Caption"
-                                              },
-                                              domProps: {
-                                                value: _vm.image.caption
-                                              },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.image,
-                                                    "caption",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.image.media_type === "image"
-                                      ? _c(
-                                          "div",
-                                          { staticClass: "form-group" },
-                                          [
-                                            _c("input", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.image.alt,
-                                                  expression: "image.alt"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "text",
-                                                name: "alt",
-                                                placeholder: "Alt text"
-                                              },
-                                              domProps: {
-                                                value: _vm.image.alt
-                                              },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.image,
-                                                    "alt",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.image.media_type === "image"
-                                      ? _c(
-                                          "div",
-                                          { staticClass: "form-group" },
-                                          [
-                                            _c("textarea", {
-                                              directives: [
-                                                {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value: _vm.image.description,
-                                                  expression:
-                                                    "image.description"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "text",
-                                                name: "description",
-                                                placeholder: "Description"
-                                              },
-                                              domProps: {
-                                                value: _vm.image.description
-                                              },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.image,
-                                                    "description",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            })
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-primary btn-sm",
-                                        attrs: { type: "submit" }
-                                      },
-                                      [_vm._v("Save")]
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm._m(4)
+                              ]
+                            )
                           ]
                         )
                       ])
@@ -39247,6 +39290,16 @@ var staticRenderFns = [
           )
         ])
       ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+      [_c("i", { attrs: { "data-feather": "save" } }), _vm._v(" Save")]
     )
   }
 ]

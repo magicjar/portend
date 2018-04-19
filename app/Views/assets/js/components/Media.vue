@@ -56,7 +56,7 @@
 									</ul>
 								</nav>
 								<ul class="row px-2 list-unstyled" id="dropzonePreview">
-									<li class="col-6 col-lg-4 col-xl-3 px-2 mb-3" id="template">
+									<li class="col-6 col-sm-4 col-lg-4 col-xl-3 px-2 mb-3" id="template">
 										<div class="media-checkbox template-image">
 											<div class="media-thumbnail progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 												<div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
@@ -84,9 +84,12 @@
 										<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 									</ul>
 								</div>
-								<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
-									<div class="form-group">
-										<input class="form-control" type="text" name="file" v-model="image.image_url" readonly>
+								<form @submit.prevent="saveMedia" v-show="show" class="form-field p-3">
+									<div class="input-group mb-3">
+										<input id="file" class="form-control" type="text" name="file" v-model="image.image_url" readonly>
+										<div class="input-group-append">
+											<button @click.prevent="myFunction()" class="btn btn-info" type="button"><i data-feather="copy"></i></button>
+										</div>
 									</div>
 									<div class="form-group">
 										<input class="form-control" type="text" name="title" v-model="image.title" placeholder="Title">
@@ -100,7 +103,7 @@
 									<div v-if="image.media_type === 'image'" class="form-group">
 										<textarea class="form-control" type="text" name="description" v-model="image.description" placeholder="Description"></textarea>
 									</div>
-									<button type="submit" class="btn btn-primary btn-sm">Save</button>
+									<button type="submit" class="btn btn-primary btn-sm"><i data-feather="save"></i> Save</button>
 								</form>
 							</div>
 						</div>
@@ -156,6 +159,11 @@
         },
 
 		methods: {
+			myFunction() {
+				var copyText = document.getElementById("file");
+				copyText.select();
+				document.execCommand("Copy");
+			},
 			importFromUrl(){
 				var spinner = $('#spinner');
 				var button = $('#btn-import');

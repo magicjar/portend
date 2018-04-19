@@ -130,6 +130,7 @@ class MediaController extends Controller
         $media->media_type = $request['import_type'];
         $media->title = $request['import_title'];
         $media->thumbnail = $request['import_thumbnail'];
+        $media->embed_code = $request['import_embed'];
 
         if($media->save()){
             return new Resource($media);

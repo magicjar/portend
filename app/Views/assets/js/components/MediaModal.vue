@@ -91,9 +91,12 @@
 										<li class="small"><a @click="deleteMedia(image.id)" href="#" class="text-danger">Delete permanently</a></li>
 									</ul>
 								</div>
-								<form @submit.prevent="saveMedia" v-if="show" class="form-field p-3">
-									<div class="form-group">
-										<input class="form-control" type="text" name="file" v-model="image.image_url" readonly>
+								<form @submit.prevent="saveMedia" v-show="show" class="form-field p-3">
+									<div class="input-group mb-3">
+										<input id="file" class="form-control" type="text" name="file" v-model="image.image_url" readonly>
+										<div class="input-group-append">
+											<button @click.prevent="myFunction()" class="btn btn-info" type="button"><i data-feather="copy"></i></button>
+										</div>
 									</div>
 									<div class="form-group">
 										<input class="form-control" type="text" name="title" v-model="image.title" placeholder="Title">
@@ -107,7 +110,7 @@
 									<div v-if="image.media_type === 'image'" class="form-group">
 										<textarea class="form-control" type="text" name="description" v-model="image.description" placeholder="Description"></textarea>
 									</div>
-									<button type="submit" class="btn btn-primary btn-sm">Save</button>
+									<button type="submit" class="btn btn-primary btn-sm"><i data-feather="save"></i> Save</button>
 								</form>
 								</div>
 							</div>
@@ -179,6 +182,11 @@
         },
 
 		methods: {
+			myFunction() {
+				var copyText = document.getElementById("file");
+				copyText.select();
+				document.execCommand("Copy");
+			},
 			setThumbnail() {
             	// Add thumbnail image
             	bus.$emit('theImage', this.resourceThumbnail = this.img);
@@ -208,15 +216,19 @@
 				var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0]
 				var vm = this
 
-				if (domain === 'youtube.com' || domain === 'youtu.be') {
+				var video_host = ['youtube.com', 'youtu.be', 'vimeo.com']
+            	var audio_host = ['soundcloud.com']
+
+            	// Array.prototype.includes
+				if (video_host.includes(domain)) {
 					this.imports.import_type = 'video'
-				} else if (domain === 'vimeo.com') {
-					this.imports.import_type = 'video'
-				} else if (domain === 'soundcloud.com') {
+				} else if (audio_host.includes(domain)) {
 					this.imports.import_type = 'audio'
 				} else {
 					return alert('Host not supported!')
 				}
+
+				spinner.show();
 
 				// Fetch noembed and get the data
 				fetch('https://noembed.com/embed?url=' + url)
@@ -225,29 +237,21 @@
                     this.oembed_data = response;
                     this.imports.import_thumbnail = response.thumbnail_url;
                     this.imports.import_title = response.title;
+                    this.imports.import_embed = response.html;
                 })
-                .catch(error => console.log(error));
-
-                // Show spinner / disabled button
-				spinner.show();
-				button.attr("disabled", true)
-
-                // Wait 2seconds until noembed get response to prevent error
-                setTimeout(function(){
+                .then(response => {
                 	axios.post(vm.$baseUrl + '/api/media/import', vm.imports)
 					.then(data => {
 						vm.imports.import_file = '';
 						vm.imports.import_type = '';
 						vm.imports.import_title = '';
 						vm.imports.import_thumbnail = '';
+						vm.imports.import_embed = '';
 					    vm.fetchMedia();
+					    spinner.hide();
 					})
-					.catch(error => console.log(error));
-
-					// Hide spinner / enabled button
-					spinner.hide();
-					button.attr("disabled", false)
-            	}, 3000);
+                })
+                .catch(error => console.log(error));
 			},
 			mediaUploads() {
 				var previewNode = document.querySelector("#template");
