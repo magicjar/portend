@@ -35199,7 +35199,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				import_file: '',
 				import_type: '',
 				import_title: '',
-				import_thumbnail: ''
+				import_thumbnail: '',
+				import_embed: ''
 			},
 			oembed_data: {}
 		};
@@ -35222,24 +35223,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var domain = url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
 			var vm = this;
 
-			if (domain === 'youtube.com' || domain === 'youtu.be' || domain === 'vimeo.com') {
+			var video_host = ['youtube.com', 'youtu.be', 'vimeo.com'];
+			var audio_host = ['soundcloud.com'];
+
+			// Array.prototype.includes
+			if (video_host.includes(domain)) {
 				this.imports.import_type = 'video';
-			} else if (domain === 'soundcloud.com') {
+			} else if (audio_host.includes(domain)) {
 				this.imports.import_type = 'audio';
 			} else {
 				return alert('Host not supported!');
 			}
 
-			// Array.prototype.includes
-			/*var video_host = ['youtube.com', 'youtu.be', 'vimeo.com']
-           	var audio_host = ['soundcloud.com']
-   	if (video_host.includes(domain)) {
-   	this.imports.import_type = 'video'
-   } else if (audio_host.includes(domain)) {
-   	this.imports.import_type = 'audio'
-   } else {
-   	return alert('Host not supported!')
-   }*/
+			spinner.show();
 
 			// Fetch noembed and get the data
 			fetch('https://noembed.com/embed?url=' + url).then(function (response) {
@@ -35248,30 +35244,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.oembed_data = response;
 				_this.imports.import_thumbnail = response.thumbnail_url;
 				_this.imports.import_title = response.title;
-			}).catch(function (error) {
-				return console.log(error);
-			});
-
-			// Show spinner / disabled button
-			spinner.show();
-			button.attr("disabled", true);
-
-			// Wait 2seconds until noembed get response to prevent error
-			setTimeout(function () {
+				_this.imports.import_embed = response.html;
+			}).then(function (response) {
 				axios.post(vm.$baseUrl + '/api/media/import', vm.imports).then(function (data) {
 					vm.imports.import_file = '';
 					vm.imports.import_type = '';
 					vm.imports.import_title = '';
 					vm.imports.import_thumbnail = '';
+					vm.imports.import_embed = '';
 					vm.fetchMedia();
-				}).catch(function (error) {
-					return console.log(error);
+					spinner.hide();
 				});
-
-				// Hide spinner / enabled button
-				spinner.hide();
-				button.attr("disabled", false);
-			}, 3000);
+			}).catch(function (error) {
+				return console.log(error);
+			});
 		},
 		mediaUploads: function mediaUploads() {
 			var previewNode = document.querySelector("#template");
@@ -35298,6 +35284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					$('#dropzone, #dropzone-tab').removeClass('show active');
 				},
 				successmultiple: function successmultiple() {
+					this.removeAllFiles();
 					vm.fetchMedia();
 				}
 			});
