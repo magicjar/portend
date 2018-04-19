@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-use DB, App, View;
+use DB, App, View, File;
 use App\Resume;
 use App\Article;
 use App\Portfolio;
@@ -94,7 +94,14 @@ class DashboardController extends Controller
 
     public function setting()
     {
-        return view('dashboard.setting');
+        $dirs = array();
+
+        foreach(File::directories(base_path('themes')) as $dir) {
+            $name = basename($dir);
+            $dirs[$name] = ucfirst($name);
+        }
+
+        return view('dashboard.setting', compact('dirs'));
     }
 
     public function settingUpdate(Request $request)

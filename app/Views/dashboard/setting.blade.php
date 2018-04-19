@@ -87,6 +87,32 @@
 					<label for="google_analytics" class="font-weight-bold">Google Analytics</label>
 					<textarea class="form-control" type="text" name="google_analytics" rows="2" placeholder="Enter your google analytics script">{{ isset($setting->setting['google_analytics']) ? $setting->setting['google_analytics'] : '' }}</textarea>
 				</div>
+
+				<label for="theme" class="font-weight-bold">Themes</label>
+				<div class="row">
+					@foreach($dirs as $key => $dir)
+					<div class="col-6 col-sm-4">
+						<div class="card">
+							<div class="card-body p-0">
+								<img src="{{ '/theme/' . $key . '/preview.png' }}">
+							</div>
+							<div class="btn-group rounded-bottom
+								{{ $setting->getTheme() === $key ? 'bg-success' : '' }}
+							" role="group" aria-label="Basic example">
+								@if($setting->getTheme() === $key)
+									<p class="btn top-rounded-0 w-100 mb-0 text-left text-light">{{ $dir }}</p>
+								@else
+									<p class="btn top-rounded-0 w-100 mb-0 text-left">{{ $dir }}</p>
+									<button type="button" class="btn btn-primary top-rounded-0">
+										Activate
+									</button>
+								@endif
+							</div>
+						</div>
+					</div>
+					@endforeach
+				</div>
+				
 				
                 <button type="submit" class="btn btn-primary float-right">Save</button>
 			</div>
