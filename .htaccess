@@ -32,6 +32,7 @@
     RewriteCond %{REQUEST_FILENAME} !/.well-known/*
     RewriteCond %{REQUEST_FILENAME} !/app/.*/(assets|resources)/.*
     RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources)/.*
+    RewriteCond %{REQUEST_FILENAME} !/themes/.*
     RewriteCond %{REQUEST_FILENAME} !/storage/app/public/*
     RewriteRule !^index.php index.php [L,NC]
 
