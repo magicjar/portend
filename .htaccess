@@ -1,21 +1,58 @@
 <IfModule mod_rewrite.c>
+
     <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
+        Options -MultiViews
     </IfModule>
 
     RewriteEngine On
 
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    ##
+    ## You may need to uncomment the following line for some hosting environments,
+    ## if you have installed to a subdirectory, enter the name here also.
+    ##
+    # RewriteBase /
+    
+    ##
+    ## Uncomment following lines to force HTTPS.
+    ##
+    # RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    ##
+    ## Black listed folders
+    ##
+    RewriteRule ^bootstrap/.* index.php [L,NC]
+    RewriteRule ^config/.* index.php [L,NC]
+    RewriteRule ^vendor/.* index.php [L,NC]
+
+    ##
+    ## White listed folders
+    ##
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} !/.well-known/*
+    RewriteCond %{REQUEST_FILENAME} !/app/.*/(assets|resources)/.*
+    RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources)/.*
+    RewriteCond %{REQUEST_FILENAME} !/storage/app/public/*
+    RewriteRule !^index.php index.php [L,NC]
+
+    ##
+    ## Block all PHP files, except index
+    ##
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} \.php$
+    RewriteRule !^index.php index.php [L,NC]
+
+    ##
+    ## Redirect Trailing Slashes If Not A Folder
+    ##
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Handle Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
+    ##
+    ## Standard routes
+    ##
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
 </IfModule>
