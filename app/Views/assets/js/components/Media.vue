@@ -88,7 +88,7 @@
 									<div class="input-group mb-3">
 										<input id="file" class="form-control" type="text" name="file" v-model="image.image_url" readonly>
 										<div class="input-group-append">
-											<button @click.prevent="myFunction()" class="btn btn-info" type="button"><i data-feather="copy"></i></button>
+											<button @click.prevent="myFunction()" class="btn btn-info" type="button" title="Copy"><i data-feather="copy"></i></button>
 										</div>
 									</div>
 									<div class="form-group">

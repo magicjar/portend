@@ -35713,7 +35713,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-info",
-                                attrs: { type: "button" },
+                                attrs: { type: "button", title: "Copy" },
                                 on: {
                                   click: function($event) {
                                     $event.preventDefault()
@@ -38921,7 +38921,10 @@ var render = function() {
                                         "button",
                                         {
                                           staticClass: "btn btn-info",
-                                          attrs: { type: "button" },
+                                          attrs: {
+                                            type: "button",
+                                            title: "Copy"
+                                          },
                                           on: {
                                             click: function($event) {
                                               $event.preventDefault()

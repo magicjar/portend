@@ -72,12 +72,12 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('app/views/assets/javascript/tinymce/tinymce.min.js') }}"></script>
 <script>
     tinymce.init({
         selector: '#description',
         menubar: false,
-        content_css : '/css/dashboard.css',
+        content_css : '/app/views/assets/css/dashboard.css',
         height : 400,
         plugins: [
             'advlist autolink link',
