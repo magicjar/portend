@@ -92,15 +92,18 @@
 				<div class="row">
 					@foreach($dirs as $key => $dir)
 					<div class="col-6 col-sm-4">
-						<div class="card">
+						<div class="card" style="overflow: hidden;">
 							<div class="card-body p-0">
-								<img src="{{ '/theme/' . $key . '/preview.png' }}">
+								<img class="img-fluid" src="{{ '/themes/' . $key . '/preview.png' }}">
 							</div>
 							<div class="btn-group rounded-bottom
 								{{ $setting->getTheme() === $key ? 'bg-success' : '' }}
 							" role="group" aria-label="Basic example">
 								@if($setting->getTheme() === $key)
 									<p class="btn top-rounded-0 w-100 mb-0 text-left text-light">{{ $dir }}</p>
+									<p class="btn bg-primary top-rounded-0 mb-0 text-light">
+										Installed
+									</p>
 								@else
 									<p class="btn top-rounded-0 w-100 mb-0 text-left">{{ $dir }}</p>
 									<button type="button" class="btn btn-primary top-rounded-0">
