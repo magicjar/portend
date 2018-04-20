@@ -12,7 +12,7 @@
     <title>{{ config('app.name', 'Blvckgold') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('app/views/assets/css/dashboard.css') }}" rel="stylesheet">
 </head>
 <body id="dashboard">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top flex-nowrap p-0">
@@ -61,8 +61,8 @@
     <div class="overlay"></div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-    <script src="{{ asset('js/feather.min.js') }}"></script>
+    <script src="{{ asset('app/views/assets/javascript/dashboard.js') }}"></script>
+    <script src="{{ asset('app/views/assets/javascript/feather.min.js') }}"></script>
     
     @yield('scripts')
 </body>

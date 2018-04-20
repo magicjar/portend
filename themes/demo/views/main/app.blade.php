@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Blckgold') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('themes/demo/assets/css/app.css') }}" rel="stylesheet">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -68,8 +68,8 @@
         </section>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/feather.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('themes/demo/assets/javascript/app.js') }}"></script>
+    <script src="{{ asset('themes/demo/assets/javascript/feather.min.js') }}"></script>
 
     @if($setting->getGoogleAnalytics())
         {!! $setting->getGoogleAnalytics() !!}
