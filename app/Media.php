@@ -20,7 +20,7 @@ class Media extends Model
     public function getImageUrlAttribute()
     {
         if ($this->media_type === 'image'){
-            return asset('storage/' . $this->file);
+            return asset('storage/app/public/' . $this->file);
         } else {
             return $this->file;
         }

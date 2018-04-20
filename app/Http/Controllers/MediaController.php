@@ -17,8 +17,8 @@ class MediaController extends Controller
     public function __construct(Media $media)
     {
     	$this->middleware('auth');
-    	$this->photos_path = public_path('storage');
-        $this->thumbnail_path = public_path('storage/thumbnail');
+    	$this->photos_path = base_path('storage/app/public');
+        $this->thumbnail_path = base_path('storage/app/public/thumbnail');
     	$this->media = $media;
     }
 
@@ -53,7 +53,7 @@ class MediaController extends Controller
             // Create save name from original slug, 6 random string and added original extension
             $save_name = $original_name . '-' . $random_numb . '.' . $photo->getClientOriginalExtension();
 
-            $thumbnail_name = asset('storage/thumbnail/' . $save_name);
+            $thumbnail_name = asset('storage/app/public/thumbnail/' . $save_name);
 
             $image = Intervention::make($photo);
 
